@@ -1,0 +1,138 @@
+% $Header: /home/vedranm/bitbucket/beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 90e850259b8b 2007/01/28 20:48:30 tantau $
+
+\documentclass{beamer}
+
+\mode<presentation>
+{
+\usetheme{Warsaw}
+\setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+
+\title[MRes Advanced Brain Imaging]
+{MRes Advanced Brain Imaging}
+
+\subtitle[Revision session]
+{Revision session}
+
+\author[Remi Gau]
+{Remi Gau}
+
+\institute[University of Birmingham]
+{
+School of psychology\\
+University of Birmingham
+}
+
+\date[Short Occasion]
+{17\textsuperscript{th} March 2014}
+
+\subject{MRes Advanced Brain Imaging - Revision session}
+
+\pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename.jpeg}
+\logo{\pgfuseimage{university-logo}}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+% \beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\footnotesize
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{PRE-PROCESSING}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection[General questions]{General questions}
+
+
+\begin{frame}{General questions}
+  \begin{itemize}
+    \item \textbf{How do you map from voxel space to world space?}
+
+    \smallskip 
+%     You multiply the transformation matrix with the vector containing the voxel coordinates.
+
+    \item \textbf{What are the real world coordinates of the voxel with indices $\left[\begin{array}{ccc} 1&1&1\end{array}\right]$ of an image with the following tranformation matrix?}
+
+    \begin{center}
+      $
+      \left[
+      \begin{array}{cccc}
+      1 & 0 & 0 & 25\\
+      0 & 1 & 0 & 57\\
+      0 & 0 & 1 & 45\\
+      0 & 0 & 0 & 1\\
+      \end{array}\documentclass[a4paper,10pt]{article}
+
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{fontenc}
+\usepackage{graphicx}
+
+\usepackage[dvips]{hyperref}
+
+\date{28/09/2014}
+
+\begin{document}
+                  
+                 \end{document}
+
+      \right]
+      $
+    \end{center}
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{General questions}
+  \begin{itemize}
+    \item \textbf{What is an objective function when comparing 2 images?}
+
+    \smallskip 
+%     It is a function that allows quantification of the difference between these images and the optimization of the parameters set to get their best realignment, usually by minimizing/maximizing its value.
+
+    \bigskip
+    \item \textbf{Why are there different objective functions?}
+
+    \smallskip   
+%     T1 and T2* have very different ranges of values for the same tissue class. So intermodal and intramodal coregistration are going to require different types of way of quantifying misalignment.
+  \end{itemize}
+\end{frame}
+\documentclass[10pt,draft]{beamer}
+
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{beamerthemebars}
+
+\usepackage{babel}
+\usepackage{fontenc}
+\usepackage{graphicx}
+
+\date{28/09/2014}
+
+\begin{document}
+ 
+\end{document}
+
+
+\end{document}
+
+
