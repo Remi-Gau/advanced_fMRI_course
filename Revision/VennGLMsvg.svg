@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="VennDiagramGLMsvg.eps">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="147.46915"
+     inkscape:cy="622.61827"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1124"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <rect
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2987"
+       width="460"
+       height="300"
+       x="40"
+       y="232.36218"
+       inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/rect4012-9.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3757"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion3759"><rect
+           id="rect3761"
+           width="67.14286"
+           height="42.142857"
+           x="119.28571"
+           y="260.93362" /></flowRegion><flowPara
+         id="flowPara3763">GLM</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3765"
+       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       transform="translate(105.67188,-19.033791)"
+       inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/rect4012-9.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><flowRegion
+         id="flowRegion3767"><rect
+           id="rect3769"
+           width="90"
+           height="52.857147"
+           x="120"
+           y="259.50504"
+           ry="0"
+           style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+         id="flowPara3771">GLM</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3765-8"
+       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       transform="matrix(2.771702,0,0,1,-218.28332,50.966209)"><flowRegion
+         id="flowRegion3767-3"><rect
+           id="rect3769-7"
+           width="90"
+           height="52.857147"
+           x="120"
+           y="259.50504"
+           ry="0"
+           style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+         id="flowPara3771-5">Repeated measure ANOVA</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3802"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion3804"><rect
+           id="rect3806"
+           width="139.28572"
+           height="109.28571"
+           x="197.14285"
+           y="334.50504" /></flowRegion><flowPara
+         id="flowPara3808">Repeated measure ANOVA</flowPara></flowRoot>    <g
+       id="g3989"
+       transform="translate(-15,0)"
+       inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/rect4012-9.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         id="g3966">
+        <rect
+           style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3773"
+           width="200"
+           height="210"
+           x="80"
+           y="302.36218" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3811"
+           style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           transform="translate(412.81445,130.9124)"><flowRegion
+             id="flowRegion3813"><rect
+               id="rect3815"
+               width="357.85715"
+               height="51.42857"
+               x="-412.14285"
+               y="180.21933"
+               style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+             id="flowPara3817">Repeated measure</flowPara><flowPara
+             id="flowPara3819">ANOVA</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3811-7"
+           style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+           transform="translate(412.55518,250.9124)"><flowRegion
+             id="flowRegion3813-5"><rect
+               id="rect3815-1"
+               width="357.85715"
+               height="51.42857"
+               x="-412.14285"
+               y="180.21933"
+               style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+             id="flowPara3819-4">Paired t-test</flowPara></flowRoot>      </g>
+      <g
+         id="g3978">
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3811-3"
+           style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+           transform="translate(623.21875,142.0042)"><flowRegion
+             id="flowRegion3813-0"><rect
+               id="rect3815-3"
+               width="357.85715"
+               height="51.42857"
+               x="-412.14285"
+               y="180.21933"
+               style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+             id="flowPara3819-6">ANOVA</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3811-7-2"
+           style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+           transform="translate(623.19678,250.39385)"><flowRegion
+             id="flowRegion3813-5-8"><rect
+               id="rect3815-1-6"
+               width="357.85715"
+               height="51.42857"
+               x="-412.14285"
+               y="180.21933"
+               style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+             id="flowPara3819-4-2">t-test</flowPara></flowRoot>        <rect
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+           id="rect3773-3"
+           width="200"
+           height="210"
+           x="290"
+           y="302.36218" />
+      </g>
+    </g>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4012"
+       width="150"
+       height="70"
+       x="90"
+       y="412.36218"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect4012-9"
+       width="150"
+       height="70"
+       x="300"
+       y="412.36218"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+  </g>
+</svg>

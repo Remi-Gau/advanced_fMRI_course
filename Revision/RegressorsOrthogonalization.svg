@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg4321"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="RegressorsOrthogonalization.svg">
+  <defs
+     id="defs4323">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3834"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3828"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6449"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6451"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-64"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-61"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-4"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6893"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6895"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6897"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6899"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6901"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6903"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-16"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-7"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-20"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-4"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-23"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-60"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3834-09"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.46536278"
+     inkscape:cx="819.93635"
+     inkscape:cy="509.01381"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1124"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4329" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4326">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g7791"
+       transform="translate(0,4.291725)"
+       inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/g7830.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         transform="translate(-55,-324.99999)"
+         id="g6399">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:4.44200802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+           d="m 82.813398,597.68352 c 174.974052,0 196.845812,0 196.845812,0"
+           id="path4337"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:4.45089102;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+           d="M 82.813398,597.68352 C 213.64592,477.39787 230,462.36218 230,462.36218"
+           id="path4337-0"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         transform="translate(-46.632928,-275)"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345"
+         xml:space="preserve"><flowRegion
+           id="flowRegion6347"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349" /></flowRegion><flowPara
+           id="flowPara6351">X<flowSpan
+   id="flowSpan6403"
+   style="font-size:65.00091553%;baseline-shift:sub">1</flowSpan></flowPara></flowRoot>      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8"
+         xml:space="preserve"
+         transform="translate(-98,-367.53115)"><flowRegion
+           id="flowRegion6347-6"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349-9" /></flowRegion><flowPara
+           id="flowPara6351-8">X<flowSpan
+   id="flowSpan6435"
+   style="font-size:65.00091553%;baseline-shift:sub">2</flowSpan></flowPara></flowRoot>      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4"
+         d="m 233.15419,272.36218 c 174.97405,0 196.84581,0 196.84581,0"
+         style="fill:none;stroke:#000000;stroke-width:4.44200802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.44200802, 4.44200802;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-0-2"
+         d="M 180,132.36218 C 245.41626,72.219363 253.5933,64.701513 253.5933,64.701513"
+         style="fill:none;stroke:#000000;stroke-width:4.44199991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.44199991, 4.44199991;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-3"
+         d="m 260,57.362183 c 364.44444,0 410,0 410,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker-end:none" />
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-3"
+         xml:space="preserve"
+         transform="translate(485.92187,-528.41655)"><flowRegion
+           id="flowRegion6347-6-2"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349-9-9" /></flowRegion><flowPara
+           id="flowPara6351-8-8">Ŷ</flowPara></flowRoot>      <g
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         transform="matrix(0.5,0,0,0.5,617.51412,-83.776537)"
+         id="g6569">
+        <path
+           style="fill:#ff0000;stroke:#ff0000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 100.08473,267.39043 c 24.88703,24.88702 24.88703,24.88702 24.88703,24.88702"
+           id="path6544"
+           inkscape:connector-curvature="0" />
+        <g
+           id="g6566">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6544-3"
+             d="m 124.97176,267.39042 c -24.88703,24.88702 -24.88703,24.88702 -24.88703,24.88702"
+             style="fill:#ff0000;stroke:#ff0000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        </g>
+      </g>
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/flowRoot6345-8-2-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-3-7"
+         d="m 440,272.36218 c 165,-150 235,-214.999997 235,-214.999997"
+         style="fill:none;stroke:#000000;stroke-width:1.54604137;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:3.09208273, 3.09208273;stroke-dashoffset:0;marker-end:none" />
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-2"
+         xml:space="preserve"
+         transform="translate(-123.84375,-423.41655)"><flowRegion
+           id="flowRegion6347-6-8"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="29.926743"
+             width="89.988388"
+             id="rect6349-9-5" /></flowRegion><flowPara
+           id="flowPara6841">β<flowSpan
+   id="flowSpan6875"
+   style="font-size:65.00091553%;baseline-shift:sub">2</flowSpan> = 1.5</flowPara><flowPara
+           id="flowPara6843"></flowPara></flowRoot>      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-2-2"
+         xml:space="preserve"
+         transform="translate(-123.84375,-452.41655)"><flowRegion
+           id="flowRegion6347-6-8-8"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="29.926743"
+             width="89.988388"
+             id="rect6349-9-5-1" /></flowRegion><flowPara
+           id="flowPara6841-1">β<flowSpan
+   id="flowSpan6879"
+   style="font-size:65.00091553%;baseline-shift:sub">1</flowSpan> = 2</flowPara><flowPara
+           id="flowPara6843-5" /></flowRoot>    </g>
+    <g
+       id="g7830"
+       transform="translate(829.90659,-528.29173)"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-1"
+         d="m 40.602576,806.08839 c 174.974054,0 196.845814,0 196.845814,0"
+         style="fill:none;stroke:#000000;stroke-width:4.44200802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         transform="translate(-33.84375,261.58345)"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-7"
+         xml:space="preserve"><flowRegion
+           id="flowRegion6347-5"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349-1" /></flowRegion><flowPara
+           id="flowPara6351-3">X<flowSpan
+   id="flowSpan6403-4"
+   style="font-size:65.00091553%;baseline-shift:sub">1</flowSpan></flowPara></flowRoot>      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-4"
+         xml:space="preserve"
+         transform="translate(-153.84375,181.58345)"><flowRegion
+           id="flowRegion6347-6-20"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349-9-4" /></flowRegion><flowPara
+           id="flowPara6351-8-0">X<flowSpan
+   id="flowSpan6435-8"
+   style="font-size:65.00091553%;baseline-shift:sub">2</flowSpan></flowPara></flowRoot>      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-7"
+         d="m 245.94337,806.08839 c 174.97405,0 196.84581,0 196.84581,0"
+         style="fill:none;stroke:#000000;stroke-width:4.44200802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.44200802, 4.44200802;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-0-2-4"
+         d="m 41.5,664.36218 c 0,-60.14282 0,-67.66067 0,-67.66067"
+         style="fill:none;stroke:#000000;stroke-width:4.44199991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.442, 4.442;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-3-7"
+         xml:space="preserve"
+         transform="translate(498.71105,8.1669014)"><flowRegion
+           id="flowRegion6347-6-2-0"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="41.854359"
+             width="80.443481"
+             id="rect6349-9-9-7" /></flowRegion><flowPara
+           id="flowPara6351-8-8-3">Ŷ</flowPara></flowRoot>      <g
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         transform="matrix(0.5,0,0,0.5,640.3033,452.80691)"
+         id="g6569-2">
+        <path
+           style="fill:#ff0000;stroke:#ff0000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 100.08473,267.39043 c 24.88703,24.88702 24.88703,24.88702 24.88703,24.88702"
+           id="path6544-6"
+           inkscape:connector-curvature="0" />
+        <g
+           id="g6566-5">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6544-3-1"
+             d="m 124.97176,267.39042 c -24.88703,24.88702 -24.88703,24.88702 -24.88703,24.88702"
+             style="fill:#ff0000;stroke:#ff0000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        </g>
+      </g>
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-3-7-0"
+         d="m 696,804.36218 c 0,-150 0,-215 0,-215"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker-end:none" />
+      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-2-6"
+         xml:space="preserve"
+         transform="translate(-273.84375,81.583449)"><flowRegion
+           id="flowRegion6347-6-8-0"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="29.926743"
+             width="89.988388"
+             id="rect6349-9-5-8" /></flowRegion><flowPara
+           id="flowPara6841-9">β<flowSpan
+   id="flowSpan6875-6"
+   style="font-size:65.00091553%;baseline-shift:sub">2</flowSpan> = 1.5</flowPara><flowPara
+           id="flowPara6843-1" /></flowRoot>      <flowRoot
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowRoot6345-8-2-2-2"
+         xml:space="preserve"
+         transform="translate(-273.84375,52.583449)"><flowRegion
+           id="flowRegion6347-6-8-8-7"><rect
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+             y="550.85199"
+             x="163.85536"
+             height="29.926743"
+             width="89.988388"
+             id="rect6349-9-5-1-0" /></flowRegion><flowPara
+           id="flowPara7291">β1 = 3.2</flowPara><flowPara
+           id="flowPara7293"></flowPara></flowRoot>      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-0-1-6"
+         d="m 41.5,807.68352 c 0,-120.28565 0,-135.32134 0,-135.32134"
+         style="fill:none;stroke:#000000;stroke-width:4.44199991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:none;marker-mid:url(#Arrow1Mend-1);marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-7-3"
+         d="m 450,806.08839 c 174.97405,0 196.84581,0 196.84581,0"
+         style="fill:none;stroke:#000000;stroke-width:4.44200802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.44200802, 4.44200802;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="/home/SHARED/Dropbox/PhD/TA/AdvancedImagingCourse/VRAC/Quiz/path4337-1-2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-4-7-3-2"
+         d="m 642,806.08839 c 43.8837,0 49.36916,0 49.36916,0"
+         style="fill:none;stroke:#000000;stroke-width:4.44199991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.442, 4.442;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4337-1-2"
+         d="m 40.093412,592.36218 c 577.694738,0 649.906588,0 649.906588,0"
+         style="fill:none;stroke:#000000;stroke-width:2.03150272;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-opacity:1;stroke-dasharray:4.06300527, 4.06300527;stroke-dashoffset:0;marker-start:none;marker-end:none" />
+    </g>
+  </g>
+</svg>
