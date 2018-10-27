@@ -1,0 +1,611 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx}
+% \usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{lscape}
+
+\usepackage[pdftex=true,
+hyperindex=true,
+colorlinks=true,pdfstartview={Fit}]{hyperref}
+\hypersetup{urlcolor=blue}
+
+\title{Advanced brain imaging methods: Tutorial 0}
+\author{}
+\date{3\textsuperscript{rd} February 2014}
+
+\pdfinfo{%
+/Title (Advanced brain imaging methods: Tutorial 0)
+/Author ()
+/Creator ()
+/Producer ()
+/Subject ()
+/Keywords ()
+}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Linear algebra: warm up}
+
+
+\subsection{Adding noise to an image}
+
+Say that for some reason you want to add normally distributed noise to an image. Given an image defined by the matrix A and the matrix B containing normally distributed noise, what would be the matrix C of the image to which this noise has been added ? 
+
+\bigskip
+$ A =
+\left[\begin{array}{cccc}
+136	& 37	& 45	& 158\\ 
+28	& 69	& 78	& 55 \\
+227	& 75	& 196	& 170\\
+212	& 34	& 23	& 125\\
+\end{array}\right] 
+$
+;
+$B =
+\left[\begin{array}{cccc}
+-1	& 6	& 2	& 12\\
+-14	& -6	& -4	& -1\\
+-3	& 1	& 3	& -15\\
+-13	& -4	& 5	& -6\\
+\end{array}\right] 
+$
+
+\bigskip
+\textit{Simply add each value of A to its corresponding value of B:}
+\begin{displaymath}
+  A+B = 
+  \left[\begin{array}{cccc}
+  135	& 43	& 47	& 170\\
+  14	& 63	& 74	& 54\\
+  224	& 76	& 199	& 155\\
+  199	& 30	& 28	& 119\\
+  \end{array}\right]
+\end{displaymath}
+
+
+\subsection{Rigid body transformation: translations}
+
+The transformation matrix of an image is the matrix that allows you to say what are the coordinates [x,y,z] in world space of the voxel with indices [i,j,k] in voxel space.
+
+What is the matrix B that will translate an image by 15 mm along the x dimension, -58 mm along the y dim and 65 mm along the z dimension?
+
+\bigskip
+$ B =
+\left[\begin{array}{cccc}
+  1 	& 0 	& 0 	& 15\\ 
+  0 	& 1	& 0 	& -58\\
+  0 	& 0 	& 1 	& 65\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right] 
+$
+\bigskip
+
+Given the transformation matrix A below, what would be the values of A' the new transformation matrix once the translation performed by B has been applied?
+
+\bigskip
+$ A =
+\left[\begin{array}{cccc}
+  5 	& 0 	& 0 	& 125\\ 
+  0 	& 2 	& 0 	& 118\\
+  0 	& 0 	& 1 	& 10\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right] 
+$
+
+\bigskip
+\textit{The new matrix will be given to you by the matrix multiplication $A \times B$ which will simplifies to this (but do not take my word for it, check it yourself):}
+
+\begin{displaymath}
+A' = A \times B =
+\left[\begin{array}{cccc}
+  5 	& 0 	& 0 	& 125+15*5\\ 
+  0 	& 2 	& 0 	& 118-58*2\\
+  0 	& 0 	& 1 	& 10+65\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\end{displaymath}
+
+\bigskip
+Given this new transformation matrix, what would be the real world coordinates of the voxel with indices [10,25,45] and for any voxel with indices [i,j,k]?
+
+\bigskip
+\textit{These coordinates will be given to you by this matrix multiplication:}
+\begin{align*}
+A' \times \left[\begin{array}{cccc} i &j &k &1 \end{array}\right]^{T} = 
+%
+A' \times
+\left[\begin{array}{c}
+i\\
+j\\
+k\\
+1\\
+\end{array}\right]
+%
+=
+\left[\begin{array}{cccc}
+  5 	& 0 	& 0 	& 200\\ 
+  0 	& 2 	& 0 	& 2\\
+  0 	& 0 	& 1 	& 75\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+10\\
+25\\
+45\\
+1\\
+\end{array}\right] \\
+%
+=
+\left[\begin{array}{c}
+5*10+200*1\\
+2*25+2*1\\
+1*45+75*1\\
+1\\
+\end{array}\right]
+=
+\left[\begin{array}{c}
+250\\
+52\\
+120\\
+1\\
+\end{array}\right]
+\end{align*}
+
+\textit{The center of this  voxel will occupy the coordinates x = 250 mm ; y = 52 mm ; z = 120 mm.}
+
+
+\subsection{Rigid body transformation: rotations}
+
+What is the matrix C that will rotate an image by 90 degrees around the x axis (pitch)? 
+
+\begin{displaymath}
+C =
+\left[\begin{array}{cccc}
+  cos(90) 	& sin(90) 	& 0 	& 0\\ 
+  -sin(90) 	& cos(90)	& 0 	& 0\\
+  0 	& 0 	& 1 	& 0\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+=
+\left[\begin{array}{cccc}
+  0 	& 1 	& 0 	& 0\\ 
+  -1 	& 0	& 0 	& 0\\
+  0 	& 0 	& 1 	& 0\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\end{displaymath}
+
+\bigskip
+Given the transformation matrix A below, what would be the values of A'', the new transformation matrix, after this rotation has been applied?
+
+\bigskip
+$ A=
+\left[\begin{array}{cccc}
+  5 	& 0 	& 0 	& 125\\ 
+  0 	& 2 	& 0 	& 118\\
+  0 	& 0 	& 1 	& 10\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right] 
+$
+
+\bigskip
+\textit{The new matrix will be given to you by the matrix multiplication $A \times C$ which will simplifies to this (but do not take my word for it, check it yourself):}
+
+\bigskip
+$ A'' = A \times C =
+\left[\begin{array}{cccc}
+  0 	& 5 	& 0 	& 125\\ 
+  -2 	& 0 	& 0 	& 118\\
+  0 	& 0 	& 1 	& 10\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right] 
+$
+
+\subsection{Rigid body transformation: order of transformation}
+
+For the point with coordinates [14,58,23], what would be its coordinates if:
+\begin{enumerate}
+  \item you applied the translation defined by B then the rotation defined by C,
+  \item you applied the rotation defined by C and then the translation defined by B?
+\end{enumerate}
+
+\bigskip
+\textit{For the first case we have to do the following matrix multiplication:} 
+\begin{align*}
+C \times B \times \left[\begin{array}{cccc} 14 &58 &23 &1\end{array}\right]^{T} \\
+%
+=
+\left[\begin{array}{cccc}
+  0 	& 1 	& 0 	& 0\\ 
+  -1 	& 0	& 0 	& 0\\
+  0 	& 0 	& 1 	& 0\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{cccc}
+  1 	& 0 	& 0 	& 15\\ 
+  0 	& 1	& 0 	& -58\\
+  0 	& 0 	& 1 	& 65\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+15\\ 58\\ 23\\ 1\\
+\end{array}\right] \\
+%
+=
+\left[\begin{array}{cccc}
+  0 	& 1 	& 0 	& 0\\ 
+  -1 	& 0	& 0 	& 0\\
+  0 	& 0 	& 1 	& 0\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+15+15\\ 58-58\\ 23+65\\ 1\\
+\end{array}\right] \\
+%
+= 
+\left[\begin{array}{c}
+58-58\\ -(15+15)\\ 23+65\\ 1\\
+\end{array}\right] 
+=
+\left[\begin{array}{c}
+0\\ -30\\ 88\\ 1\\
+\end{array}\right]
+\end{align*}
+
+
+\textit{For the second case we have to do the following matrix multiplication:} 
+\begin{align*}
+B \times C \times \left[\begin{array}{cccc} 14 &58 &23 &1\end{array}\right]^{T} \\
+%
+=
+\left[\begin{array}{cccc}
+  1 	& 0 	& 0 	& 15\\ 
+  0 	& 1	& 0 	& -58\\
+  0 	& 0 	& 1 	& 65\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{cccc}
+  0 	& 1 	& 0 	& 0\\ 
+  -1 	& 0	& 0 	& 0\\
+  0 	& 0 	& 1 	& 0\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+15\\ 58\\ 23\\ 1\\
+\end{array}\right] \\
+%
+=
+\left[\begin{array}{cccc}
+  1 	& 0 	& 0 	& 15\\ 
+  0 	& 1	& 0 	& -58\\
+  0 	& 0 	& 1 	& 65\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+58\\ -15\\ 23\\ 1\\
+\end{array}\right] \\
+%
+= 
+\left[\begin{array}{c}
+58+15\\ -15-58\\ 23+65\\ 1\\
+\end{array}\right] 
+=
+\left[\begin{array}{c}
+73\\ -73\\ 88\\ 1\\
+\end{array}\right]
+\end{align*}
+
+\textit{This illustrates that the order which you apply the transformation to an image does matter.}
+
+
+
+\section{General linear model}
+
+In class we have seen how to find the equation that defines the ordinary least-square estimate of the $\hat{\beta}$ value of the following model:
+\begin{displaymath}
+  y = \beta x + \varepsilon
+\end{displaymath}
+
+For each value of $x_{i}$, the residual error ($\varepsilon_{i}$) is given by the difference between the predicted value of the model ($\hat{y_{i}} = \hat{\beta} x_{i}$) and the actual empirical value ($y_{i}$). We want to minimize the sum of the squared residual:
+\begin{displaymath}
+  \sum_{i=1}^{N} \varepsilon_{i}^{2} = \sum_{i=1}^{N}(y_{i} - \hat{y_{i}})^{2} = \sum_{i=1}^{N} (y_{i} - \hat{\beta} x_{i})^{2} = \sum_{i=1}^{N} (y_{i}^{2} - 2\hat{\beta} x_{i}y_{i} + \hat{\beta}^{2} x_{i}^{2})
+\end{displaymath}
+At the value of $\hat{\beta}$ that minimize this function, we know that its derivative with respect to $\beta$ will be equal to 0. So to find $\hat{\beta}$, we derived this function with respect to $\hat{\beta}$, and rearranged this derivative to have the value of $\hat{\beta}$ expressed in terms of $x$ and $y$.
+
+\bigskip
+Let's now try to do the same with this model:
+\begin{displaymath}
+  y = \hat{\beta}_{1} x + \hat{\beta}_{0} + \varepsilon
+\end{displaymath}
+
+Do this by the following steps:
+\begin{enumerate}
+ \item Write down the sum of the squared residual of this model.
+ \item Derive this function with respect to $\hat{\beta}_{1}$ and rearranged this derivative to have the value of $\hat{\beta}_{1}$ expressed in terms of $x$, $y$ and $\hat{\beta}_{0}$.
+ \item Do the same with respect to $\hat{\beta}_{0}$.
+ \item You will find the values that minimize your errors when both of those partial derivatives are equal to zero. So you have now a system of 2 equations with 2 unknowns. Substitute $\hat{\beta}_{0}$ in the function found in step 2 by the solution of step 3.
+\end{enumerate}
+
+\bigskip
+\textit{The sum of the squared residual (RSS) of this new model is:}
+\begin{displaymath}
+  RSS(\hat{\beta}_{1},\hat{\beta}_{0}) = \sum_{i=1}^{N} \varepsilon_{i}^{2} = \sum_{i=1}^{N}(y_{i} - \hat{y_{i}})^{2} = \sum_{i=1}^{N} (y_{i} - (\hat{\beta}_{1} x_{i} + \hat{\beta}_{0}))^{2} = \sum_{i=1}^{N} (y_{i} - \hat{\beta}_{1} x_{i} - \hat{\beta}_{0})^{2}
+\end{displaymath}
+
+\textit{This can be rewritten as:}
+\begin{eqnarray*}
+  RSS(\hat{\beta}_{1},\hat{\beta}_{0}) = \sum_{i=1}^{N} (y_{i}^2 + \hat{\beta}_{1}^2 x_{i}^2 + \hat{\beta}_{0}^2 - 2\hat{\beta}_{0} y_{i} - 2\hat{\beta}_{1} x_{i} y_{i} + 2 \hat{\beta}_{0} \hat{\beta}_{1} x_{i})
+  %
+  \\= \sum_{i=1}^{N} y_{i}^2 + \sum_{i=1}^{N} \hat{\beta}_{1}^2 x_{i}^2 + \sum_{i=1}^{N} \hat{\beta}_{0}^2 - \sum_{i=1}^{N} 2\hat{\beta}_{0} y_{i} - \sum_{i=1}^{N} 2\hat{\beta}_{1} x_{i} y_{i} + \sum_{i=1}^{N} 2 \hat{\beta}_{0} \hat{\beta}_{1} x_{i}
+  %
+  \\= \sum_{i=1}^{N} y_{i}^2 + \hat{\beta}_{1}^2 \sum_{i=1}^{N} x_{i}^2 + n \hat{\beta}_{0}^2 - 2\hat{\beta}_{0} \sum_{i=1}^{N}  y_{i} - 2\hat{\beta}_{1} \sum_{i=1}^{N}  x_{i} y_{i} + 2 \hat{\beta}_{0} \hat{\beta}_{1} \sum_{i=1}^{N}  x_{i}
+\end{eqnarray*}
+
+\textit{If with derive with respect to $\hat{\beta}_{0}$, we get:}
+\begin{eqnarray*}
+  \frac{\partial RSS(\hat{\beta}_{1},\hat{\beta}_{0})}{\partial \hat{\beta}_{0}} = 2 n \hat{\beta}_{0} - 2 \sum_{i=1}^{N}  y_{i} + 2 \hat{\beta}_{1} \sum_{i=1}^{N}  x_{i}
+\end{eqnarray*}
+
+\textit{If with derive with respect to $\hat{\beta}_{1}$, we get:}
+\begin{eqnarray*}
+  \frac{\partial RSS(\hat{\beta}_{1},\hat{\beta}_{0})}{\partial \hat{\beta}_{1}} = 2 \hat{\beta}_{1} \sum_{i=1}^{N} x_{i}^2 - 2 \sum_{i=1}^{N}  x_{i} y_{i} + 2 \hat{\beta}_{0} \sum_{i=1}^{N}  x_{i}
+\end{eqnarray*}
+
+\textit{If we set both equations as equal to 0, we get:}
+\begin{eqnarray}
+  n \hat{\beta}_{0} - \sum_{i=1}^{N}  y_{i} + \hat{\beta}_{1} \sum_{i=1}^{N}  x_{i} = 0
+  \\ \hat{\beta}_{1} \sum_{i=1}^{N} x_{i}^2 - \sum_{i=1}^{N}  x_{i} y_{i} + \hat{\beta}_{0} \sum_{i=1}^{N}  x_{i} = 0
+\end{eqnarray}
+
+\textit{From 1 we can extract $\hat{\beta}_{0}$:}
+\begin{eqnarray}
+  \hat{\beta}_{0} = \frac{1}{n}\sum_{i=1}^{N}  y_{i} - \hat{\beta}_{1} \frac{1}{n} \sum_{i=1}^{N}  x_{i}
+\end{eqnarray}
+
+\textit{By substituting equation 3 in equation 2, we have:}
+\begin{eqnarray}
+  \hat{\beta}_{1} \sum_{i=1}^{N} x_{i}^2 - \sum_{i=1}^{N}  x_{i} y_{i} + (\frac{1}{n}\sum_{i=1}^{N}  y_{i} - \hat{\beta}_{1} \frac{1}{n} \sum_{i=1}^{N}  x_{i})\sum_{i=1}^{N}  x_{i} = 0 \nonumber
+  %
+  \\ \hat{\beta}_{1} \sum_{i=1}^{N} x_{i}^2 - \sum_{i=1}^{N}  x_{i} y_{i} + \frac{1}{n}\sum_{i=1}^{N}  y_{i} \sum_{i=1}^{N}x_{i} - \hat{\beta}_{1} \frac{1}{n} (\sum_{i=1}^{N}  x_{i})^2 = 0 \nonumber
+  %
+  \\ \hat{\beta}_{1} ( \sum_{i=1}^{N} x_{i}^2 -  \frac{1}{n} (\sum_{i=1}^{N}  x_{i})^2 ) = \sum_{i=1}^{N}  x_{i} y_{i} - \frac{1}{n}\sum_{i=1}^{N}  y_{i} \sum_{i=1}^{N} x_{i} \nonumber
+  %
+  \\ \hat{\beta}_{1} = \frac{\sum_{i=1}^{N}  x_{i} y_{i} - \frac{1}{n}\sum_{i=1}^{N}  y_{i} \sum_{i=1}^{N} x_{i}} {\sum_{i=1}^{N} x_{i}^2 -  \frac{1}{n} (\sum_{i=1}^{N}  x_{i})^2}
+\end{eqnarray}
+
+\textit{As by definition $\frac{1}{n}\sum_{i=1}^{N}  x_{i}$ is equal to the mean of x, $\bar{x}$, and $\frac{1}{n}\sum_{i=1}^{N}  y_{i}$ is equal to the mean of y, $\bar{y}$, it is possible to rewrite 4 like this:}
+\begin{eqnarray}
+  \hat{\beta}_{1} = \frac{\sum_{i=1}^{N}  (x_{i}-\bar{x}) (y_{i}-\bar{y})} {\sum_{i=1}^{N} (x_{i}-\bar{x})^2}
+\end{eqnarray}
+
+\textit{You can recognize that the numerator is the covariance of X and Y and the denominator is the variance of X. Given the values for all the $x_{i}$ and $y_{i}$, you can then compute $\beta_{1}$ and substitute this value in the equation 3 to find $\beta_{0}$.}
+
+
+
+\section{Design matrices}
+
+The General Linear Model described by $Y=X\beta+\varepsilon$. Define the design matrices (X) of the following:
+\begin{enumerate}
+  \item a two-sample t-test with 2 subjects in group A and 3 subjects in B,
+  \item a paired t-test with 5 subjects with two conditions a and b,
+  \item an ANOVA with three groups of subjects and 3 subjects in each group,
+  \item a repeated-measures ANOVA for 3 subjects and with three within-subject levels (a, b, c).
+\end{enumerate}
+
+\bigskip
+Here are some advices:
+\begin{itemize}
+ \item Do not panic!
+ \item For 1: 
+  \begin{enumerate}
+    \item write for each subject the equation that describes that subject's $y$ in terms of:
+      \begin{itemize}
+	\item the average of the group A ($\mu_{A}$) times a certain weighting factor, 
+	\item the average of the group B ($\mu_{B}$) times a certain weighting factor,
+	\item an error term $\varepsilon$ specific to that subject.
+      \end{itemize}
+    \item go from the equation form to the matrix form, by putting together a) the $y$ of all subjects, b) the weighting factors, c) the 2 averages and d) the error terms.
+    \item the design matrix is the one that contains the weighting factors.
+  \end{enumerate}
+  
+ \item For 2, the process will the same as for 1 but you will have to describe each subject's $y$ in each condition in terms of:
+    \begin{itemize}
+      \item the average of the condition a ($\mu_{a}$) times a certain weighting factor, 
+      \item the average of the condition b ($\mu_{b}$) times a certain weighting factor,
+      \item as many subject specific variable ($\tau$) as there are subjects each time multiplied by a certain weighting factor,
+      \item an error term specific to that subject and that condition.
+    \end{itemize}
+
+    \item For 3 and 4, you can geneleralize by remembering that a two sample t-test is in fact an ANOVA with only two groups and that a paired t-test is in fact a repeated-measures ANOVA with only two levels.
+\end{itemize}
+
+\textit{Let's do this ! First the two sample t-test:}
+\begin{align*}
+Y_{A1} = 1 \times \mu_{A} + 0 \times \mu_{B} + \varepsilon_{A1} \\
+Y_{A2} = 1 \times \mu_{A} + 0 \times \mu_{B} + \varepsilon_{A2} \\
+Y_{B1} = 0 \times \mu_{A} + 1 \times \mu_{B} + \varepsilon_{B1} \\
+Y_{B2} = 0 \times \mu_{A} + 1 \times \mu_{B} + \varepsilon_{B2} \\
+Y_{B3} = 0 \times \mu_{A} + 1 \times \mu_{B} + \varepsilon_{B3} \\
+\end{align*}
+
+\textit{Then we reorganize this in matrix notation:}
+\begin{displaymath}
+\left[\begin{array}{c}
+Y_{A1} \\
+Y_{A2} \\
+Y_{B1} \\
+Y_{B2} \\
+Y_{B3} \\
+\end{array}\right]
+%
+=
+%
+\left[\begin{array}{cc} 1 & 0 \\ 
+			1 & 0 \\
+			0 & 1 \\
+			0 & 1 \\
+			0 & 1 \\ 
+\end{array}\right] 
+%
+\times
+%
+\left[\begin{array}{c} 
+\mu_{A} \\
+\mu_{B} 
+\end{array}\right] 
+%
++ 
+%
+\left[\begin{array}{c} 
+\varepsilon_{A1} \\
+\varepsilon_{A2} \\
+\varepsilon_{B1} \\
+\varepsilon_{B2} \\
+\varepsilon_{B3} \\
+\end{array}\right] 
+\end{displaymath}
+
+\textit{In this case X is:}
+\begin{displaymath}
+\left[\begin{array}{cc} 1 & 0 \\ 
+			1 & 0 \\
+			0 & 1 \\
+			0 & 1 \\
+			0 & 1 \\ 
+\end{array}\right]
+\end{displaymath}
+
+\bigskip
+\textit{By generalizing this process to an ANOVA with three groups of subjects and 3 subjects in each group, we have:}
+
+\begin{displaymath}
+\left[\begin{array}{ccc}1 & 0 & 0\\ 
+			    1 & 0 & 0\\
+			    1 & 0 & 0\\
+			    0 & 1 & 0\\
+			    0 & 1 & 0\\    
+			    0 & 1 & 0\\
+			    0 & 0 & 1\\
+			    0 & 0 & 1\\
+			    0 & 0 & 1\\
+\end{array}\right] 
+\end{displaymath}
+
+\bigskip
+\textit{Now the paired t-test:}
+\begin{align*}
+Y_{a1} = 1 \times \mu_{a} + 0 \times \mu_{b} + 1 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} + 0 \times \tau_{4} + 0 \times \tau_{5} + \varepsilon_{a1} \\ 
+Y_{a2} = 1 \times \mu_{a} + 0 \times \mu_{b} + 0 \times \tau_{1} + 1 \times \tau_{2} + 0 \times \tau_{3} +  0 \times \tau_{4} + 0 \times \tau_{5} + \varepsilon_{a2} \\  
+Y_{a3} = 1 \times \mu_{a} + 0 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 1 \times \tau_{3} +  0 \times \tau_{4} + 0 \times \tau_{5} + \varepsilon_{a3} \\ 
+Y_{a4} = 1 \times \mu_{a} + 0 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} +  1 \times \tau_{4} + 0 \times \tau_{5} +  \varepsilon_{a4} \\  
+Y_{a5} = 1 \times \mu_{a} + 0 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} +  0 \times \tau_{4} + 1 \times \tau_{5} +  \varepsilon_{a5} \\ 
+%
+Y_{b1} = 0 \times \mu_{a} + 1 \times \mu_{b} + 1 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} +  0 \times \tau_{4} + 0 \times \tau_{5} +  \varepsilon_{b1} \\  
+Y_{b2} = 0 \times \mu_{a} + 1 \times \mu_{b} + 0 \times \tau_{1} + 1 \times \tau_{2} + 0 \times \tau_{3} +  0 \times \tau_{4} + 0 \times \tau_{5} +  \varepsilon_{b2} \\  
+Y_{b3} = 0 \times \mu_{a} + 1 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 1 \times \tau_{3} +  0 \times \tau_{4} + 0 \times \tau_{5} +  \varepsilon_{b3} \\ 
+Y_{b4} = 0 \times \mu_{a} + 1 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} +  1 \times \tau_{4} + 0 \times \tau_{5} +  \varepsilon_{b4} \\  
+Y_{b5} = 0 \times \mu_{a} + 1 \times \mu_{b} + 0 \times \tau_{1} + 0 \times \tau_{2} + 0 \times \tau_{3} +  0 \times \tau_{4} + 1 \times \tau_{5} +  \varepsilon_{b5} \\ 
+\end{align*}
+
+\textit{Then we reorganize this in matrix notation before we get dizzy:}
+\begin{displaymath}
+\left[\begin{array}{c}
+Y_{a1} \\
+Y_{a2} \\
+Y_{a3} \\
+Y_{a4} \\
+Y_{a5} \\
+Y_{b1} \\
+Y_{b2} \\
+Y_{b3} \\
+Y_{b4} \\
+Y_{b5} \\
+\end{array}\right]
+%
+=
+%
+\left[\begin{array}{ccccccc}1 & 0 & 1 & 0 & 0 & 0 & 0\\ 
+			    1 & 0 & 0 & 1 & 0 & 0 & 0\\
+			    1 & 0 & 0 & 0 & 1 & 0 & 0\\
+			    1 & 0 & 0 & 0 & 0 & 1 & 0\\
+			    1 & 0 & 0 & 0 & 0 & 0 & 1\\    
+			    0 & 1 & 1 & 0 & 0 & 0 & 0\\
+			    0 & 1 & 0 & 1 & 0 & 0 & 0\\
+			    0 & 1 & 0 & 0 & 1 & 0 & 0\\
+			    0 & 1 & 0 & 0 & 0 & 1 & 0\\
+			    0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
+\end{array}\right] 
+%
+\times
+%
+\left[\begin{array}{c} 
+\mu_{A} \\
+\mu_{B} \\
+\tau_{1} \\
+\tau_{2} \\
+\tau_{3} \\
+\tau_{4} \\
+\tau_{5} \\
+\end{array}\right] 
+%
++ 
+%
+\left[\begin{array}{c} 
+\varepsilon_{a1} \\
+\varepsilon_{a2} \\
+\varepsilon_{a3} \\
+\varepsilon_{a4} \\
+\varepsilon_{a5} \\
+\varepsilon_{b1} \\
+\varepsilon_{b2} \\
+\varepsilon_{b3} \\
+\varepsilon_{b4} \\
+\varepsilon_{b5} \\
+\end{array}\right] 
+\end{displaymath}
+
+\textit{This means that in this case X is:}
+\begin{displaymath}
+\left[\begin{array}{ccccccc}1 & 0 & 1 & 0 & 0 & 0 & 0\\ 
+			    1 & 0 & 0 & 1 & 0 & 0 & 0\\
+			    1 & 0 & 0 & 0 & 1 & 0 & 0\\
+			    1 & 0 & 0 & 0 & 0 & 1 & 0\\
+			    1 & 0 & 0 & 0 & 0 & 0 & 1\\    
+			    0 & 1 & 1 & 0 & 0 & 0 & 0\\
+			    0 & 1 & 0 & 1 & 0 & 0 & 0\\
+			    0 & 1 & 0 & 0 & 1 & 0 & 0\\
+			    0 & 1 & 0 & 0 & 0 & 1 & 0\\
+			    0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
+\end{array}\right] 
+\end{displaymath}
+
+\textit{By generalizing this process to a repeated-measures ANOVA for 3 subjects and with three within-subject levels (a, b, c), we have:}
+
+\begin{displaymath}
+\left[\begin{array}{cccccc} 1 & 0 & 0 & 1 & 0 & 0 \\ 
+			    1 & 0 & 0 & 0 & 1 & 0 \\
+			    1 & 0 & 0 & 0 & 0 & 1 \\
+			    0 & 1 & 0 & 1 & 0 & 0 \\
+			    0 & 1 & 0 & 0 & 1 & 0 \\    
+			    0 & 1 & 0 & 0 & 0 & 1 \\
+			    0 & 0 & 1 & 1 & 0 & 0 \\
+			    0 & 0 & 1 & 0 & 1 & 0 \\
+			    0 & 0 & 1 & 0 & 0 & 1 \\
+\end{array}\right] 
+\end{displaymath}
+
+\end{document}

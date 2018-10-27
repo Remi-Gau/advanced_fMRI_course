@@ -1,0 +1,188 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx}
+% \usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{lscape}
+
+\usepackage[pdftex=true,
+hyperindex=true,
+colorlinks=true,pdfstartview={Fit}]{hyperref}
+\hypersetup{urlcolor=blue}
+
+\title{Advanced brain imaging methods: Tutorial 0}
+\author{}
+\date{3\textsuperscript{rd} February 2014}
+
+\pdfinfo{%
+/Title (Advanced brain imaging methods: Tutorial 0)
+/Author ()
+/Creator ()
+/Producer ()
+/Subject ()
+/Keywords ()
+}
+
+\begin{document}
+\maketitle
+
+\section{Linear algebra: warm up}
+
+\subsection{Adding noise to an image}
+
+Say that for some reason you want to add normally distributed noise to an 
+image. Given an image defined by the matrix A and the matrix B containing 
+normally distributed noise, what would be the matrix C of the image to which 
+this noise has been added ? 
+
+\bigskip
+$ A =
+\left(\begin{array}{cccc}
+136	& 37	& 45	& 158\\ 
+28	& 69	& 78	& 55 \\
+227	& 75	& 196	& 170\\
+212	& 34	& 23	& 125\\
+\end{array}\right) 
+$
+;
+$B =
+\left(\begin{array}{cccc}
+-1	& 6	& 2	& 12\\
+-14	& -6	& -4	& -1\\
+-3	& 1	& 3	& -15\\
+-13	& -4	& 5	& -6\\
+\end{array}\right) 
+$
+\bigskip
+
+\subsection{Rigid body transformation: translations}
+
+The transformation matrix of an image is the matrix that allows you to say what 
+are the coordinates [x,y,z] in world space of the voxel with indices [i,j,k] in 
+voxel space.
+
+What is the matrix B that will translate an image by 15 mm along the x 
+dimension, -58 mm along the y dim and 65 mm along the z dimension?
+
+Given the transformation matrix A below, what would be the values of the new 
+transformation matrix once the translation performed by B has been applied?
+
+\bigskip
+$ A =
+\left(\begin{array}{cccc}
+  5 	& 0 	& 0 	& 125\\ 
+  0 	& 2 	& 0 	& 118\\
+  0 	& 0 	& 1 	& 10\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right) 
+$
+\bigskip
+
+Given this new transformation matrix, what would be the real world 
+coordinates of the voxel with indices [10,25,45] and for any voxel with 
+indices [i,j,k]?
+
+\subsection{Rigid body transformation: rotations}
+
+What is the matrix C that will rotate an image by 90 degrees around the x axis 
+(pitch)? 
+
+Given the transformation matrix A below, what would be the values of the new 
+transformation matrix after this rotation has been applied?
+
+\bigskip
+$ A =
+\left(\begin{array}{cccc}
+  5 	& 0 	& 0 	& 125\\ 
+  0 	& 2 	& 0 	& 118\\
+  0 	& 0 	& 1 	& 10\\
+  0 	& 0 	& 0 	& 1\\
+\end{array}\right) 
+$
+\bigskip
+
+\subsection{Rigid body transformation: order of transformation}
+
+For the point with coordinates [14,58,23], what would be its coordinates if:
+\begin{enumerate}
+  \item you applied the translation defined by B then the rotation defined by C,
+  \item you applied the rotation defined by C and then the translation defined 
+by B?
+\end{enumerate}
+
+
+\section{General linear model}
+
+In class we have seen how to find the equation that defines the ordinary 
+least-square estimate of the $\beta$ value of the following model:
+\begin{displaymath}
+  y = \beta x + \varepsilon
+\end{displaymath}
+
+For each value of $x_{i}$, the residual error ($\varepsilon_{i}$) is given by the difference between the predicted value of the model ($\hat{y_{i}} = \beta x_{i}$) and the actual empirical value ($y_{i}$). We want to minimize the sum of the squared residual:
+\begin{displaymath}
+  \sum_{i=1}^{N} \varepsilon_{i}^{2} = \sum_{i=1}^{N}(y_{i} - \hat{y_{i}})^{2} = \sum_{i=1}^{N} (y_{i} - \beta x_{i})^{2} = \sum_{i=1}^{N} (y_{i}^{2} - 2\beta x_{i}y_{i} + \beta^{2} x_{i}^{2})
+\end{displaymath}
+At the value of $\beta$ that minimize this function, we know that its 
+derivative with respect to $\beta$ will be equal to 0. So to find $\beta$, 
+we derived this function with respect to $\beta$, and rearranged this 
+derivative to have the value of $\beta$ expressed in terms of $x$ and $y$.
+
+\medskip
+Let's now try to do the same with this model:
+\begin{displaymath}
+  y = \beta_{1} x + \beta_{0} + \varepsilon
+\end{displaymath}
+
+Do this by the following steps:
+\begin{enumerate}
+ \item Write down the sum of the squared residual of this model.
+ \item Derive this function with respect to $\beta_{1}$ and rearranged this 
+derivative to have the value of $\beta_{1}$ expressed in terms of $x$, $y$ and  
+$\beta_{0}$.
+ \item Do the same with respect to $\beta_{0}$.
+ \item Substitute $\beta_{0}$ in the function found in step 2 by the solution 
+of step 3.
+\end{enumerate}
+
+
+\section{Design matrices}
+
+The General Linear Model described by $Y=X\beta+\varepsilon$. Define the design matrices (X) of the following:
+\begin{enumerate}
+  \item a two-sample t-test with 2 subjects in group A and 3 subjects in B,
+  \item a paired t-test with 5 subjects with two conditions a and b,
+  \item an ANOVA with three groups of subjects and 3 subjects in each group,
+  \item a repeated-measures ANOVA for 3 subjects and with three within-subject levels (a, b, c).
+\end{enumerate}
+
+Here are some advices:
+\begin{itemize}
+ \item Do not panic!
+ \item For 1: 
+  \begin{enumerate}
+    \item write for each subject the equation that describes that subject's $y$ in terms of:
+      \begin{itemize}
+	\item the average of the group A ($\mu_{A}$) times a certain weighting factor, 
+	\item the average of the group B ($\mu_{B}$) times a certain weighting factor,
+	\item an error term $\varepsilon$ specific to that subject.
+      \end{itemize}
+    \item go from the equation form to the matrix form, by putting together a) the $y$ of all subjects, b) the weighting factors, c) the 2 averages and d) the error terms.
+    \item the design matrix is the one that contains the weighting factors.
+  \end{enumerate}
+  
+ \item For 2, the process will the same as for 1 but you will have to describe each subject's $y$ in each condition in terms of:
+    \begin{itemize}
+      \item the average of the condition a ($\mu_{a}$) times a certain weighting factor, 
+      \item the average of the condition b ($\mu_{b}$) times a certain weighting factor,
+      \item as many subject specific variable ($\tau$) as there are subjects each time multiplied by a certain weighting factor,
+      \item an error term specific to that subject and that condition.
+    \end{itemize}
+
+    \item For 3 and 4, you can geneleralize by remembering that a two sample t-test is in fact an ANOVA with only two groups and that a paired t-test is in fact a repeated-measures ANOVA with only two levels.
+\end{itemize}
+
+\end{document}

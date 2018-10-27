@@ -1,253 +1,477 @@
-%% adding the spm8 folder and its subfolders to the path so all the spm functions can be called for and used
-addpath(genpath('S:/Advanced-Brain-Imaging/spm8/spm8'))
+%% Reading header information
+% The easy way to do this is to go to the directory where the structural is
+% and type: HeaderStructural = spm_vol('sM00223_002.img');
 
-% entering the directory where you've got the images
-cd('S:/Advanced-Brain-Imaging/Practical#1/EventRelated/')
+% But below is another way to do it that is more 'automatic'.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% - what is an image?
-% - what type of images are there?
-% - what type of images does spm use?
-% - dicom import
-% - spm images are in neurological space
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all; % Clears all the variable that are present in matlab's memory (the 'workspace')
+clc; % Removes all the ouput that are present on the command line screen
 
-%% entering the spm interface
-% just write "spm" in the command window and select fmri
-% you can also just write directly "spm fmri" and it will lead you directly
-% to the interface for fmri anaylsis
+% Get a name to the starting folder and stores it in a variable
+StartFolder = pwd; % pwd --> Present Working Directory
 
-% Exploring with SPM
-% - display button
-% - check reg button
+% Defines a variable containing the name of the folder containg the
+% structural scan. This suppose you have stored the files in a folder called 'BlockDesign' and
+% renamed 'Structural' the folder containing the strucural
+StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
 
+% Finding out the name of the strucural
+% First got to the director where the structural scan is
+cd(StructuralFolder) % cd --> Change Directory
+% List all the images starting with an s and ending with the extension .img 
+% Easy: there is only.
+% one)
+FilesList = dir('s*.img');
 
-%% using some of the spm functions
-% it can be useful to look and use directly some of the spm functions, 
-% which you can find in the spm folder. you can get more information about 
-% each function by typing " open 'function_name' ".
-% this site gives you an overview on some of the most useful functions: 
-% http://en.wikibooks.org/wiki/SPM/Programming_intro
-% we'll try some of them out here.
-
-% going to the EPIs directory
-cd('S:/Advanced-Brain-Imaging/Practical#1/EventRelated/rawepi/RawEpi')
-
-% - look at the images you've got
-% - missing images: accounting for T1 equilibration effects
-%   you always acquire dummie volumes at the beginning of your scanning
-%   that you will discard in the end
-
-
-% 1) spm_vol: read hdr information from the images. 
-%    you can do this for just one image or for many images simultaneously 
-
-% one image at a time
-imgInfo = spm_vol('sM03953_0005_0006.img');
-
-% to look at more than one one image at a time you need to create a matrix
-% with the images you are interested in
-imgsMat = ['sM03953_0005_0006.img';
-           'sM03953_0005_0007.img';
-           'sM03953_0005_0008.img';];
-       
-imgsInfo = spm_vol(imgsMat);
-
-% 2) spm_get_space: gets the voxel to world (mm) transformation matrix
-% directly
-transf_matrix = spm_get_space('sM03953_0005_0006.img');
-
-% so if you want to transform voxel coordinates in world coordinates you
-% just have to do:
-voxel_coord = [7 9 8 1];                    %just as an example
-mm_coord = transf_matrix*voxel_coord';
-
-% similarly if you want to transform from world coordinates to voxel
-% coordinates you do:
-mm_coord2 = [-28 -16 21 1];
-voxel_coord2 = inv(transf_matrix)*mm_coord2';
-
-% now lets see this in the spm interface.
-% type in the command window spm fmri
-% click diplay and select 'sM03953_0005_0006.img'
-% in the crosshair position in the graphics window and change the
-% coordinates accordingly
+% Read the content of the header and stores it in a variable
+HeaderStructural = spm_vol(FilesList.name);
 
 
 
-% 3) spm_read_vols: using the header information given by spm_vol reads in
-%    entire image volumes
-volume = spm_read_vols(imgInfo);
-volume_withHole = volume;
-volume_withHole(25:32,25:32,8:14) = 0;
+%% Reading header information: some specifics
+% Get the number of slices: slices were acquired axially that is along the 
+% Z dimension. The third value of the dimension matrix tells us the number 
+% of voxels along the Z axis, i.e the number of slices
+Number_Of_Slices = HeaderStructural.dim(3)
 
-% 4) spm_write_vol: writes an image volume to disk
-newImgInfo = imgInfo;
+% Get the dimension of each slice: defined as the dimension of the matrix along
+% the X and Y-axis
+SliceDimension = HeaderStructural.dim(1:2)
 
-% Change the name in the header
-newImgInfo.fname = 'volume_created.nii';
-newImgInfo.private.dat.fname = newImgInfo.fname;
+% Gets the Voxel space to World space transformation matrix of this image
+TransformationMatrix = HeaderStructural.mat
+% or
+TransformationMatrix = spm_get_space(FilesList.name)
 
-spm_write_vol(newImgInfo,volume_withHole);
+% The dimension of each voxel are the 3 first values of the main diagonal of this matrix
+% Get the value along the main diagonal of the matrix and stores it in a
+% temporary variable
+temp = diag(TransformationMatrix);
+% Then we only keep the 3 first values of this diagonal to get the x,y,z dimension
+% of each voxel (in mm) of this image ; the "abs" is there to have the
+% absolute value
+VoxelsDimension = abs(temp(1:3))
 
-% 5) spm_matrix:  returns an affine transformation matrix given a certain
-% vector of parameters 
-% P(1)  - x translation
-% P(2)  - y translation
-% P(3)  - z translation
-% P(4)  - x rotation about - {pitch} (radians)
-% P(5)  - y rotation about - {roll}  (radians)
-% P(6)  - z rotation about - {yaw}   (radians)
-% P(7)  - x scaling
-% P(8)  - y scaling
-% P(9)  - z scaling
-% P(10) - x affine
-% P(11) - y affine
-% P(12) - z affine
+% Getting the world space coordinate of a given voxel
+VoxelIndices = [1 1 1];
+% We have to take the transpose (') of the voxel indices vector and pad it with an
+% extra one to be able to multiply it with the tranformation matrix.
+temp = [VoxelIndices' ; 1];
+WorldSpaceCoordinates = TransformationMatrix * temp;
+% Only the three first value of this vector are of interest to us
+WorldSpaceCoordinates = WorldSpaceCoordinates(1:3)
+
+% Getting the voxel indices of a given set of world space coordinates 
+WorldSpaceCoordinates = [0 0 0];
+% Remember that if a matrix A performs a certain transformation, the matrix inv(A) will
+% perform the reverse transfomation
+VoxelIndices = inv(TransformationMatrix)*[WorldSpaceCoordinates' ; 1];
+VoxelIndices = VoxelIndices(1:3)
+
+cd(StartFolder)
 
 
-% translating an image in the x direction
-P_xtranslation = zeros(12,1);
-P_xtranslation(1) = 14;
 
-xtranslation = spm_matrix(P_xtranslation,'T');
-volume_xtranslation = xtranslation * transf_matrix;
+%% Reading values from an image
+clear all; clc
+
+% Name of the starting folder
+StartFolder = pwd;
+
+% Given some coordinates
+WorldSpaceCoordinates = [47 33 35];
+
+% Name of the folder containg the structural scan
+EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
+
+% Finding out the name of the strucural
+cd(EPI_Folder)
+FilesList = dir('f*.img');
+
+% Read the content of the header and stores it in a variable
+HeaderEPI = spm_vol(FilesList(1).name);
+
+% Gets the data corresponding to this image
+Volume = spm_read_vols(HeaderEPI);
+
+% Compute thevoxel indices corresponding to our real world coordinates
+Transf_matrix = spm_get_space(FilesList(1).name);
+WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
+VoxelIndices = inv(Transf_matrix)*WorldSpaceCoordinates';
+% We round those values to the neasrest integer values: indices have to be
+% integers
+VoxelIndices = round(VoxelIndices);
+VoxelIndices = VoxelIndices(1:3);
+
+Volume(VoxelIndices(1), VoxelIndices(2), VoxelIndices(3))
+
+cd(StartFolder)
+
+
+
+%% Reading a time-series
+clear all; clc
+
+% Name of the starting folder
+StartFolder = pwd;
+
+% Here I chose a voxel that is roughly in the left Heschl's gyrus
+WorldSpaceCoordinates = [47 33 35];
+
+% Name of the folder containg the structural scan
+EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
+
+cd(EPI_Folder)
+
+% List all the realigned images in this folder: here I used a "u" prefix
+% because I used the realign and unwarp function. Usually the
+% realign:estimate and write, will add the prefix "r", though this can be
+% changed easily.
+ImageName = dir('u*.img');
+
+% Get the voxel indices of our world space coordinate
+% Since our images have same dimension and same transformation matrices 
+% (since they all have been realigned), so getting the transformation 
+% matrix of the first one will do.
+Transf_matrix = spm_get_space(ImageName(1).name);
+WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
+VoxelIndices = inv(Transf_matrix)*WorldSpaceCoordinates';
+VoxelIndices = round(VoxelIndices);
+
+
+%-------------------------------------------------------------------------%
+% Open all the images with a loop
+%-------------------------------------------------------------------------%
+%the function 'length' will tell you how many items there are in a vector,
+%matrix, structure...
+for ImageIndex = 1:length(ImageName) 
+    % Open the header of a given image
+    ImgInfo = spm_vol(ImageName(ImageIndex).name);
+    % Adds it data at the end of a 4D matrix
+    Volume(:,:,:,ImageIndex) = spm_read_vols(ImgInfo);
+end
+%-------------------------------------------------------------------------%
+
+
+%-------------------------------------------------------------------------%
+% Open all the images at once
+%-------------------------------------------------------------------------%
+% Creates a matrix with all the names of the images
+ImagesName = char({ImageName.name}');
+% Or use the spm_select function (but that's almost cheating !)
+ImagesName=spm_select(Inf, 'image');
+% Get all the headers
+ImgInfo = spm_vol(ImagesName);
+% Open all the iamges
+Volume = spm_read_vols(ImgInfo);
+%-------------------------------------------------------------------------%
+
+% Read the time serie at the voxel coordinate we want across the 4th
+% dimension (time) of our matrice 
+TimeCourse = Volume(VoxelIndices(1), VoxelIndices(2), VoxelIndices(3), :);
+% We use the squeeze function to get rid of the 3 first "empty" dimensions
+% of our time course.
+TimeCourse = squeeze(TimeCourse);
+
+figure('Name', sprintf('Signal time course at the voxel coordinates X= %i, Y=%i, Z=%i', ...
+       VoxelIndices(1), VoxelIndices(2), VoxelIndices(3)), ...
+       'Color', 'w')
+   
+plot(TimeCourse)
+
+ylabel('Signal Intensity')
+xlabel('Scan number')
+
+
+cd(StartFolder)
+
+
+
+%% Estimate how misaligned are the 2 first volumes using a least-square estimate 
+% Do it with a ROI of auditory cortex
+clear all; clc
+
+% Name of the starting folder
+StartFolder = pwd;
+
+% Name of the folder containg the structural scan
+EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
+
+cd(EPI_Folder)
+
+% List all the raw images
+ImageName = dir('fM*.img');
+
+
+% Gets the first volume
+ImgInfo = spm_vol(ImageName(1).name);
+Volume_1 = spm_read_vols(ImgInfo);
+
+% Create a volume where all the values of the volume 1 have a signal 10%
+% higher than that of volume 1
+Volume_1_offset = Volume_1 + mean(Volume_1(:))*10/100;
+
+% Create a volume similar to the volume 1 but with random noise added.
+% Here I add gaussian noise with a standart deviation equals to that of the
+% whole image that I compute with the 'std' function
+Volume_1_noise = Volume_1+randn(size(Volume_1))*std(Volume_1(:));
+% Let's keep the absolute values to make sure that we do not have any
+% negative intensities
+Volume_1_noise = abs(Volume_1_noise);
+
+% Create a volume that is the negative of volume 1
+Volume_1_invert = -Volume_1+max(Volume_1(:));
+
+
+% Gets the second volume
+ImgInfo = spm_vol(ImageName(2).name);
+Volume_2 = spm_read_vols(ImgInfo);
+
+% List all the raw images
+ImageName = dir('ufM*.img');
+ImgInfo = spm_vol(ImageName(2).name);
+Volume_2_realigned = spm_read_vols(ImgInfo);
+
+
+% Estimating misalignment using a least-square estimate
+% Since the 'sum' function works along a single dimension, a quick and
+% dirty wayt to
+Least_Squares(1) = sum(sum(sum( (Volume_1 - Volume_1).^2) ));
+Least_Squares(2) = sum(sum(sum( (Volume_1 - Volume_2).^2) ));
+Least_Squares(3) = sum(sum(sum( (Volume_1 - Volume_2_realigned).^2) ));
+Least_Squares(4) = sum(sum(sum( (Volume_1 - Volume_1_offset).^2) ));
+Least_Squares(5) = sum(sum(sum( (Volume_1 - Volume_1_noise).^2)) );
+Least_Squares(6) = sum(sum(sum( (Volume_1 - Volume_1_invert).^2) ))
+
+
+% Estimating misalignment using a using normalized correlation
+Normalized_Correlation(1) = sum(sum(sum(Volume_1.*Volume_1))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum(Volume_1(:).^2)) );
+            
+Normalized_Correlation(2) = sum(sum(sum(Volume_1.*Volume_2))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_2(:).^2))) );
+            
+Normalized_Correlation(3) = sum(sum(sum(Volume_1.*Volume_2_realigned))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_2_realigned(:).^2))) );            
+            
+Normalized_Correlation(4) = sum(sum(sum(Volume_1.*Volume_1_offset))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_offset(:).^2))) );
+            
+Normalized_Correlation(5) = sum(sum(sum(Volume_1.*Volume_1_noise))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_noise(:).^2))) );
+            
+Normalized_Correlation(6) = sum(sum(sum(Volume_1.*Volume_1_invert))) / ...
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_invert(:).^2))) )           
+
+            
+cd(StartFolder)
+
+
+
+%% Generating coregistration histograms
+figure('Name', 'Coregistration histograms Volume 1 and Volume 1', 'Color', 'w')
+scatter(Volume_1(:), Volume_1(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 2')
+axis square
+
+figure('Name', 'Coregistration histograms Volume 1 and Volume 2', 'Color', 'w')
+scatter(Volume_1(:), Volume_2(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 2')
+axis square
+
+figure('Name', 'Coregistration histograms Volume 1 and Volume 2 realigned', 'Color', 'w')
+scatter(Volume_1(:), Volume_2_realigned(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 2 realigned')
+axis square
+
+figure('Name', 'Coregistration histograms Volume 1 and Volume 1 offseted', 'Color', 'w')
+scatter(Volume_1(:), Volume_1_offset(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 1 offseted')
+axis square
+
+figure('Name', 'Coregistration histograms Volume 1 and Volume 1 with noise', 'Color', 'w')
+scatter(Volume_1(:), Volume_1_noise(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 1 with noise')
+axis square
+
+figure('Name', 'Coregistration histograms Volume 1 and Volume 1 inverted', 'Color', 'w')
+scatter(Volume_1(:), Volume_1_invert(:), 'k', '.');
+xlabel('Intensities image 1')
+ylabel('Intensities image 1 inverted')
+axis square
+
+
+
+%% Reading values within a region of interest
+clear all; clc
+
+% Name of the starting folder
+StartFolder = pwd;
+
+% Name of the folder containg the images
+EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
+Masks_Folder = fullfile(StartFolder, 'Masks');
+
+% Get the value of the 2 masks
+cd(Masks_Folder)
+% We use the function logical to make sure that that the values in the
+% masks are either 1 or 0;
+Left_A1_Mask = logical(spm_read_vols(spm_vol('rwLeft_A1.hdr')));
+Right_A1_Mask = logical(spm_read_vols(spm_vol('rwRight_A1.hdr')));
+
+% List all the realigned images
+cd(EPI_Folder)
+ImageName = dir('u*.img');
+for ImageIndex = 1:length(ImageName)
+    % Open the header of a given image
+    ImgInfo = spm_vol(ImageName(ImageIndex).name);
+    % Read its data
+    Volume = spm_read_vols(ImgInfo);
+    
+    % Get the average signal value in the ROIs
+    TimeCourseLeft(ImageIndex) = mean(Volume(Left_A1_Mask)); 
+    TimeCourseRight(ImageIndex) = mean(Volume(Right_A1_Mask));
+end
+
+figure('Name', 'Signal time in each primary auditory cortices', 'Color', 'w')
+hold on
+plot(TimeCourseLeft,'b')
+plot(TimeCourseRight,'r')
+
+ylabel('Signal Intensity')
+xlabel('Scan number')
+
+legend(char({'Left';'Right'}))
+
+
+cd(StartFolder)
+
+
+
+%% Display sections of an image
+clear all; clc;
+
+StartFolder = pwd;
+
+StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
+cd(StructuralFolder)
+FilesList = dir('s*.img');
+HeaderStructural = spm_vol(FilesList.name);
+
+WorldSpaceCoordinates = [0 0 0];
+
+TransformationMatrix = HeaderStructural.mat;
+VoxelIndices = inv(TransformationMatrix)*[WorldSpaceCoordinates' ; 1];
+VoxelIndices = round(VoxelIndices);
+
+Volume=spm_read_vols(HeaderStructural);
+
+% Name the figure
+figure('Name', sprintf('Voxel coordinate X= %i, Y=%i, Z=%i', ...
+       VoxelIndices(1), VoxelIndices(2), VoxelIndices(3)), ...
+       'Color', 'k')
+
+% If we want to go for a more sober gray scale and avoid the funky default 
+% color map that matlab usually has
+colormap(gray)
+
+subplot(2,2,1)
+imagesc(squeeze(Volume(VoxelIndices(1),:,:)))
+% This following line would plot the image with the right orientation
+%imagesc(rot90(squeeze(Volume(Voxel_Coord(1),:,:))',2))
+
+box off
+axis 'square'
+set(gca,'xtick', [])
+
+subplot(2,2,2)
+imagesc(squeeze(Volume(:,VoxelIndices(2),:))')
+% This following line would plot the image with the right orientation
+%imagesc(flipud(squeeze(Volume(:,Voxel_Coord(2),:))'))
+
+box off
+axis 'square'
+set(gca,'xtick', [])
+
+subplot(2,2,3)
+imagesc(squeeze(Volume(:,:,VoxelIndices(3))))
+% This following line would plot the image with the right orientation
+%imagesc(fliplr(squeeze(Volume(:,:,Voxel_Coord(3)))))
+
+box off
+axis 'square'
+set(gca,'xtick', [])
+
+
+cd(StartFolder)
+
+
+
+%% Applying affine transformations to an image
+clear all; clc
+
+% Name of the starting folder
+StartFolder = pwd;
+
+% Name of the folder containg the structural scan
+StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
+
+% Finding out the name of the strucural
+cd(StructuralFolder)
+FilesList = dir('sM00223_002.img');
+
+% Read the content of the header and stores it in a variable
+HeaderStructural = spm_vol(FilesList.name);
+TransformationMatrix = HeaderStructural.mat;
+
+% Gets the data corresponding to this image
+Volume = spm_read_vols(HeaderStructural);
+
+% TRANSLATION
+% Creates the vector needed for the spm_matrix function
+P_translation = zeros(12,1);
+P_translation(1) = 14;
+P_translation(2) = -58;
+P_translation(3) = 65;
+% Creates the translation matrix
+Translation = spm_matrix(P_translation,'T');
+% Applies it to the transformation matrix
+TransformationMatrix_Translation = Translation * TransformationMatrix;
 
 % getting the header information of the original image
-imgInfo_xtranslated = imgInfo;
+HeaderStructural_Translated = HeaderStructural;
 
 % and change the name and the transformation matrix in the header
-imgInfo_xtranslated.fname = 'volume_xtranslated.nii';
-imgInfo_xtranslated.private.dat.fname = imgInfo_xtranslated.fname;
-imgInfo_xtranslated.mat = volume_xtranslation;
+HeaderStructural_Translated.fname = 'Structural_Translated.img';
+HeaderStructural_Translated.private.dat.fname = HeaderStructural_Translated.fname;
+HeaderStructural_Translated.mat = TransformationMatrix_Translation;
 
-spm_write_vol(imgInfo_xtranslated,volume);
-
-% rotating an image about the x direction (pitch)
-P_xrotation = zeros(12,1);
-% spm works with radians, so if you want to rotate the image by 14 degrees
-% you have to transform it to radians first
-P_xrotation(4) = 14*pi/180; 
-
-xrotation = spm_matrix(P_xrotation,'R');
-volume_xrotated = xrotation * transf_matrix;
-
-imgInfo_xrotated = imgInfo;
-imgInfo_xrotated.fname = 'volume_xrotated.nii';
-imgInfo_xrotated.private.dat.fname = imgInfo_xrotated.fname;
-imgInfo_xrotated.mat = volume_xrotated;
-
-spm_write_vol(imgInfo_xrotated,volume);
-
-% use "check reg" button and select all three images to see what happened
-% you can also use the spm interface to reorient images
+spm_write_vol(HeaderStructural_Translated, Volume);
 
 
-%% THE SPM PIPELINE
+% ROTATION
+% Creates the rotation matrix: spm works with radians, so if you want to 
+% rotate the image by 90 degrees you have to transform it to radians first.
+P_rotation = zeros(12,1);
+P_rotation(4) = 90*pi/180; 
+Rotation = spm_matrix(P_rotation,'R');
 
-cd('S:/Advanced-Brain-Imaging/Practical#1/EventRelated/')
+TransformationMatrix_Rotation = Rotation * TransformationMatrix;
 
-% always save each step you do. might be useful to look at it: in case
-% something goes wrong you can check what went wrong at each step
+% getting the header information of the original image
+HeaderStructural_Rotated = HeaderStructural;
 
-%% Realignment - removing movement artifacts in the data
+% and change the name and the transformation matrix in the header
+HeaderStructural_Rotated.fname = 'Structural_Rotated.img';
+HeaderStructural_Rotated.private.dat.fname = HeaderStructural_Rotated.fname;
+HeaderStructural_Rotated.mat = TransformationMatrix_Rotation;
 
-% - first image that you specify in the list is taken as to reference to
-%   which all the other images will be aligned to
-% - if you ask for it a mean image will be created
-% - a txt file including the 6 movement parameters will be created. you can
-%   include these movement parameters as regressors in your GLM design
-% - general (not strict) rule: movement should be less than voxel size
-
-RealignParametersFile = dir('S:/Advanced-Brain-Imaging/Practical#1/EventRelated/rawepi/RawEPI/*.txt');
-name = ['S:/Advanced-Brain-Imaging/Practical#1/EventRelated/rawepi/RawEPI/', RealignParametersFile(1).name];
-RealignParameters = load(name);
-    
-
-figure(2)
-subplot(211)
-plot(1:length(RealignParameters(:,2)), RealignParameters(:,1), 'b',1:length(RealignParameters(:,2)), RealignParameters(:,2), 'g',1:length(RealignParameters(:,2)), RealignParameters(:,3), 'r')
-    
-subplot(212)
-plot(1:length(RealignParameters(:,2)), RealignParameters(:,4), 'b',1:length(RealignParameters(:,2)), RealignParameters(:,5), 'g',1:length(RealignParameters(:,2)), RealignParameters(:,6), 'r')
+spm_write_vol(HeaderStructural_Rotated, Volume);
 
 
-%% Spatial Normalization - bringing brains to a common anatomical space
-% Normalization can be performed in to ways: 
-%   - unified segmentation - more accurate
-%     (necessary to co-register and segment images first)
-%   - normalizing to a template
-
-%% Coregistration - registers images from different modalities using mutual information theory
-
-% generally is a good idea that your images are more or less aligned
-% already before you do the coregistration. you could do this by manually
-% reorienting the images with the reorient button. for instance try to but
-% the AC at the (0,0,0) in both types of images
-
-% Look at joint histograms
-%       1.	same structural
-%       2.	structural vs structural shifted
-%       3.	structural vs structural blurred  
-%       4.	EPI1 vs EPI2 of the same series
-%       5.	structural vs EPI
-
-%% Segmentation
-
-% look at the probability maps
-% perform segmentation
-
-%% Normalization revisited
-
-% create a folder called in the folder of the structural scan called "NormalizeWithTemplate"
-% copy the structural scan to this folder
-% perform normalization using unified segmentation and the template
-% look at both results simultaneously
-
-%% Smoothing 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Show video http://www.ucl.ac.uk/stream/media/swatch?v=1d42446d1c34
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% fMRI Design specification
-
-% load the stimulus onset times
-% generally you would like to save your onset times in a .mat file in an 
-% ordered fashion that is easy to read afterward
-load('sots.mat')
-
-% create directory in which you want to save your analysis
-mkdir('FFX_categorical')
-
-% - specify 1st level - categorical
-% - review button
-% - estimate design matrix
-% - look at the SPM.mat structure (to have details about the structure look
-%                                  at spm_spm.m)
-% - results
-%       - overlays: sections, rend
-%       - statistcs table
-%       - plot parameters estimates
-
-% plotting parameter estimates yourself
-% after plotting them with spm a variable named "contrast" is created
-figure;
-bar(contrast.contrast); 
-hold on;
-errorbar(1:length(contrast.contrast), contrast.contrast, contrast.standarderror,'.');
-axis([0 length(contrast.contrast)+1 -30 60]);
-
-% parametric model
-% make a new directory
-mkdir('FFX_parametric')
-
-
-
-%% Note:
-% we used the spm interface to do all this steps buy clicking on the
-% respective button of what we wanted to do. SPM also has a batch option 
-% that allows you to perform all steps sequentially. Alternatively you can
-% also use the structure that comes out of this batch (if you save it) to
-% write your own scripts
-
+cd(StartFolder)
