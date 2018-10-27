@@ -540,8 +540,8 @@ colorbar
 %% FFX VS RFX
 clear all; close all; clc;
 
-NbSubj = 8;
-NbTrials = 10;
+NbSubj = 4;
+NbTrials = 5;
 
 % Set individual means
 Group = 2 + 4*randn(1,NbSubj);
