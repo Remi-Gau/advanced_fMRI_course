@@ -6,12 +6,12 @@ NbSubject = 100;
 %-------------------------------------------------------------------------%
 %                               Create data                               %
 %-------------------------------------------------------------------------%
-% MeanConditionA = 5;
-% MeanConditionB = 6;
-% StdError = 1;
-% 
-% Y_A = MeanConditionA+randn(NbSubject,1)*StdError;
-% Y_B = MeanConditionB+randn(NbSubject,1)*StdError;
+MeanConditionA = 5;
+MeanConditionB = 6;
+StdError = 1;
+
+Y_A = MeanConditionA+randn(NbSubject,1)*StdError;
+Y_B = MeanConditionB+randn(NbSubject,1)*StdError;
 %-------------------------------------------------------------------------%
 load T-Test.mat
 
@@ -228,18 +228,19 @@ Regressor = conv(xBF.bf(:,1), OnsetVector);
 RegressorTimeDer = conv(xBF.bf(:,2), OnsetVector);
 
 % DESIGN  MATRIX
-X(:,1) = Regressor;
+% X(:,1) = Regressor;
 % Constant
-X(:,end+1) = ones(length(X(:,1)),1);
+% X(:,end+1) = ones(length(X(:,1)),1);
 % We only keep the 84 first lines of the matrix: the convolution extended
 % the regressor a bit
-X = X(1:length(TimeCourseRight),:);
+% X = X(1:length(TimeCourseRight),:);
 
 
 % Alternatives design matrices
 
 % With no constant
-X(:,1) = Regressor;
+% X(:,1) = Regressor;
+% X = X(1:length(TimeCourseRight),:);
 
 % With an unconvolved regressor
 % X(:,1) = OnsetVector;
@@ -255,11 +256,11 @@ X(:,1) = Regressor;
 
 % With a very rudimentary high pass filter to account for the linear drift
 % of the scanner
-% X(:,1) = Regressor;
-% X(:,end+1) = RegressorTimeDer;
+X(:,1) = Regressor;
+X(:,end+1) = RegressorTimeDer;
 % X(:,end+1) = ones(length(X(:,1)),1);
-% X = X(1:length(TimeCourseRight),:);
-% X(:,end+1)=(1:length(TimeCourseRight))/length(TimeCourseRight);
+X = X(1:length(TimeCourseRight),:);
+X(:,end+1)=(1:length(TimeCourseRight))/length(TimeCourseRight);
 
 
 
