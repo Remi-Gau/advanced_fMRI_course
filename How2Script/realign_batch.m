@@ -1,4 +1,4 @@
-% AN EXAMPLE OF SCRIPT FOR THE REALIGN & WRITE FUNCTION
+% AN EXAMPLE OF SCRIPT FOR THE REALIGN & WRITE FUCNTION
 %
 % It uses the raw EPI files from the block design data set from the SPM
 % website (ftp://ftp.fil.ion.ucl.ac.uk/spm/data/MoAEpilot/MoAEpilot.zip).
@@ -14,10 +14,10 @@ spm_jobman('initcfg');
 spm_get_defaults;
 global defaults
 
-EPI_Folder = 'RAW_EPI';
+EPI_Folder = 'fM00223';
 
 if exist(EPI_Folder,'dir')==0
-    error 'Could not find the folder where the raw EPI images are stored. \n This folder shoulder be called "RAW_EPI". If you have changed its name, specify a new name for the variable "EPI_Folder" at the beginning of this script.';
+    error 'Could not find the folder where the raw EPI images are stored. \n This folder shoulder be called fM00223. If you have changed its name, specify a new name foe the variable EPI_Folder at the beginning of this script.';
 end;
 
 StartDirectory = pwd;
@@ -34,8 +34,8 @@ for j = 1:length(ImagesList)
     % you operating system. Similarly you can use the "fullfile" function.
     % This is just a genral rule to increase the portability of your script.
     
-    %Images2Process{j,1} = [pwd, filesep, ImagesList(j).name, ',1'];
-    Images2Process{j,1} = fullfile(pwd, [ImagesList(j).name, ',1']; 
+    Images2Process{j,1} = [pwd, filesep, ImagesList(j).name, ',1'];
+    %Images2Process{j,1} = fullfile(pwd, [ImagesList(j).name, ',1']; 
     
 end
 
@@ -95,3 +95,8 @@ cd (StartDirectory)
 
 % Once we've defined the batch we can run the spm_jobman function
 spm_jobman('run', matlabbatch)
+
+
+% A final note : you can define several task to be done one after the other
+% the same matlabbatch but incrementing from matlabbatch{1,i} to
+% matlabbatch{1,i+1}.
