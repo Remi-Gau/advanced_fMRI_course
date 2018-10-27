@@ -30,7 +30,7 @@ University of Birmingham
 }
 
 \date[Short Occasion]
-{19\textsuperscript{th} March 2015}
+{16\textsuperscript{th} March 2016}
 
 \subject{MRes Advanced Brain Imaging - Revision session}
 
@@ -39,7 +39,7 @@ University of Birmingham
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
-% \beamerdefaultoverlayspecification{<+->}
+\beamerdefaultoverlayspecification{<+->}
 
 
 \begin{document}
@@ -65,7 +65,7 @@ University of Birmingham
   \begin{itemize}
     \item \textbf{How do you map from voxel space to world space?}
 
-    \smallskip 
+%     \smallskip 
 %     You multiply the transformation matrix with the vector containing the voxel coordinates.
 
     \item \textbf{What are the real world coordinates of the voxel with indices $\left[\begin{array}{ccc} 1&1&1\end{array}\right]$ of an image with the following tranformation matrix?}
@@ -91,16 +91,31 @@ University of Birmingham
   \begin{itemize}
     \item \textbf{What is an objective function when comparing 2 images?}
 
-    \smallskip 
+%     \smallskip 
 %     It is a function that allows quantification of the difference between these images and the optimization of the parameters set to get their best realignment, usually by minimizing/maximizing its value.
 
     \bigskip
     \item \textbf{Why are there different objective functions?}
 
-    \smallskip   
+%     \smallskip   
 %     T1 and T2* have very different ranges of values for the same tissue class. So intermodal and intramodal coregistration are going to require different types of way of quantifying misalignment.
   \end{itemize}
 \end{frame}
+
+% \begin{frame}{General questions}
+%   \begin{itemize}
+%     \item \textbf{What is an objective function when comparing 2 images?}
+% 
+%     \smallskip 
+%     It is a function that allows quantification of the difference between these images and the optimization of the parameters set to get their best realignment, usually by minimizing/maximizing its value.
+% 
+%     \bigskip
+%     \item \textbf{Why are there different objective functions?}
+% 
+%     \smallskip   
+%     T1 and T2* have very different ranges of values for the same tissue class. So intermodal and intramodal coregistration are going to require different types of way of quantifying misalignment.
+%   \end{itemize}
+% \end{frame}
 
 
 \begin{frame}{General questions}
@@ -130,6 +145,33 @@ University of Birmingham
 %   \end{enumerate} 
 \end{frame}
 
+% \begin{frame}{General questions}
+%   \textbf{Which objective functions are used for (1) realignment of functional images and (2) coregistration of a structural and functional image? }
+% 
+%   \smallskip    
+%   \begin{enumerate}
+% 
+%     \item Realignment: within modality
+%       \begin{itemize}\footnotesize
+% 	\item Least squares: minimize
+% 	\begin{displaymath}
+% 	  C = \sum_{v=1}^{N} (A_{v} - B_{v})^2
+% 	\end{displaymath}
+% 	\item Normalized cross correlation: maximize
+% 	\begin{displaymath}
+% 	  C = \frac{\sum_{v=1}^{N} (A_{v}B_{v})}{\sqrt{\sum_{v=1}^{N} A_{v}^2} \sqrt{\sum_{v=1}^{N} B_{v}^2}} 
+% 	\end{displaymath}
+%     \end{itemize}
+% 
+%     \item Registration: between modality (usually entropy based approaches)
+%     \begin{itemize}\footnotesize
+%       \item Mutual information: maximize
+%       \item Normalized Mutual information: maximize
+%     \end{itemize}   
+% 
+%   \end{enumerate} 
+% \end{frame}
+
 \begin{frame}{General questions}
   \textbf{Draw a Venn diagram of these different types of image transformations: (1) rigid body, (2) affine and (3) all possible types of transformation. Give an example of each of these types of trasnformation and/or mention at what stage of the pre-processing each type is used.}
 
@@ -150,6 +192,27 @@ University of Birmingham
 %     Used during normalization and unwarping.
 %   \end{enumerate}  
 \end{frame}
+
+% \begin{frame}{General questions}
+%   \textbf{Draw a Venn diagram of these different types of image transformations: (1) rigid body, (2) affine and (3) all possible types of transformation. Give an example of each of these types of trasnformation and/or mention at what stage of the pre-processing each type is used.}
+% 
+%   \smallskip  
+%   \begin{enumerate}
+%     \item rigid body transformations: 3 rotations + 3 translations
+% 
+%     Used during realignment or coregistration
+% 
+%     \item affine transformations: rigid body transformations + 3 sheers + 3 zooms
+% 
+%     Used during normalization. 
+% 
+%     \textit{Affine means that parallel lines will still be parallel after the transformation has been appied.}
+% 
+%     \item non-linear transformations: affine transformations + pretty much every other type of transformation you can think of.
+% 
+%     Used during normalization and unwarping.
+%   \end{enumerate}  
+% \end{frame}
 
 
 \begin{frame}{General questions}
@@ -202,6 +265,26 @@ University of Birmingham
   
 \end{frame}
 
+% \begin{frame}{Realignment}
+%   \textbf{What are some the possible sources of residual errors that are still present after realignment?}
+% 
+%   \smallskip 
+%   \begin{enumerate}
+%     \item Re-sampling can introduce interpolation errors
+%     % \item Gaps between slices can cause aliasing artifacts
+%     \item Slices are not acquired simultaneously: rapid movements not accounted for by rigid body model
+%     \item Image artifacts may not move according to a rigid body model
+%     \begin{itemize}\footnotesize
+%       \item image distortion and realignment $\times$ inhomogeneity interaction
+%       \item image dropout
+%       \item Nyquist ghost
+%     \end{itemize}
+%     \item Spin history effect \linebreak
+%     Motion can also alter the MR signal because protons that moves into a voxel from a neighbouring slice have an excitation different from that expected by the scanner and the signal will not reflect well the tissue in that voxel.
+%   \end{enumerate}  
+%   
+% \end{frame}
+
 
 \begin{frame}{Realignment}
   \textbf{What can you do to minimize the effects of those residual errors?}
@@ -226,6 +309,16 @@ University of Birmingham
 %     \item Express results in a standard common space across studies
 %   \end{enumerate}
 \end{frame}    
+
+% \begin{frame}{Normalization}
+%   \textbf{What are the reasons for normalization?}
+% 
+%   \smallskip 
+%   \begin{enumerate}
+%     \item Try to account for inter-subject anatomical variability
+%     \item Express results in a standard common space across studies
+%   \end{enumerate}
+% \end{frame}  
 
 
 % \begin{frame}{Normalization}
@@ -256,6 +349,17 @@ University of Birmingham
 %   \end{enumerate}    
 \end{frame}
 
+% \begin{frame}{Normalization}
+%   \textbf{Most spatial normalization procedures involves two steps, affine and non-linear transformation. Why?}
+% 
+%   \smallskip     
+%   \begin{enumerate}
+%     \item Affine: intially for an approximate realignment and to avoid falling into local minima.
+%     \item Non-linear: warping for better match between structures.
+%   \end{enumerate}    
+% \end{frame}
+
+
 \begin{frame}{Normalization}
   \textbf{What alternatives are there if you still want to average results accross subjects without normalising your data?}
 
@@ -266,6 +370,15 @@ University of Birmingham
 %   \end{enumerate}    
 \end{frame}
 
+% \begin{frame}{Normalization}
+%   \textbf{What alternatives are there if you still want to average results accross subjects without normalising your data?}
+% 
+%   \smallskip     
+%   \begin{enumerate}
+%     \item Using some clear anatomical features to define a region of interest, but this requires some anatomical expertise and involves, even when performed by experts, some criterion that are hard to operationalize. 
+%     \item Using functional localizer to define a functional region of interest within which the average will be done.
+%   \end{enumerate}    
+% \end{frame}
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \subsection[Smoothing]{Smoothing}
@@ -281,20 +394,45 @@ University of Birmingham
 %       \item Sufficient smoothness of the data is necessary if random field theory has to be used for multiple comparison (the \textit{lattice assumption} of GRFT)
 %     \end{enumerate}
 % 
-    \bigskip
-    \item \textbf{What is the matched filter theorem?}
+%     \bigskip
+%     \item \textbf{What is the matched filter theorem?}
 % 
 %     \smallskip   
 %     Using a filter that has the same shape as the signal will give the best signal to noise ratio. 
 % 
-    \bigskip
-    \item \textbf{If we expect your signal to be of Gaussian shape with a kernel of 8 mm FWHM, which smoothing kernel would you use?}
+%     \bigskip
+%     \item \textbf{If we expect your signal to be of Gaussian shape with a kernel of 8 mm FWHM, which smoothing kernel would you use?}
 % 
 %     \smallskip   
 %     A gaussian shape with a kernel of 8 mm FWHM.
   \end{itemize}
 \end{frame}
 
+
+% \begin{frame}{Smoothing}
+%   \begin{itemize}  
+%     \item \textbf{What are the main reasons for spatial smoothing ?}
+% 
+%     \smallskip 
+%     \begin{enumerate}\footnotesize
+%       \item Compensate for inter-subject variability
+%       \item Matched filter theorem
+%       \item Sufficient smoothness of the data is necessary if random field theory has to be used for multiple comparison (the \textit{lattice assumption} of GRFT)
+%     \end{enumerate}
+% 
+%     \bigskip
+%     \item \textbf{What is the matched filter theorem?}
+% 
+% %     \smallskip   
+% %     Using a filter that has the same shape as the signal will give the best signal to noise ratio. 
+% 
+%     \bigskip
+%     \item \textbf{If we expect your signal to be of Gaussian shape with a kernel of 8 mm FWHM, which smoothing kernel would you use?}
+% 
+% %     \smallskip   
+% %     A gaussian shape with a kernel of 8 mm FWHM.
+%   \end{itemize}
+% \end{frame}
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -313,6 +451,16 @@ University of Birmingham
 %   \end{center}
 \end{frame} 
 
+% \begin{frame}{General questions}
+%   \textbf{Draw a Venn diagram of: t-test, paired t-test, ANOVA, repeated measures ANOVA, General Linear model.}
+% 
+%   \smallskip
+%   \begin{center}
+%     \includegraphics[scale=0.5,keepaspectratio=true]{./Venn_GLM.jpg}
+%     % Venn_GLM.jpg: 1540x1007 pixel, 299dpi, 13.08x8.55 cm, bb=0 0 371 242
+%   \end{center}
+% \end{frame} 
+
 
 \begin{frame}{General questions}
   \textbf{If two regressors X$_{1}$ and X$_{2}$ are correlated, what do the $\beta$ estimates represent?}
@@ -327,6 +475,19 @@ University of Birmingham
 %   \end{center}
 \end{frame} 
 
+% \begin{frame}{General questions}
+%   \textbf{If two regressors X$_{1}$ and X$_{2}$ are correlated, what do the $\beta$ estimates represent?}
+% 
+%   \smallskip 
+%   Only the variability unique to a regressor drives the parameter estimate of that regressor.
+% 
+%   \smallskip
+%   \begin{center}
+%     \includegraphics[scale=0.6,keepaspectratio=true]{./CorrelatedRegressors.jpg}
+%     % CorrelatedRegressors.jpg: 922x727 pixel, 299dpi, 7.83x6.18 cm, bb=0 0 222 175
+%   \end{center}
+% \end{frame} 
+
 
 \begin{frame}{General questions}
   \textbf{If regressor 1 and 2 are correlated and you orthogonalize 2 with respect to 1 which, if any, $\beta$ will change and why? Explain via geometric perspective.}
@@ -340,6 +501,19 @@ University of Birmingham
 %     % Ortho_And_Non-Ortho_Regressors.jpg: 5043x935 pixel, 299dpi, 42.84x7.94 cm, bb=0 0 1214 225
 %   \end{flushleft}
 \end{frame} 
+
+% \begin{frame}{General questions}
+%   \textbf{If regressor 1 and 2 are correlated and you orthogonalize 2 with respect to 1 which, if any, $\beta$ will change and why? Explain via geometric perspective.}
+% 
+%   \smallskip   
+%   The $\beta$ associated to the regressor 1 will change.
+% 
+%   \smallskip  
+%   \begin{flushleft}
+%     \includegraphics[scale=0.27,keepaspectratio=true]{./Ortho_And_Non-Ortho_Regressors.jpg}
+%     % Ortho_And_Non-Ortho_Regressors.jpg: 5043x935 pixel, 299dpi, 42.84x7.94 cm, bb=0 0 1214 225
+%   \end{flushleft}
+% \end{frame} 
 
 
 \begin{frame}{General questions}  
@@ -643,8 +817,8 @@ University of Birmingham
 %     \smallskip 
 %     With 2 levels anything you fit will be linear: with 3 levels you can detect U or inverted U shapes.
 
-    \bigskip
-    \item \textbf{What is the disadvantage of having an odd number of levels in a parametric design (assuming the levels are equally spaced)?}
+%    \bigskip
+%    \item \textbf{What is the disadvantage of having an odd number of levels in a parametric design (assuming the levels are equally spaced)?}
 
 %     \smallskip
 %     If you expect a linear relationship the middle data point contributes little to the fitting of the slope (as after mean correction it is set to zero).
@@ -774,6 +948,26 @@ University of Birmingham
   \end{itemize}
 \end{frame}
 
+% \begin{frame}{General questions}
+%   \begin{itemize}
+%     \item An experiment was performed with a TR $=$ 3 secs and an SOA $=$ 3 secs. \textbf{How would you change the experimental parameters and why?}
+% 
+% %     \smallskip 
+% %     If the SOA is a multiple of your TR then you will always sample the same time point of the HRF and might miss the peak. You could alternatively change the SOA or jitter the onsets.
+% 
+%     \bigskip
+%     \item \textbf{What are the assumptions inherent in using convolution for modeling the BOLD response?}
+% 
+%     \smallskip 
+%     The system you study must be LTI: Linear and Time Independent.
+%     \begin{itemize}\footnotesize
+%       \item Linear: a system that satisfies the additivity and the scaling properties.
+%       \item Time invariant: whether we apply an input to the system now or T seconds from now, the output will be identical except for a time delay of the T seconds. 
+%       i.e. it is just defined by the impulse response function a temporal shift in the input causes a corresponding shift in the output.
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
+
 \begin{frame}{General questions}
   \textbf{Why is it possible to optimize the efficiency of an experimental design even before running the experiment?}
 
@@ -786,9 +980,27 @@ University of Birmingham
 %   If you want to get a t-value as big as possible you can try to increase the value of the numerator, but this is not possible a priori because you cannot infuence $\hat{\beta}$. \linebreak
 %   You can decrease the value of the denominator by trying to minimize the value of $c^{T} (X^{T} X)^{-1} c$ ($\hat{\sigma}$ is scanner dependent, so we cannot influence it a priori either). 
 %   
-%   So we have $t \propto e$ with $e$ being the efficiency and equal to $\frac{1}{c^{T} (X^{T} X)^{-1} c}$.
+%   So we have $t \propto e$, with $e$ being the efficiency and equal to $\frac{1}{c^{T} (X^{T} X)^{-1} c}$.
 
 \end{frame}
+
+% \begin{frame}{General questions}
+%   \textbf{Why is it possible to optimize the efficiency of an experimental design even before running the experiment?}
+% 
+%   \smallskip 
+%   The t-value of a given contrast $c$ is given by the follwing equation.
+%   \begin{displaymath}
+%   t = \frac{ c^{T} \hat{\beta} } { \sqrt{ \hat{\sigma}^{2} c^{T} (X^{T} X)^{-1} c } }
+%   \end{displaymath}
+%   
+%   If you want to get a t-value as big as possible you can try to increase the value of the numerator, but this is not possible a priori because you cannot infuence $\hat{\beta}$. \linebreak
+%   You can decrease the value of the denominator by trying to minimize the value of $c^{T} (X^{T} X)^{-1} c$ ($\hat{\sigma}$ is scanner dependent, so we cannot influence it a priori either). 
+%   
+%   So we have $t \propto e$, with $e$ being the efficiency and equal to $\frac{1}{c^{T} (X^{T} X)^{-1} c}$.
+% 
+% \end{frame}
+
+
 
 \begin{frame}{General questions}
   \textbf{Explain the concept of design efficiency from the perspective of maximal bandpassed energy.}
@@ -800,9 +1012,20 @@ University of Birmingham
 %   Only the energy of the signal going through the bandpass defined by these two filters will be of interest.
 \end{frame}
 
+% \begin{frame}{General questions}
+%   \textbf{Explain the concept of design efficiency from the perspective of maximal bandpassed energy.}
+% 
+%   \smallskip 
+%   Any fMRI experiment can be viewed as trying to record a signal subjected to a bandpass filter. \linebreak
+%   The \emph{high pass filter} is the one we explicitly apply as part of the GLM to get rid of low frequency scanner noise. \linebreak
+%   There is an \emph{implicit low pass filter} in the experiment: that of the HRF. It will greatly attenuate high frequencies. \linebreak
+%   Only the energy of the signal going through the bandpass defined by these two filters will be of interest.
+% \end{frame}
+
+
 
 \begin{frame}{General questions}
-  \textbf{What would be the most efficient fMRI design and why?} \rightarrow
+  \textbf{What would be the most efficient fMRI design and why?}
 
 %   \smallskip
 %   An experiment with a sinusoidal signal with a frequency equal to the frequency less filtered by the HRF.
@@ -813,13 +1036,25 @@ University of Birmingham
 %   \end{center}
 \end{frame}
 
-
-\begin{frame}{General questions}
-  If you assume only two event classes A and B and you shorten the SOA of the events: \textbf{Which of the following contrast (common effect of A and B, difference between A amd B) will increase in efficiency and which one will decrease? How can you design the study to optimize the efficiency of both effects?}
-
+% \begin{frame}{General questions}
+%   \textbf{What would be the most efficient fMRI design and why?}
+% 
 %   \smallskip
-%   As you shorten the SOA, the BOLD signal has less chance of coming back to the baseline, so the (A+B) contrast will become harder to 'detect'.
-\end{frame}
+%   An experiment with a sinusoidal signal with a frequency equal to the frequency less filtered by the HRF.
+% 
+%   \begin{center}
+%     \includegraphics[scale=0.265,keepaspectratio=true]{./sinu_33s_timefreq.jpg}
+%     % sinu_33s_timefreq.jpg: 973x546 pixel, 72dpi, 34.33x19.26 cm, bb=0 0 973 546
+%   \end{center}
+% \end{frame}
+
+
+% \begin{frame}{General questions}
+%   If you assume only two event classes A and B and you shorten the SOA of the events: \textbf{Which of the following contrast (common effect of A and B, difference between A amd B) will increase in efficiency and which one will decrease? How can you design the study to optimize the efficiency of both effects?}
+% 
+% %   \smallskip
+% %   As you shorten the SOA, the BOLD signal has less chance of coming back to the baseline, so the (A+B) contrast will become harder to 'detect'.
+% \end{frame}
 
 
 \begin{frame}{Basis functions}
@@ -832,6 +1067,15 @@ University of Birmingham
 %   \end{itemize} 
 \end{frame}
 
+% \begin{frame}{Basis functions}
+%   \textbf{Which experiments make \textit{a priori} optimization of design efficiency difficult?}
+% 
+%   \smallskip
+%   \begin{itemize}
+%     \item If some conditions depend on subject's responses.
+%     \item If you must lock stimuli presentation to TR trigger.
+%   \end{itemize} 
+% \end{frame}
 
 \begin{frame}{Basis functions}
   \begin{itemize}
@@ -848,6 +1092,23 @@ University of Birmingham
 %     This means they can also model physiologically implausible HRF. Besides they also involves more regressors, which means that the same number of data points will have to be used to explain more parameters: this increases the variability of each parameter's estimate. 
   \end{itemize}  
 \end{frame}
+
+
+% \begin{frame}{Basis functions}
+%   \begin{itemize}
+%     \item \textbf{Explain the concept of basis functions for modeling the HRF.}
+% 
+%     \smallskip    
+%     They are functions or set of functions that you can linearly combine to model the response function of the brain you are interested in.
+% 
+%     \bigskip
+%     \item You have performed a complex working memory experiment. You are not sure about the shape of the activation functions. \textbf{Which basis sets might be useful for modeling the hemodynamic response? What are their advantages and disadvantages?}
+% 
+%     \smallskip    
+%     You could use the finite impulse response (FIR) or a Fourrier set. These sets are much less constrained in terms of the kind of HRF shape they can model. \linebreak
+%     This means they can also model physiologically implausible HRF. Besides they also involves more regressors, which means that the same number of data points will have to be used to explain more parameters: this increases the variability of each parameter's estimate. 
+%   \end{itemize}  
+% \end{frame}
 
 
 \begin{frame}{Basis functions}
@@ -869,6 +1130,25 @@ University of Birmingham
   \end{itemize}
 \end{frame}
 
+
+% \begin{frame}{Basis functions}
+%   \begin{itemize}
+%     \item \textbf{Why would you model your events using the informed basis functions set (i.e. what is the function of the derivatives)?}
+% 
+%     \smallskip     
+%     The derivatives can account for BOLD responses that depart from the canonical HRF.
+%     \begin{description}
+%       \item [Temporal derivative] can help model temporal shifts in the HRF.
+%       \item [Dispersion derivative] can help model wider or sharper HRF.
+%     \end{description}
+% 
+%     \bigskip       
+%     \item \textbf{How can you test whether the informed basis functions set is really sufficient for modeling the HRF?}
+% 
+%     \smallskip     
+%     Model your protocol with the informed basis functions set and also with a finite impulse response. With a F-test, you can then check if the full model (informed set + FIR) explains more variance the reduced model (informed set alone).
+%   \end{itemize}
+% \end{frame}
 
 % \begin{frame}{Basis functions}
 %   \begin{itemize}
@@ -899,47 +1179,47 @@ University of Birmingham
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-\section{GROUP LEVEL ANALYSIS}    
- 
-\subsection[General questions]{General questions}
-
-\begin{frame}{General questions}
-  \begin{itemize} 
-    \item \textbf{What is the iid assumption?}
-
+% \section{GROUP LEVEL ANALYSIS}    
+%  
+% \subsection[General questions]{General questions}
+% 
+% \begin{frame}{General questions}
+%   \begin{itemize} 
+%     \item \textbf{What is the iid assumption?}
+% 
 % \smallskip 
 % Independent and Identically Distributed errors
-
-\bigskip
-    \item \textbf{What is heteroscedasticity?}
-
+% 
+% \bigskip
+%     \item \textbf{What is heteroscedasticity?}
+% 
 % \smallskip 
 % The variances are unequal but not correlated.
-
-\bigskip
-    \item \textbf{What are the two assumptions underlying sphericity? Define them precisely by referring to the properties of the error covariance matrix.}
-
+% 
+% \bigskip
+%     \item \textbf{What are the two assumptions underlying sphericity? Define them precisely by referring to the properties of the error covariance matrix.}
+% 
 % \smallskip  
 % The different error terms have equal variances and no correlation between them. The error covariance matrix is a diagonal matrix and the values along the diagonal are all the same.
-  \end{itemize}
-\end{frame}
+%   \end{itemize}
+% \end{frame}
 
 
-\begin{frame}{General questions}
-  \begin{itemize}
-    \item \textbf{Which two sources of variability need to be considered in group studies?}
-    
+% \begin{frame}{General questions}
+%   \begin{itemize}
+%     \item \textbf{Which two sources of variability need to be considered in group studies?}
+%     
 % \smallskip   
 % Inter and intra subject variability
-
-\bigskip
-    \item \textbf{When is the summary statistic approach (in)valid (i.e. which requirements need to be fulfilled?)}
-
+% 
+% \bigskip
+%     \item \textbf{When is the summary statistic approach (in)valid (i.e. which requirements need to be fulfilled?)}
+% 
 % \smallskip
 % The summary statistic only takes the mean activation for each subject at the second level for the group analysis. Mainly, it requires intra-subject variability to be equivalent. \linebreak
 % It also requires that the first level design is the same for each subject and to only have one value (contrast) per subject.
-  \end{itemize}
-\end{frame}
+%   \end{itemize}
+% \end{frame}
 
 
 % \begin{frame}{General questions}
@@ -970,6 +1250,18 @@ University of Birmingham
 %      \item [Second level] In repeated measures designs, some values come from the same subject and are likely to be correlated.
 %     \end{description}    
 \end{frame}
+
+
+% \begin{frame}{General questions}
+% \textbf{How does non-sphericity emerge at 1st and 2nd level?}
+% 
+% \smallskip 
+%     \begin{description}
+%      \item [First level] There is an auto-correlation from one scan to the next due to the fact that we have a time series.
+%      \item [Second level] Different groups (patient VS control) might have unequal variances.
+%      \item [Second level] In repeated measures designs, some values come from the same subject and are likely to be correlated.
+%     \end{description}    
+% \end{frame}
 
 % How many error covariance components do you need to model the error covariance matrix in repeated measurement design with 3 conditions per subject?
 
@@ -1007,7 +1299,35 @@ University of Birmingham
 %     t = \frac{ c^{T} \hat{\beta} } { \sqrt{ \hat{\sigma}^{2} c^{T} (X^{T} X)^{-1} c } }
 %     $
   \end{itemize}
-\end{frame}      
+\end{frame}  
+
+
+% \begin{frame}{General questions}
+%   \begin{itemize}
+%     \item \textbf{What is the meaning of a p-value in classical statistics? E.g. $p < \alpha$ means that:}
+% 
+%     \smallskip 
+%     Think of it as a surprise factor: it is the probability of getting these data under H$_{0}$
+% 
+%     \bigskip
+%     \item \textbf{In the case where $p > \alpha$, does it provide evidence to say that H$_{0}$ is true?}
+% 
+%     \smallskip     
+%     No because the computation of the p value start by assuming that H$_{0}$ is true.
+% 
+%     \bigskip
+%     \item \textbf{A t-test is a ratio of?}
+% 
+%     \smallskip 
+%     It is a signal to noise ratio.
+% 
+%     $
+%     t = \frac{\hat{\mu}_{1} - \hat{\mu}_{2}}{\sqrt{\frac{\hat{\sigma}_{1}^{2}}{n_{1}} - \frac{\hat{\sigma}_{2}^{2}}{n_{2}} } }
+%     \hfill
+%     t = \frac{ c^{T} \hat{\beta} } { \sqrt{ \hat{\sigma}^{2} c^{T} (X^{T} X)^{-1} c } }
+%     $
+%   \end{itemize}
+% \end{frame} 
 
 
 \begin{frame}{General questions}
@@ -1074,8 +1394,21 @@ University of Birmingham
 %   \end{description}
 \end{frame}
 
-\begin{frame}{Inferences}
-  \textbf{How can you obtain p- and t-values from a uni-dimensional F-test?}
+% \begin{frame}{Inferences}
+%   \textbf{Define precisely the three levels of inference and their constraints: voxel, cluster and set. What are their advantages and disadvantages?}
+% 
+%   \smallskip
+%   There a trade off between an increase of sensitivity VS loss of spatial specificity when you from voxel to set level.
+% 
+%   \begin{description}
+%     \item [Voxel] Just requires to specify the voxel level threshold. You can have $p$ values and confidence intervals.
+%     \item [Cluster] Requires to specify threshold at the voxel level and the minimum cluster size. You can only have $p$ values.
+%     \item [Set] Requires to specify threshold at the voxel level, the minimum cluster size and the minimum set size. You can only have $p$ values.
+%   \end{description}
+% \end{frame}
+
+% \begin{frame}{Inferences}
+%   \textbf{How can you obtain p- and t-values from a uni-dimensional F-test?}
 
 %   \smallskip
 %   In a uni-dimensional condition:
@@ -1086,17 +1419,17 @@ University of Birmingham
 %   \end{description}
 % 
 %   The p-value of the t-test will be half that of the F-test.
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Inferences}
-  \textbf{Explain the extra-sum of square principle for the F-testing}
+% \begin{frame}{Inferences}
+%   \textbf{Explain the extra-sum of square principle for the F-testing}
 
 %   \smallskip
 %   Given two nested models for the same response, with a reduced model that includes $m$ regressors and a full model containing $ p = m + n $ regressors, the extra sum of squares tests the following null hypothesis:
 %   \begin{displaymath}
 %     H_{0} \mbox{:} \quad \beta_{m+1} = \beta_{m+2} = \dots = \beta_{p} = 0
 %   \end{displaymath}
-\end{frame}
+% \end{frame}
 
 
 % \begin{frame}{Inferences}
@@ -1133,22 +1466,39 @@ University of Birmingham
 \end{frame}
 
 
-\begin{frame}{Inferences}
-  Given the following outcomes and a threshold $\mu_{1} = 0.5$:
-
-  \begin{center}
-    \includegraphics[scale=0.055]{./Control_Test.jpg}
-    % Control_Test.jpg: 1197x486 pixel, 72dpi, 42.23x17.15 cm, bb=0 0 1197 486
-  \end{center}
-
-  Compute:
-  \begin{itemize}
-    \item Sensitivity or Power: %$\frac{TP}{TP+FN}$
-    \item Specificity: %$\frac{TN}{TN+FP}$
-    \item False discovery rate: %$\frac{FP}{FP+TP}$
-    \item False positive rate - Type I error: %$\frac{FP}{FP+TN}$
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Inferences}
+%   Given the following outcomes and a threshold $\mu_{1} = 0.5$:
+% 
+%   \begin{center}
+%     \includegraphics[scale=0.055]{./Control_Test.jpg}
+%     % Control_Test.jpg: 1197x486 pixel, 72dpi, 42.23x17.15 cm, bb=0 0 1197 486
+%   \end{center}
+% 
+%   Compute:
+%   \begin{itemize}
+%     \item Sensitivity or Power: %$\frac{TP}{TP+FN}$
+%     \item Specificity: %$\frac{TN}{TN+FP}$
+%     \item False discovery rate: %$\frac{FP}{FP+TP}$
+%     \item False positive rate - Type I error: %$\frac{FP}{FP+TN}$
+%   \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}{Inferences}
+%   Given the following outcomes and a threshold $\mu_{1} = 0.5$:
+% 
+%   \begin{center}
+%     \includegraphics[scale=0.055]{./Control_Test.jpg}
+%     % Control_Test.jpg: 1197x486 pixel, 72dpi, 42.23x17.15 cm, bb=0 0 1197 486
+%   \end{center}
+% 
+%   Compute:
+%   \begin{itemize}
+%     \item Sensitivity or Power: $\frac{TP}{TP+FN}$
+%     \item Specificity: $\frac{TN}{TN+FP}$
+%     \item False discovery rate: $\frac{FP}{FP+TP}$
+%     \item False positive rate - Type I error: $\frac{FP}{FP+TN}$
+%   \end{itemize}
+% \end{frame}
 
 
 \begin{frame}{Inferences}
@@ -1176,7 +1526,30 @@ University of Birmingham
 %   \end{enumerate}
 \end{frame}
 
-
+% \begin{frame}{Inferences}
+%   In 5 Parkinson patients and 5 Alzheimer patients, the following activation measurements have been obtained
+%   
+%   \smallskip
+%   
+%   $
+%   \begin{array}{cccccc}
+%     Parkinson &5 &7 &9 &4 &3\\
+%     Alzheimer &1 &4 &2 &2 &3
+%   \end{array}
+%   $
+%   
+%   \smallskip
+%   
+%   \textbf{Using non-parametric statistics, you want to investigate whether the means are different between the 2 samples at a significance of p<0.05. Describe the main steps of the procedure.}
+%   
+%   \begin{enumerate}
+%    \item Compute the difference of the mean between the 2 samples.
+%    \item Under $H_{0}$ you can assumme that the values are exchangeable between the two samples, so you can create two new samples by randomly assigning each of the 10 value to one group or the other.
+%    \item Recompute the difference of the mean between these 2 new samples.
+%    \item Repeat the step 2 and 3, enough times (minimum ?) to get until you have enough data to build a distribution and plot a histogram of it.
+%    \item Check that the original value exceeds the threshold that you have set below which you can find 95\% of the values of your distribution.
+%   \end{enumerate}
+% \end{frame}
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1215,10 +1588,25 @@ University of Birmingham
 %   \end{enumerate}
 \end{frame}
 
+% \begin{frame}{Family wise error}
+%   The SPM results page gives you the following values for the estimated smoothness of your data: FWHM $=$ 12.6 11.9 10.9 (in mm). Yet you have smoothed your data with a [8 8 8] mm FWHM Gaussian kernel. \linebreak
+% 
+%   \textbf{Is that an error? What could be the differences due to?}
+% 
+%   \bigskip
+%   This is perfectly normal. The differences can be accounted for by:
+% 
+%   \smallskip
+%   \begin{enumerate}
+%     \item The intrinsic smoothness of your data. Your data have a structure and are not random values.
+%     \item Remember that the interpolation error of your preprocessing will increase the smoothness of your data.
+%   \end{enumerate}
+% \end{frame}
 
-\begin{frame}{False discovery rate}
-  \textbf{Explain the procedure to determine all significant voxels within a volume according to false discovery rate.}
 
+% \begin{frame}{False discovery rate}
+%   \textbf{Explain the procedure to determine all significant voxels within a volume according to false discovery rate.}
+% 
 %   \begin{enumerate}
 %    \item Order the p-values of your voxel from the smallest to the largest.
 %    \item Plot them.
@@ -1226,7 +1614,7 @@ University of Birmingham
 %    \item all voxel below this line are considered activated, all the others are not.
 %   \end{enumerate}
 
-\end{frame}
+% \end{frame}
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------------------------------
