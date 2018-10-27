@@ -1,6 +1,7 @@
 %% Reading header information
 % The easy way to do this is to go to the directory where the structural is
-% and type: HeaderStructural = spm_vol('sM00223_002.img');
+% and type: 
+HeaderStructural = spm_vol('sM00223_002.img');
 
 % But below is another way to do it that is more 'automatic'.
 
@@ -11,16 +12,15 @@ clc; % Removes all the ouput that are present on the command line screen
 StartFolder = pwd; % pwd --> Present Working Directory
 
 % Defines a variable containing the name of the folder containg the
-% structural scan. This suppose you have stored the files in a folder called 'BlockDesign' and
-% renamed 'Structural' the folder containing the strucural
-StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
+% structural scan.
+StructuralFolder = fullfile(StartFolder, 'MoAEpilot', 'sM00223');
 
 % Finding out the name of the strucural
 % First got to the director where the structural scan is
 cd(StructuralFolder) % cd --> Change Directory
+
 % List all the images starting with an s and ending with the extension .img 
-% Easy: there is only.
-% one)
+% Easy: there is only one)
 FilesList = dir('s*.img');
 
 % Read the content of the header and stores it in a variable
@@ -53,20 +53,21 @@ temp = diag(TransformationMatrix);
 VoxelsDimension = abs(temp(1:3))
 
 % Getting the world space coordinate of a given voxel
-VoxelIndices = [1 1 1];
+VoxelSubscripts = [1 1 1];
 % We have to take the transpose (') of the voxel indices vector and pad it with an
 % extra one to be able to multiply it with the tranformation matrix.
-temp = [VoxelIndices' ; 1];
+temp = [VoxelSubscripts' ; 1];
 WorldSpaceCoordinates = TransformationMatrix * temp;
 % Only the three first value of this vector are of interest to us
 WorldSpaceCoordinates = WorldSpaceCoordinates(1:3)
 
-% Getting the voxel indices of a given set of world space coordinates 
+% Getting the voxel subscripts of a given set of world space coordinates 
 WorldSpaceCoordinates = [0 0 0];
 % Remember that if a matrix A performs a certain transformation, the matrix inv(A) will
 % perform the reverse transfomation
-VoxelIndices = inv(TransformationMatrix)*[WorldSpaceCoordinates' ; 1];
-VoxelIndices = VoxelIndices(1:3)
+VoxelSubscripts = inv(TransformationMatrix)*[WorldSpaceCoordinates' ; 1];
+VoxelSubscripts = round(VoxelSubscripts(1:3)) % we need to use 'round' to get a value that 
+% is not in between 2 voxels.
 
 cd(StartFolder)
 
@@ -75,20 +76,21 @@ cd(StartFolder)
 %% Reading values from an image
 clear all; clc
 
-% Name of the starting folder
-StartFolder = pwd;
-
-% Given some coordinates
+% Given some coordinates. Here I chose a voxel that is roughly in the left Heschl's gyrus
 WorldSpaceCoordinates = [47 33 35];
 
-% Name of the folder containg the structural scan
-EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
-
-% Finding out the name of the strucural
+% List the EPI images
+StartFolder = pwd;
+EPI_Folder = fullfile(StartFolder, 'MoAEpilot', 'fM00223');
 cd(EPI_Folder)
+
+% List all the realigned images in this folder: here the "u" prefix
+% could be used if you did realign and unwarp step. Usually the
+% realign:estimate and write, will add the prefix "r", though this default can be
+% changed easily.
 FilesList = dir('f*.img');
 
-% Read the content of the header and stores it in a variable
+% Read the content of the header of the first image and stores it in a variable
 HeaderEPI = spm_vol(FilesList(1).name);
 
 % Gets the data corresponding to this image
@@ -97,13 +99,20 @@ Volume = spm_read_vols(HeaderEPI);
 % Compute thevoxel indices corresponding to our real world coordinates
 Transf_matrix = spm_get_space(FilesList(1).name);
 WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
-VoxelIndices = inv(Transf_matrix)*WorldSpaceCoordinates';
-% We round those values to the neasrest integer values: indices have to be
-% integers
-VoxelIndices = round(VoxelIndices);
-VoxelIndices = VoxelIndices(1:3);
+VoxelSubscripts = inv(Transf_matrix)*WorldSpaceCoordinates';
+% We round those values to the nearest integer values: subscripts have to be
+% integers. Also we only take the 3 first values (the last value is a 1
+% just there for padding).
+VoxelSubscripts = round(VoxelSubscripts);
+VoxelSubscripts = VoxelSubscripts(1:3);
 
-Volume(VoxelIndices(1), VoxelIndices(2), VoxelIndices(3))
+% Get the signal intensity value at our voxel of interest
+Volume(VoxelSubscripts(1), VoxelSubscripts(2), VoxelSubscripts(3))
+
+% Note that the function spm_sample_vol can give you the value of a given
+% voxel and does not require integer subscripts values: it will 
+% give you the interpolated intensity value at the exact location you
+% required.
 
 cd(StartFolder)
 
@@ -112,69 +121,101 @@ cd(StartFolder)
 %% Reading a time-series
 clear all; clc
 
-% Name of the starting folder
-StartFolder = pwd;
-
-% Here I chose a voxel that is roughly in the left Heschl's gyrus
+% Given some coordinates. Here I chose a voxel that is roughly in the left Heschl's gyrus
 WorldSpaceCoordinates = [47 33 35];
 
-% Name of the folder containg the structural scan
-EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
-
+% Get to the right folder
+StartFolder = pwd;
+EPI_Folder = fullfile(StartFolder, 'MoAEpilot', 'fM00223');
 cd(EPI_Folder)
 
-% List all the realigned images in this folder: here I used a "u" prefix
-% because I used the realign and unwarp function. Usually the
-% realign:estimate and write, will add the prefix "r", though this can be
-% changed easily.
-ImageName = dir('u*.img');
+    %-------------------------------------------------------------------------%
+    %% Open all the images with a loop
+    %-------------------------------------------------------------------------%
+    tic % The tic toc fucntion call help decide which methods is quicker.
+    %the function 'length' will tell you how many items there are in a vector,
+    %matrix, structure...
+    
+    ImageName = dir('wf*.img'); %Here I am reading the normalised images
+    
+    % Get the voxel coordinates.
+    Transf_matrix = spm_get_space(ImageName(1).name);
+    WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
+    VoxelSubscripts = inv(Transf_matrix)*WorldSpaceCoordinates';
+    VoxelSubscripts = round(VoxelSubscripts);
+    
+    for ImageIndex = 1:length(ImageName) 
+        % Open the header of a given image
+        ImgInfo = spm_vol(ImageName(ImageIndex).name);
+        % Adds it data at the end of a 4D matrix
+        Volume(:,:,:,ImageIndex) = spm_read_vols(ImgInfo);
+    end
+    %-------------------------------------------------------------------------%
 
-% Get the voxel indices of our world space coordinate
-% Since our images have same dimension and same transformation matrices 
-% (since they all have been realigned), so getting the transformation 
-% matrix of the first one will do.
-Transf_matrix = spm_get_space(ImageName(1).name);
-WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
-VoxelIndices = inv(Transf_matrix)*WorldSpaceCoordinates';
-VoxelIndices = round(VoxelIndices);
+    % Read the time serie at the voxel coordinate we want across the 4th
+    % dimension (time) of our matrice 
+    TimeCourse = Volume(VoxelSubscripts(1), VoxelSubscripts(2), VoxelSubscripts(3), :);
+    % We use the squeeze function to get rid of the 3 first "empty" dimensions
+    % of our time course.
+    TimeCourse = squeeze(TimeCourse);
+    
+    toc
 
 
-%-------------------------------------------------------------------------%
-% Open all the images with a loop
-%-------------------------------------------------------------------------%
-%the function 'length' will tell you how many items there are in a vector,
-%matrix, structure...
-for ImageIndex = 1:length(ImageName) 
-    % Open the header of a given image
-    ImgInfo = spm_vol(ImageName(ImageIndex).name);
-    % Adds it data at the end of a 4D matrix
-    Volume(:,:,:,ImageIndex) = spm_read_vols(ImgInfo);
-end
-%-------------------------------------------------------------------------%
+    %-------------------------------------------------------------------------%
+    %% Open all the images at once
+    %-------------------------------------------------------------------------%
+    tic
+
+    % Creates a matrix with all the names of the images
+    ImageName = dir('wf*.img');
+    % Or use the spm_select function (but that's almost cheating !)
+    % ImagesName=spm_select(Inf, 'image');
+       
+    % Get the voxel coordinates.
+    Transf_matrix = spm_get_space(ImageName(1).name);
+    WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
+    VoxelSubscripts = inv(Transf_matrix)*WorldSpaceCoordinates';
+    VoxelSubscripts = round(VoxelSubscripts);
+    
+    % Get all the headers
+    ImagesName = char({ImageName.name}');
+    ImgInfo = spm_vol(ImagesName);
+    % Open all the images
+    Volume = spm_read_vols(ImgInfo);
+
+    TimeCourse = Volume(VoxelSubscripts(1), VoxelSubscripts(2), VoxelSubscripts(3), :);
+    TimeCourse = squeeze(TimeCourse);
+    
+    toc
 
 
-%-------------------------------------------------------------------------%
-% Open all the images at once
-%-------------------------------------------------------------------------%
-% Creates a matrix with all the names of the images
-ImagesName = char({ImageName.name}');
-% Or use the spm_select function (but that's almost cheating !)
-ImagesName=spm_select(Inf, 'image');
-% Get all the headers
-ImgInfo = spm_vol(ImagesName);
-% Open all the iamges
-Volume = spm_read_vols(ImgInfo);
-%-------------------------------------------------------------------------%
+    %-------------------------------------------------------------------------%
+    %% Use the SPM built in function
+    %-------------------------------------------------------------------------%
+    tic
+    
+    % List the images
+    ImageName = dir('wf*.img');
+    ImagesName = char({ImageName.name}');
+    
+    % Get the voxel coordinates.
+    Transf_matrix = spm_get_space(ImageName(1).name);
+    WorldSpaceCoordinates = [WorldSpaceCoordinates 1];
+    VoxelSubscripts = inv(Transf_matrix)*WorldSpaceCoordinates';
+    
+    % Reads the data
+    TimeCourse = spm_get_data(ImagesName,VoxelSubscripts(1:3));
+    
+    toc
 
-% Read the time serie at the voxel coordinate we want across the 4th
-% dimension (time) of our matrice 
-TimeCourse = Volume(VoxelIndices(1), VoxelIndices(2), VoxelIndices(3), :);
-% We use the squeeze function to get rid of the 3 first "empty" dimensions
-% of our time course.
-TimeCourse = squeeze(TimeCourse);
+    % Another advantage of this method is that spm_get_data accepts non
+    % integer voxel subscripts and can get the data for several voxels at
+    % once.
 
+%% Plot the result
 figure('Name', sprintf('Signal time course at the voxel coordinates X= %i, Y=%i, Z=%i', ...
-       VoxelIndices(1), VoxelIndices(2), VoxelIndices(3)), ...
+       VoxelSubscripts(1), VoxelSubscripts(2), VoxelSubscripts(3)), ...
        'Color', 'w')
    
 plot(TimeCourse)
@@ -182,26 +223,18 @@ plot(TimeCourse)
 ylabel('Signal Intensity')
 xlabel('Scan number')
 
-
 cd(StartFolder)
 
 
 
 %% Estimate how misaligned are the 2 first volumes using a least-square estimate 
-% Do it with a ROI of auditory cortex
 clear all; clc
 
-% Name of the starting folder
 StartFolder = pwd;
-
-% Name of the folder containg the structural scan
-EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
-
+EPI_Folder = fullfile(StartFolder, 'MoAEpilot', 'fM00223');
 cd(EPI_Folder)
 
-% List all the raw images
 ImageName = dir('fM*.img');
-
 
 % Gets the first volume
 ImgInfo = spm_vol(ImageName(1).name);
@@ -223,68 +256,38 @@ Volume_1_noise = abs(Volume_1_noise);
 Volume_1_invert = -Volume_1+max(Volume_1(:));
 
 
-% Gets the second volume
-ImgInfo = spm_vol(ImageName(2).name);
-Volume_2 = spm_read_vols(ImgInfo);
-
-% List all the raw images
-ImageName = dir('ufM*.img');
-ImgInfo = spm_vol(ImageName(2).name);
-Volume_2_realigned = spm_read_vols(ImgInfo);
-
-
 % Estimating misalignment using a least-square estimate
 % Since the 'sum' function works along a single dimension, a quick and
 % dirty wayt to
 Least_Squares(1) = sum(sum(sum( (Volume_1 - Volume_1).^2) ));
-Least_Squares(2) = sum(sum(sum( (Volume_1 - Volume_2).^2) ));
-Least_Squares(3) = sum(sum(sum( (Volume_1 - Volume_2_realigned).^2) ));
-Least_Squares(4) = sum(sum(sum( (Volume_1 - Volume_1_offset).^2) ));
-Least_Squares(5) = sum(sum(sum( (Volume_1 - Volume_1_noise).^2)) );
-Least_Squares(6) = sum(sum(sum( (Volume_1 - Volume_1_invert).^2) ))
+Least_Squares(end+1) = sum(sum(sum( (Volume_1 - Volume_1_offset).^2) ));
+Least_Squares(end+1) = sum(sum(sum( (Volume_1 - Volume_1_noise).^2)) );
+Least_Squares(end+1) = sum(sum(sum( (Volume_1 - Volume_1_invert).^2) ))
 
 
 % Estimating misalignment using a using normalized correlation
 Normalized_Correlation(1) = sum(sum(sum(Volume_1.*Volume_1))) / ...
-                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum(Volume_1(:).^2)) );
+                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum(Volume_1(:).^2)) );    
             
-Normalized_Correlation(2) = sum(sum(sum(Volume_1.*Volume_2))) / ...
-                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_2(:).^2))) );
-            
-Normalized_Correlation(3) = sum(sum(sum(Volume_1.*Volume_2_realigned))) / ...
-                ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_2_realigned(:).^2))) );            
-            
-Normalized_Correlation(4) = sum(sum(sum(Volume_1.*Volume_1_offset))) / ...
+Normalized_Correlation(end+1) = sum(sum(sum(Volume_1.*Volume_1_offset))) / ...
                 ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_offset(:).^2))) );
             
-Normalized_Correlation(5) = sum(sum(sum(Volume_1.*Volume_1_noise))) / ...
+Normalized_Correlation(end+1) = sum(sum(sum(Volume_1.*Volume_1_noise))) / ...
                 ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_noise(:).^2))) );
             
-Normalized_Correlation(6) = sum(sum(sum(Volume_1.*Volume_1_invert))) / ...
+Normalized_Correlation(end+1) = sum(sum(sum(Volume_1.*Volume_1_invert))) / ...
                 ( sqrt(sum((Volume_1(:).^2))) * sqrt(sum((Volume_1_invert(:).^2))) )           
-
-            
+          
 cd(StartFolder)
 
 
 
 %% Generating coregistration histograms
+
 figure('Name', 'Coregistration histograms Volume 1 and Volume 1', 'Color', 'w')
 scatter(Volume_1(:), Volume_1(:), 'k', '.');
 xlabel('Intensities image 1')
 ylabel('Intensities image 2')
-axis square
-
-figure('Name', 'Coregistration histograms Volume 1 and Volume 2', 'Color', 'w')
-scatter(Volume_1(:), Volume_2(:), 'k', '.');
-xlabel('Intensities image 1')
-ylabel('Intensities image 2')
-axis square
-
-figure('Name', 'Coregistration histograms Volume 1 and Volume 2 realigned', 'Color', 'w')
-scatter(Volume_1(:), Volume_2_realigned(:), 'k', '.');
-xlabel('Intensities image 1')
-ylabel('Intensities image 2 realigned')
 axis square
 
 figure('Name', 'Coregistration histograms Volume 1 and Volume 1 offseted', 'Color', 'w')
@@ -310,11 +313,9 @@ axis square
 %% Reading values within a region of interest
 clear all; clc
 
-% Name of the starting folder
+% Naming folders
 StartFolder = pwd;
-
-% Name of the folder containg the images
-EPI_Folder = fullfile(StartFolder, 'BlockDesign', 'EPI');
+EPI_Folder = fullfile(StartFolder, 'MoAEpilot', 'fM00223');
 Masks_Folder = fullfile(StartFolder, 'Masks');
 
 % Get the value of the 2 masks
@@ -326,18 +327,39 @@ Right_A1_Mask = logical(spm_read_vols(spm_vol('rwRight_A1.hdr')));
 
 % List all the realigned images
 cd(EPI_Folder)
-ImageName = dir('u*.img');
-for ImageIndex = 1:length(ImageName)
-    % Open the header of a given image
-    ImgInfo = spm_vol(ImageName(ImageIndex).name);
-    % Read its data
-    Volume = spm_read_vols(ImgInfo);
-    
-    % Get the average signal value in the ROIs
-    TimeCourseLeft(ImageIndex) = mean(Volume(Left_A1_Mask)); 
-    TimeCourseRight(ImageIndex) = mean(Volume(Right_A1_Mask));
-end
+ImageName = dir('f*.img');
+ImagesName = char({ImageName.name}');
 
+    %% Open all the images and loop through them to average each one
+    % Get all the headers
+    ImgInfo = spm_vol(ImagesName);
+    % Open all the images
+    Volume = spm_read_vols(ImgInfo);
+
+    for ImageIndex = 1:size(ImageName,2)   
+        % Get the average signal value in the ROIs
+        TimeCourseLeft(ImageIndex) = mean(Volume(Left_A1_Mask)); 
+        TimeCourseRight(ImageIndex) = mean(Volume(Right_A1_Mask));
+    end
+    
+    %% Use the SPM built-in function
+    % Before doing that we need to know the x, y and z subscripts of each
+    % voxel of a given ROI.
+    tmp = find(Left_A1_Mask);
+    [X,Y,Z] = ind2sub(size(Left_A1_Mask), tmp); clear tmp
+    % Then we can use the spm_get_data function
+    TimeCourseLeft = spm_get_data(ImagesName,[X Y Z]');
+    % Then we average over voxels (i.e across columns of the TimeCourseLeft
+    % variable)
+    TimeCourseLeft = mean(TimeCourseLeft,2);
+    
+    % Ditto for the other ROI
+    tmp = find(Right_A1_Mask);
+    [X,Y,Z] = ind2sub(size(Right_A1_Mask), tmp); clear tmp
+    TimeCourseRight = spm_get_data(ImagesName,[X Y Z]');
+    TimeCourseRight = mean(TimeCourseRight,2);
+    
+%% Plot the results
 figure('Name', 'Signal time in each primary auditory cortices', 'Color', 'w')
 hold on
 plot(TimeCourseLeft,'b')
@@ -348,66 +370,6 @@ xlabel('Scan number')
 
 legend(char({'Left';'Right'}))
 
-
-cd(StartFolder)
-
-
-
-%% Display sections of an image
-clear all; clc;
-
-StartFolder = pwd;
-
-StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
-cd(StructuralFolder)
-FilesList = dir('s*.img');
-HeaderStructural = spm_vol(FilesList.name);
-
-WorldSpaceCoordinates = [0 0 0];
-
-TransformationMatrix = HeaderStructural.mat;
-VoxelIndices = inv(TransformationMatrix)*[WorldSpaceCoordinates' ; 1];
-VoxelIndices = round(VoxelIndices);
-
-Volume=spm_read_vols(HeaderStructural);
-
-% Name the figure
-figure('Name', sprintf('Voxel coordinate X= %i, Y=%i, Z=%i', ...
-       VoxelIndices(1), VoxelIndices(2), VoxelIndices(3)), ...
-       'Color', 'k')
-
-% If we want to go for a more sober gray scale and avoid the funky default 
-% color map that matlab usually has
-colormap(gray)
-
-subplot(2,2,1)
-imagesc(squeeze(Volume(VoxelIndices(1),:,:)))
-% This following line would plot the image with the right orientation
-%imagesc(rot90(squeeze(Volume(Voxel_Coord(1),:,:))',2))
-
-box off
-axis 'square'
-set(gca,'xtick', [])
-
-subplot(2,2,2)
-imagesc(squeeze(Volume(:,VoxelIndices(2),:))')
-% This following line would plot the image with the right orientation
-%imagesc(flipud(squeeze(Volume(:,Voxel_Coord(2),:))'))
-
-box off
-axis 'square'
-set(gca,'xtick', [])
-
-subplot(2,2,3)
-imagesc(squeeze(Volume(:,:,VoxelIndices(3))))
-% This following line would plot the image with the right orientation
-%imagesc(fliplr(squeeze(Volume(:,:,Voxel_Coord(3)))))
-
-box off
-axis 'square'
-set(gca,'xtick', [])
-
-
 cd(StartFolder)
 
 
@@ -415,21 +377,13 @@ cd(StartFolder)
 %% Applying affine transformations to an image
 clear all; clc
 
-% Name of the starting folder
 StartFolder = pwd;
-
-% Name of the folder containg the structural scan
-StructuralFolder = fullfile(StartFolder, 'BlockDesign', 'Structural');
-
-% Finding out the name of the strucural
+StructuralFolder = fullfile(StartFolder, 'MoAEpilot', 'sM00223');
 cd(StructuralFolder)
 FilesList = dir('sM00223_002.img');
 
-% Read the content of the header and stores it in a variable
 HeaderStructural = spm_vol(FilesList.name);
 TransformationMatrix = HeaderStructural.mat;
-
-% Gets the data corresponding to this image
 Volume = spm_read_vols(HeaderStructural);
 
 % TRANSLATION

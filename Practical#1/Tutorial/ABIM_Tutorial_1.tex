@@ -12,12 +12,12 @@ hyperindex=true,
 colorlinks=true,pdfstartview={Fit}]{hyperref}
 \hypersetup{urlcolor=blue}
 
-\title{Advanced brain imaging methods: Tutorial 1}
+\title{Advanced brain imaging methods: Practical 1}
 \author{}
-\date{20\textsuperscript{th} January 2014}
+\date{3\textsuperscript{rd} February 2015}
 
 \pdfinfo{%
-/Title (Advanced brain imaging methods: Tutorial 1)
+/Title (Advanced brain imaging methods: Practical 1)
 /Author ()
 /Creator ()
 /Producer ()
@@ -28,8 +28,15 @@ colorlinks=true,pdfstartview={Fit}]{hyperref}
 \begin{document}
 \maketitle
 
+These practicals are based on SPM 12, so make sure that you have downloaded the software from canvas or \href{http://www.fil.ion.ucl.ac.uk/spm/software/download.html}{there}, or \href{https://www.dropbox.com/s/270yhrwfk5st666/spm12.zip?dl=0
+}{there}.
+
+Once downloaded and unzipped, start matlab and go in the spm directory you have just unzipped. Typing \verb* addpath(pwd)  to the matlab prompt should make you able to run spm 12 for this matlab session. You can check if that worked by just typing \verb* spm  to launch SPM in matlab.
 
 
+\bigskip
+%---------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------
 \section{Preliminary remarks}
 
 MRI images are composed of 2 parts:
@@ -38,15 +45,54 @@ MRI images are composed of 2 parts:
   \item an image that can be a 3D matrix that contains one volume (an anatomical scan for example) or a 4D matrix for a time series of volume (a series of EPI volumes acquired during one fMRI session).
 \end{enumerate}
 
-There are quite a few different formats of images. SPM8 can easily deal with images in an Analyze format where header and image are stored in 2 different files (with a .hdr and a .img extension respectively). But the field tends more and more to use the Nifti format where header and image are stored in one single .nii file. Scanners might often output images under a DICOM format that needs to be converted: in SPM you can use the \verb* DICOM_import  tool (\textit{Batch $\rightarrow$ SPM $\rightarrow$ Util $\rightarrow$ DICOM import}).
+There are quite a few different formats of images. Most imaging softwares can easily deal with images in an Analyze format where header and image are stored in 2 different files (with a .hdr and a .img extension respectively). But the field tends more and more to use the Nifti format where header and image can be stored in one single .nii file. Scanners might often output images under a DICOM format that needs to be converted.
 
-
-
-\section{Reading header information}
-
-This tutorial is based on SPM, so make sure that you have downloaded the software from \href{http://www.fil.ion.ucl.ac.uk/spm/software/download.html}{there}. We will be using the \href{http://www.fil.ion.ucl.ac.uk/spm/data/auditory/}{single subject epoch (block) auditory fMRI activation data set} from the SPM website, so download it as well. I also strongly advise you to do the preprocessing and the first level analysis related to this data set. Everything is explained in the chapter 28 of the \href{http://www.fil.ion.ucl.ac.uk/spm/doc/spm8_manual.pdf}{SPM manual} (for the time being, you do not have to worry about the Bayesian analysis part).
 
 \bigskip
+%---------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------
+\section{Pre-processing: button clicking.}
+
+First we are going to run the pre-processing of the \href{http://www.fil.ion.ucl.ac.uk/spm/data/auditory/}{single subject block auditory fMRI activation} data set from the SPM website, so download the file MoAEpilot.zip from \href{http://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.zip}{there} or from canvas and unzip it. The folder 'fM00223' contains the functional images and the 'sM00223' the structural one.
+
+Follow the instruction in the file SPM\_Preprocessing.pdf (on canvas) taken from the SPM manual to run the pre-processing. There is also a flow chart on canvas that can guide through the different steps of the preprocessing. 
+
+Here after are some details that are not mentionned in the manual.
+
+SPM can make some changes to images without creating a new ones: the changes are 'stored' in the header. When SPM rewrites a new image after having performed some transformation, it adds a prefix (usually a single letter) to the name of that image.
+
+
+
+\subsection{Changing the origin} \label{Changing the origin} 
+
+Usually before starting the pre-processing on some images it is better to set their origin to the anterior commmissure. An easy way to change the origin: use the \textbf{Check Reg} button to open the image of interest and position the crosshair where you want the new origin to be, right-click on the image, select \textit{Reorient image(s)} and then select \textit{Set origin to Xhairs}. If you have no idea where the anterior commissure (AC) is check \href{http://headneckbrainspine.com/web_flash/newmodules/Brain\%20MRI.swf}{here}. You can then select additional images you want to to apply this change of origin to.
+
+So before starting the pre-processing of your images set the origin of the structural image to the AC. Once you have done that set the origin of all the funtional images to the AC.
+
+
+
+\subsection{Realign}
+
+This will realign all the selected images and create a new set of images with the prefix 'r'. For this part you can also use \textit{Realign and Unwarp}) to correct for the distorsion in the image due to field inhomogeneity-by-movement interactions: in this case SPM will add the prefix 'u' to the images.
+
+% \subsection{coregister}
+% 
+% Before you coregister 2 images remember to check that they are roughly aligned first otherwise things could go 'wrong': SPM might find a solution 
+
+% \subsection{segment}
+% Get masks or tissue priors
+% 
+% Check images after every step.
+
+
+\bigskip
+%---------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------
+\section{Pre-processing: command line}
+
+
+
+\subsection{Reading header information}
 
 SPM uses the function \verb* ImgHeader=spm_vol('ImageName.img')  to read information contained in the header of an image and store in a structure in the variable \verb* ImgHeader . 
 
@@ -54,23 +100,23 @@ A matlab structure has several fields (usually with pretty transparent names), e
 
 Using either of these methods, get the header information of the non-normalized structural scan from the data set you downloaded from the SPM website. From this header can you tell:
 \begin{enumerate}
-  \item How many slices do you have in this image? What are the dimensions (the number of voxels) of each slice?
+  \item How many axial slices do you have in this image? What are the dimensions (the number of voxels) of each slice?
   \item What is the transformation matrix of this image (i.e what are its values in each row and column)? 
 \end{enumerate}
 
 From this matrix:
 \begin{enumerate}
   \item How can you tell what are the dimensions of each voxel (in mm) of this structural scan?
-  \item How can you tell the real world coordinates (in mm) of the voxel with the indices [1,1,1]? 
+  \item How can you tell the real world coordinates (in mm) of the voxel with the subscripts [1,1,1]? 
   \item What matlab code would you use to generalize this to any coordinates in mm (i.e get the real world coordinates of a given [x,y,z] voxel)? This will require to multiply 2 matrices (check the slides of the pre-processing lecture to know which one).
-  \item How could you tell the [x,y,z] indices of the voxel that contains the origin of the image, i.e with world space coordinates of [0,0,0] mm? 
+  \item How could you tell the [x,y,z] subscripts of the voxel that contains the origin of the image, i.e with world space coordinates of [0,0,0] mm? 
   \item What matlab code would you use to generalize this to any voxel (i.e get the voxel space coordinates a point with some given world space coordinates)?
 \end{enumerate}
 
 \medskip
 \textit{Hints:}
 \begin{itemize}
- \item Remember that if a matrix A perfoms a certain transformation, you can find the matrix that performs the \textquoteleft reverse\textquoteright transformation, by finding the inverse of A (check the Maths4SPM.pdf in additional material for a reminder of what the inverse of a matrix is). 
+ \item Remember that if a matrix A perfoms a certain transformation, you can find the matrix that performs the \textquoteleft reverse\textquoteright  transformation, by finding the inverse of A (check the Maths4SPM.pdf in additional material for a reminder of what the inverse of a matrix is).
  \item For those questions, you can easily check you answers or your code by using the \textbf{Display} button of the graphic interface of SPM. You can also use the \textbf{Check Reg} button and right-clicking on the image to get some of those informations. 
  \item Questions 3 and 5 will require you to do some matrix multiplication, so remember that there are restrictions (in terms of dimension) on how to do those multiplications: you might need to add dummy columns or rows to do some of those multiplications.
 \end{itemize}
@@ -86,7 +132,7 @@ From this matrix:
 
 
 
-\section{Reading values from an image}
+\subsection{Reading values from an image}
 
 This code will give you the content of an image and store in a variable \verb* ImgContent .
 \begin{verbatim}
@@ -113,15 +159,11 @@ On the first EPI image, find a voxel that is roughly in the left auditory cortex
 
 
 
-\section{Reading a time-series} \label{Reading a time-series} 
+\subsection{Reading a time-series} \label{Reading a time-series} 
 
 Now try to plot (using the function \verb* plot  ) the time-series of signal intensities of that voxel across the all the realigned EPI volumes: i.e for each EPI acquired in this experiment, what is the BOLD signal value in this voxel? 
 
-First, if you do not know where the realigned images are, I suggest you try to run the \textbf{Realign: estimate and write} button on the raw EPI images. 
-
-Once this is done, I suggest that you make sure that the world space origin of those images is situated at the anterior commissure. To do this, use the \textbf{Check Reg} button to open the mean EPI image created by the realignement and check if the origin of this image is at the anterior commissure (if you have no idea where the anterior commissure is check \href{http://headneckbrainspine.com/web_flash/newmodules/Brain\%20MRI.swf}{here}). If you have to change the origin of the image: position the crosshair where you want the new origin to be, right-click on the image, select \textit{Reorient image(s)} and then select \textit{Set origin to Xhairs}. When asked, select all the realigned and unwarped images (usually with a 'u' prefix) to apply this change of origin to all the fuctionnal images.
-
-To do the rest of this task, you can either use loop to open each image, get the value at the desired coordinates and then open the next image, like this:
+To do the rest of this task, you can either use a for loop to open each image, get the value at the desired coordinates and then open the next image, like this:
 \begin{verbatim}
   for ImageIndex = 1:TotalNumberOfImages
     % Get image header
@@ -150,16 +192,18 @@ Alternatively, you can use the fact that \verb* spm_vol  can accept a matrix of 
   ImgContents=spm_read_vols(ImgHeader);
 \end{verbatim}
 
+Hopefully SPM also has a function that can automatically get data at a specific voxel or set of voxels in a 3D or 4D volume : \verb* spm_get_data(V,XYZ)  where V is the list of files you want to open and XYZ is the list of the coordinates of the voxels you are interested in.
+
 \medskip
 \textit{Hints:} 
 \begin{itemize}
  \item To get the list of images in a folder, you can either use \verb* ImageList=ls('*.img')  or \verb* ImageList=dir('*.img')  to store this list in a structure in the variable \verb* ImageList  . The name of each file will be store in the field 'name' of that structure, that you can read like this for the first image: \verb* ImageList(1).name  .
- \item An easier, but less scriptable, way to do it is to use the following spm function \verb* ImageList=spm_select(Inf,'image')  to have a matrix with all the absolute images names.
+ \item An easier, but less scriptable, way to list all the images you want to open is to use the following spm function \verb* ImageList=spm_select(Inf,'image')  to have a matrix with all the absolute images names.
 \end{itemize}
 
 
 
-\section{Estimating misalignment using different cost functions}
+\subsection{Estimating misalignment using different cost functions}
 
 As we have seen in class, estimating how misaligned two images are is done using cost functions. 
 
@@ -178,6 +222,7 @@ FSL uses the normalized correlation for its realignment:
 
 As the misalignment between the 2 images diminishes, which value should each of these cost functions tend towards? 
 
+
 Get the data from the first \textit{\textbf{raw}} EPI image and store it in a variable called \verb* Volume_1 . Now create the following variable :
 \begin{itemize}
   \item \verb* Volume_1_offset  where all the voxel intensities of \verb Volume_1  will be offseted by +10\% of the mean value of this volume,
@@ -185,9 +230,9 @@ Get the data from the first \textit{\textbf{raw}} EPI image and store it in a va
   \item \verb* Volume_1_invert  where voxels with a high intensity in \verb Volume_1  will now have a low intensity and vice versa.
 \end{itemize}
 
-Also get the data from the second raw EPI image and the second realigned and resliced EPI image and store their values in variables called \verb* Volume_2 and \verb* RealignedVolume_2  .
+% Also get the data from the second raw EPI image and the second realigned and resliced EPI image and store their values in variables called \verb* Volume_2 and \verb* RealignedVolume_2  .
 
-Estimate the misalignment between \verb Volume_1  with itself and with each of the 5 other images using the normalized correlation and the least-squares cost functions. Which comparison illustrates best the fact that these cost functions are not appropriate for inter-modality coregistration?
+Estimate the misalignment between \verb Volume_1  with itself and with each of the 3 other images using the normalized correlation and the least-squares cost functions. Which comparison illustrates best the fact that these cost functions are not appropriate for inter-modality coregistration?
 
 \textit{Matlab tips:} 
 \begin{itemize}
@@ -198,64 +243,73 @@ Estimate the misalignment between \verb Volume_1  with itself and with each of t
 
 
 
-\section{Generating coregistration histograms}
+\subsection{Generating coregistration histograms}
 
-Ensure that the origin of the structural is located at the anterior commissure. If it is not, change it as explained in the section \ref{Reading a time-series}.
-
-Once this is done, coregister the structural image to the mean EPI image outputted by the realignment of the EPIs: use the \textbf{Coregister: estimate} button. At the end of this processing step, SPM will display a mutual coregistration histogram. Intermodality coregistration uses methods that try to minimize the entropy (the disorder) on these histograms: it is sometimes quite obvious when one compare the before and after histograms.
+At the end of a coregistration, SPM displays a mutual coregistration histogram also sometimes called joint histogram. Intermodality coregistration uses methods that try to minimize the entropy (the disorder) on these histograms: it is sometimes quite obvious when one compare the before and after histograms.
 
 For two images of same dimensions, you can make a similar looking histogram by creating a scatter plot in matlab using the \verb* scatter  function with as many dots in the scatter plot as there are voxels in the image and where the x coordinate of the $i^{th}$ dot is given by intensity in the $i^{th}$ voxel of the first image and the y coordinate of the $i^(th)$ dot is given by intensity in the $i^{th}$ voxel of the second image:
 \begin{verbatim}
-  scatter(Image_A(:), Image_B(:));
+  scatter(Image_A(:), Image_B(:), '.');
 \end{verbatim}
 
 What should the histogram look like when the two images are the same? And when one image is the 'negative' of the other? 
 
-Check this by plotting the histograms that compares the \verb Volume_1 with each of the 5 other images of the precedent question. Why is it better to have to rely on those histograms to evaluate the coregsitration of two images from different modality ?
+Check this by plotting the histograms that compares the \verb Volume_1 with each of the 3 other images of the precedent question. Why is it better to have to rely on those histograms to evaluate the coregsitration of two images from different modality ?
 
 
+\medskip
+\textit{SPM tips:} 
+\begin{itemize}
+ \item The SPM function that does the coregistration of 2 images is \verb* spm_coreg.m  and it relies on the function \verb* spm_hist2 to generate coregistration histograms.
+\end{itemize}
 
-\section{From native space to MNI space and back}
+% improve this part using spm_coreg.m
 
-The file Left\_A1.nii and Right\_A1.nii contain the masks for the left and right auditory cortices in MNI space. Voxels in the masks have a value of 1 when this voxel is within the region of interest (ROI) and a value of 0 when it is outside of this ROI. Use the \textbf{Check Reg} button to open the non-normalized structural scan and the two masks. Since the masks are in MNI space and the structural scan is still in native space (in the coordinate referential of the scanner), we need to transform those masks from MNI space to native space. To do this you need :
+
+\subsection{From native space to MNI space and back}
+
+The file Masks.zip from canvas contains 2 mask images: unzip it. The file Left\_A1.nii and Right\_A1.nii contain the masks for the left and right auditory cortices in MNI space. Voxels in the masks have a value of 1 when this voxel is within the region of interest (ROI) and a value of 0 when it is outside of this ROI. Use the \textbf{Check Reg} button to open the non-normalized structural scan and the two masks. Since the masks are in MNI space and the structural scan is still in native space (in the coordinate referential of the scanner), we need to transform those masks from MNI space to native space. To do this you need to use the deformation field created by the segmentation step of the pre-processing.
+
+To transform the masks from MNI space to native space do the following
 \begin{enumerate}
-  \item to get the transformation parameters that would allow you to normalize the structural from its native space to MNI space or the transformation parameters that will do the the inverse normalization. To get those parameters segment the structural image using the  SPM \textbf{Segment} button,
-  \item 'inverse-normalize' the masks using the SPM \textbf{Normalize: write} button with: 
-    \begin{itemize}
-      \item seg\_inv\_sn.mat file outputted by the segmentation which is the file that contains parameters that will transform an image from MNI space to native space,
-      \item the following expression for the bounding box value: ones(2,3)*NaN,
-      \item the following values for the voxel sizes: [NaN NaN NaN].
-    \end{itemize}
+  \item Click on the \textbf{Batch} button,
+  \item In the window that just opened delete any module that might be there: right click and then select \textit{delete module}.
+  \item Go to the menu: \textit{SPM} $\rightarrow$ \textit{Util} $\rightarrow$ \textit{Deformations}.
+  \item Set \textit{Composition} to \textit{Deformation Field} and then select the deformation field \textit{y\_sM00223\_002.nii}.
+  \item Set \textit{Output} to \textit{Pullback}: this will apply the inverse transformation defined by the deformation field (i.e go from MNI space to native space)
+  \item In \textit{Apply to} select the 2 mask images \textit{Left\_A1.img} and \textit{Right\_A1.img}.
+  \item In \textit{Output destination}, select the directory where the mask images are.
+  \item Press \textit{Run}
 \end{enumerate}
 
+This will create 2 new images with the prefix 'w' that are now in native space. 
 
+You will then need to reslice the masks to have the same dimensions as the EPI images. To do this, select \textit{Coregister (Reslice)}). Directly reslicing a given image to the same dimension of another one assumes that those 2 images are already coregistered, but if you have followed the SPM tutorial so far (i.e coregistered the structural to the mean EPI image) you should be fine. 
+To reslice the masks, select the mean EPI image as the image defining space and select as images to reslice the two masks brought to native space (i.e that start with a 'w' prefix). Since you want your final images to only contain 1 or 0 values, select nearest-neighbour interpolation. After that click 'RUN' and SPM should quickly create 2 new images with the prefix 'r'.
 
-\section{Reading values within a region of interest}
-With those new masks, you are now going to create a figure showing how the average BOLD signal in each auditory cortices accross evolves accross the time series of realigned EPI images.
-\begin{itemize}
-  \item First use the \textbf{Coregister: reslice} function to make sure that the masks have the same resolution as the mean EPI image (use a nearest neighbour interpolation),
-  \item You can now modify the code you created for the section \ref{Reading a time-series} so that for every volume of the time series, you compute the mean of the values that are within the ROI defined by the mask with the following code \verb* mean(Volume_Data(Mask_Data)) .
-\end{itemize}
+\subsection{Reading values within a region of interest}
 
-
-
-\section{Displaying sections of an image}
-
-Write the code that will display on the same figure the sagital, coronal and axial views of the structural scan for a given set of [x,y,z] coordinates in world space?
-
-To help you, here are the different steps of this code:
-\begin{itemize}
- \item Provide the file name of the image and the world space coordinates that should be displayed.
- \item Get the header information of that image.
- \item Get the content of that image.
- \item Get the transformation matrix of that image.
- \item Transform the world space coordinates into voxel space coordinates. For simplicity round those new coordinates using the function \verb* round .
- \item Use the \verb* imagesc  function to display sagital, coronal and axial in 3 different subplots (\verb* subplot  function) of the same figure. The function \verb* squeeze  might also come in handy here.
-\end{itemize}
+With those new masks, you are now going to create a figure showing how the average BOLD signal in each auditory cortices accross evolves accross the time series of realigned EPI images. You can now modify the code you created for the section \ref{Reading a time-series} so that for every volume of the time series, you compute the mean of the values that are within the ROI defined by the mask with the following code \verb* mean(Volume_Data(Mask_Data)) .
 
 
 
-\section{Applying affine transformations to an image}
+% \section{Displaying sections of an image}
+% 
+% Write the code that will display on the same figure the sagital, coronal and axial views of the structural scan for a given set of [x,y,z] coordinates in world space?
+% 
+% To help you, here are the different steps of this code:
+% \begin{itemize}
+%  \item Provide the file name of the image and the world space coordinates that should be displayed.
+%  \item Get the header information of that image.
+%  \item Get the content of that image.
+%  \item Get the transformation matrix of that image.
+%  \item Transform the world space coordinates into voxel space coordinates. For simplicity round those new coordinates using the function \verb* round .
+%  \item Use the \verb* imagesc  function to display sagital, coronal and axial in 3 different subplots (\verb* subplot  function) of the same figure. The function \verb* squeeze  might also come in handy here.
+% \end{itemize}
+
+
+
+\subsection{Applying affine transformations to an image}
 
 As its name suggests, the function \verb* spm_write_vol(ImgHeader,ImgContent) will create an image given some data and header information. For example, the following code will open an image and create a copy of it:
 \begin{verbatim}
@@ -275,7 +329,7 @@ As its name suggests, the function \verb* spm_write_vol(ImgHeader,ImgContent) wi
   spm_write_vol(NewImgHeader,Data);
 \end{verbatim}
 
-The function \verb* spm_matrix(P,'X')  returns an affine transformation matrix given a certain vector P of parameters:
+The function \verb* spm_matrix(P,'X')  , where X is the type of linear transformation you want to apply ('T' for translation, 'R' for rotation ...), returns an affine transformation matrix given a certain vector P of parameters:
 \begin{itemize}
   \item P(1)  - x translation
   \item P(2)  - y translation
