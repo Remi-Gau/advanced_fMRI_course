@@ -15,7 +15,6 @@ NbSubject = 100;
 %-------------------------------------------------------------------------%
 load T-Test.mat
 
-%%
 
 % Plot dsitribution
 figure('Name', '2 samples')
@@ -58,7 +57,8 @@ subplot(212)
 normplot(Residuals);
 
 % t statistics
-c = [-1 ; 1]; % This is to check if the second group is bigger than the first one.
+ % This is to check if the second group is bigger than the first one.
+c = [-1 ; 1];
 t = c'*Beta / sqrt( Std_Error^2 * c' * inv(X'*X) * c)
 
 % degrees of freedom: depends only on the rank of the design matrix (X)
@@ -78,6 +78,115 @@ p = tcdf(-t, dferror)
 % the standart deivations.
 % t = (mean(Y_B)-mean(Y_A)) / sqrt(var(Y_A)/length(Y_A)+var(Y_B)/length(Y_B))
 % p = tcdf(-t, length(Y_A)+length(Y_B-2))
+
+
+
+%% Simple linear regression
+clear all; close all; clc
+
+NbLevels = 50;
+
+StdError = 50;
+
+%-------------------------------------------------------------------------%
+%                               Create data                               %
+%-------------------------------------------------------------------------%
+% x = linspace(1,100,NbLevels)';
+% x = x(randperm(length(x)));
+% Y = 2*x + 250 + randn(length(x),1)*StdError;
+%-------------------------------------------------------------------------%
+load Regression.mat
+
+fprintf('For the model with a constant')
+
+% Design matrix
+X = [x ones(length(x),1)];
+
+% Beta
+Beta = inv(X'*X)*X'*Y;
+
+% Y_hat: model predictions
+Y_hat = X*Beta;
+
+% Residual (error)
+Residuals = Y - Y_hat; 
+
+% Compute the different variances
+SSerror  = sum(Residuals.^2);
+
+
+
+fprintf('For the model without constant')
+X_NoCst = X(:,1);
+Beta_NoCst = inv(X_NoCst'*X_NoCst)*X_NoCst'*Y;
+Y_hat_NoCst = X_NoCst*Beta_NoCst;
+Residuals_NoCst = Y - Y_hat_NoCst;
+
+SSerror_NoCst  = sum( Residuals_NoCst.^2 );
+
+
+
+fprintf('Comparing the models')
+F = (SSerror_NoCst-SSerror)/SSerror;
+p  = 1 - fcdf(F, rank(X)-rank(X_NoCst), length(Y)-rank(X))
+
+
+figure('Name', 'Design matrix for a regression ')
+
+subplot(121)
+title('With no constant')
+colormap('Gray')
+imagesc(X)
+colorbar
+set(gca, 'xtick', [1 2] ,'xticklabel', ['Eff';'Cst'])
+
+subplot(122)
+title('With a constant')
+colormap('Gray')
+imagesc(X_NoCst)
+colorbar
+set(gca, 'xtick', [1] ,'xticklabel', ['Eff'])
+
+
+
+figure('Name', 'Residuals')
+
+subplot(221)
+hist(Residuals,20)
+title('With no constant')
+subplot(223)
+normplot(Residuals);
+
+subplot(222)
+hist(Residuals_NoCst,20)
+title('With constant')
+subplot(224)
+normplot(Residuals_NoCst);
+
+
+
+figure('Name', 'Regression')
+
+subplot(121)
+title('With no constant')
+hold on
+scatter(x,Y,'b')
+scatter(x,Y_hat_NoCst,'r')
+% We plot the residuals
+for i=1:length(x)
+    plot([x(i) x(i)], [Y(i) Y_hat_NoCst(i)],'r')
+end
+axis([0 100 0 max(Y_hat_NoCst)])
+
+subplot(122)
+title('With constant')
+hold on
+scatter(x,Y,'b')
+scatter(x,Y_hat,'r')
+for i=1:length(x)
+    plot([x(i) x(i)], [Y(i) Y_hat(i)],'r')
+end
+axis([0 100 0 max(Y_hat_NoCst)])
 
 
 
@@ -199,11 +308,17 @@ axis([0 length(RegressorTimeDer) min(RegressorTimeDer) max(Regressor)])
 %% GLM
 clear all; close all; clc;
 
+% spm_spm
+
 load TimeCourseA1.mat
 
 % Grand mean scaling
 TimeCourseLeft = TimeCourseLeft'/spm_global(TimeCourseLeft)*100;
 TimeCourseRight = TimeCourseRight'/spm_global(TimeCourseRight)*100;
+
+TimeCourseLeft = TimeCourseLeft(13:end);
+TimeCourseRight = TimeCourseRight(13:end);
+
 
 
 % HRF
@@ -223,23 +338,23 @@ OnsetVector = zeros(length(TimeCourseLeft),1);
 for i=1:length(Onsets)
     OnsetVector([Onsets(i):Onsets(i)+5])=1;
 end
+% Eventhough this is not suggested by the SPM website, this onset vector
+% seems even better.
+% OnsetVector = repmat([zeros(6,1) ; ones(6,1)], 8, 1);
 
 Regressor = conv(xBF.bf(:,1), OnsetVector);
 RegressorTimeDer = conv(xBF.bf(:,2), OnsetVector);
 
 % DESIGN  MATRIX
-X(:,1) = Regressor;
-% Constant
-X(:,end+1) = ones(length(X(:,1)),1);
-% We only keep the 84 first lines of the matrix: the convolution extended
-% the regressor a bit
-X = X(1:length(TimeCourseRight),:);
+% X(:,1) = Regressor;
+% % Constant
+% X(:,end+1) = ones(length(X(:,1)),1);
+% % We only keep the 96 first lines of the matrix: the convolution extended
+% % the regressor a bit
+% X = X(1:length(TimeCourseRight),:);
 
 
 % Alternatives design matrices
-
-% With no constant
-X(:,1) = Regressor;
 
 % With an unconvolved regressor
 % X(:,1) = OnsetVector;
@@ -255,12 +370,19 @@ X(:,1) = Regressor;
 
 % With a very rudimentary high pass filter to account for the linear drift
 % of the scanner
+X(:,1) = Regressor;
+X(:,end+1) = RegressorTimeDer;
+X(:,end+1) = ones(length(X(:,1)),1);
+X = X(1:length(TimeCourseRight),:);
+X(:,end+1)=(1:length(TimeCourseRight))/length(TimeCourseRight);
+
+% With a very rudimentary high pass filter to account for the linear drift
+% of the scanner
 % X(:,1) = Regressor;
 % X(:,end+1) = RegressorTimeDer;
 % X(:,end+1) = ones(length(X(:,1)),1);
 % X = X(1:length(TimeCourseRight),:);
 % X(:,end+1)=(1:length(TimeCourseRight))/length(TimeCourseRight);
-
 
 
 figure('name', 'Design matrix')
@@ -286,6 +408,12 @@ Std_Error_A1L  = sqrt(sum((Residuals_A1L-mean(Residuals_A1L)).^2)/(length(Residu
 t_A1L = c'*Beta_A1L / sqrt( Std_Error_A1L^2 * c' * inv(X'*X) * c);
 p_A1L = tcdf(-t_A1L, dferror)
 
+% R squared: how much we explain of the total
+SStotal_A1L = sum((TimeCourseLeft-mean(TimeCourseLeft)).^2);
+SSeffect_A1L = sum((Y_hat_A1L-mean(Y_hat_A1L)).^2);
+SSerror_A1L = sum((Residuals_A1L-mean(Residuals_A1L)).^2);
+%R2 = SSeffect_A1L / SStotal_A1L
+
 % ---- For the Right A1 ---- %
 Beta_A1R = inv(X'*X)*X'*TimeCourseRight;
 Y_hat_A1R = X*Beta_A1R;
@@ -293,6 +421,12 @@ Residuals_A1R = TimeCourseLeft - Y_hat_A1R;
 Std_Error_A1R  = sqrt(sum((Residuals_A1R-mean(Residuals_A1R)).^2)/(length(Residuals_A1R)-1));
 t_A1R = c'*Beta_A1R / sqrt( Std_Error_A1R^2 * c' * inv(X'*X) * c);
 p_A1R = tcdf(-t_A1R, dferror)
+
+% R squared: how much we explain of the total
+SStotal_A1R = sum((TimeCourseRight-mean(TimeCourseRight)).^2);
+SSeffect_A1R = sum((Y_hat_A1R-mean(Y_hat_A1R)).^2);
+SSerror_A1R = sum((Residuals_A1R-mean(Residuals_A1R)).^2);
+%R2 = SSeffect_A1R / SStotal_A1R
 
 
 figure('Name', 'Residuals')

@@ -1,113 +1,317 @@
-%% adding the spm8 folder and its subfolders to the path so all the spm functions can be called for and used
-addpath(genpath('S:/Advanced-Brain-Imaging/spm8/spm8'))
+%% Convolution in time is point wise multiplication in frequencies
+clear all; close all; clc;
+
+% Create the onset vector of our block design
+OnsetVector = repmat([zeros(6*7,1) ; ones(6*7,1)], 8, 1);
+
+% The following lines give us the frequencies present in this onset vector
+% Gets the power of the signal
+gX = abs(fft(OnsetVector)).^2; 
+% Normalises the values
+gX = gX./sum(gX); 
+
+% Gets the range of frenquencies present in the signal
+q = numel(gX)/2; 
+Hz = linspace(0,q,q);
+
+% Plot
+figure('name', 'Block design', ...
+    'Position', [100, 100, 1500, 1000])
+
+subplot(321)
+plot(OnsetVector)
+title('Time domain');
+ylabel('Neural activation');
+xlabel('Time (Seconds)')
+axis([0 700 -.2 1.5])
+
+subplot(322)
+plot(Hz,gX(1:q));
+axis([0 30 0 max(gX)])
+title('Frequency domain');
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
 
 
-%% -- SPECIFY & ESTIMATE THE DIFFERENT MODELS --
+% Create a typical HRF at 1 s resolution
+HRF = spm_hrf(1);
 
-% There are 3 scripts in the practical folder that will create and estimate
-% 3 different models of the same data set (the event related protocol of
-% the SPM website).
-% - model 1) the classical design described in the SPM manual with the HRF, the
-% time derivative and the dispersion derivative
-% - model 2) the same design but with finite impulse response as basis function
-% with one bin per scan. Have a look at the design matrix : before we had 3
-% regressors per condition we know have 12 !
-% - model 3) a combination of the previous two: one difference though : I did not
-% specify different conditions (Repetition and Fame factors) as in the
-% other two. I just concatenated the onset vectors of all the different
-% conditions. 
+%  Just like above we get the frequencies present in this onset vector
+gX_HRF = abs(fft(HRF)).^2;
+gX_HRF = gX_HRF./sum(gX_HRF);
+q = length(gX_HRF)/2;
+Hz = linspace(0,q,q);
 
-% Run the 3 scripts.
+subplot(323)
+plot(HRF)
+xlabel('Time (Seconds)')
+ylabel('HRF');
 
-% During the model estimation, note Hyperparametes estimation (matrix
-% whitnening), and smoothness estimation (the one that is going to be used
-% to apply RFT for FWE correction when you are making inferences on your
-% data.)
-
-% If you want to see what to has to be changed in the design specification
-% betzeen those models, you can do so via the SPM batch interface and
-% loading the "First_Level_###.mat" files in the different "Analysis_###" folder
-% created by the scripts in the "EventRelated" folder.
-
-% For example compare the model 1 and 2 changing the basis function set is
-% fairly easy and you can just do it via the graphic interface under the
-% "basis function" section. 
-
-% In model 3, SPM does not allow you to use several sets of basis functions
-% so the FIR part of the model has to be added as several user specified
-% regressors. Check the "regressor" section via the batch interface.
-% Obviously enterint those regressors in your model specification is not
-% the kind of thing you want to do by hand ! 
+subplot(324)
+plot(Hz,gX_HRF(1:q));
+axis([0 30 0 max(gX_HRF)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
 
 
-%% -- EXPLORE THE DESIGN MATRIX --
-% Click "review" on SPM and select the SPM.mat file created by your design
-% specification
+%  We convolve our onset vector with the HRF and get frequency spectrum of the result
+Regressor = conv(OnsetVector, HRF);
 
+gX_Reg = abs(fft(Regressor)).^2; %
+gX_Reg = gX_Reg./sum(gX_Reg);
+q = length(gX_Reg)/2;
+Hz = linspace(0,q,q);
 
+subplot(325)
+plot(Regressor)
+xlabel('Time (Seconds)')
+ylabel('Regressor');
+axis([0 700 -.2 1.5])
 
-%% -- Informed basis set --
-
-% Positive effect of condition 1
-% Load the "FIR_model.mat" in the Analysis_FIR folder via the batch interface of SPM
-% Modify Target directory 
-% In the Subject/Design section specify :
-    % - select the "sw*.img" of the EPI folder for the "scans"
-    % - select the "all-conditions.mat" for the "multiple condition"
-    % - select the "movepars.txt" of the realignment parameters for the
-    % "multiple regressors". The File should be in the EPI folder.
-
-% Have a look at the basis function selected
-
-% Save
-
-% Run
+subplot(326)
+plot(Hz,gX_Reg(1:q));
+axis([0 30 0 max(gX_Reg)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
 
 
 
-% Estimate the model
-% MIP
-% Results Table
-% Brain section
-% Go to Maximum
-% Render : old style and inflated
-% Plot contrast estimate
+% Same with a slow event related experiment
+OnsetVector = repmat([ones(1,1); zeros(16,1)], 8, 1);
 
-% Show activated regions with differences with an effect of the repetition
-% factor
+gX = abs(fft(OnsetVector)).^2;
+gX = gX./sum(gX);
+q = length(gX)/2;
+Hz = linspace(0,q,q);
 
-% Plot event related of the two conditions
-% Let's have a look at how SPM does that
+figure('name', 'slow event related', ...
+    'Position', [100, 100, 1500, 1000])
 
+subplot(321)
+plot(OnsetVector)
+title('Time domain');
+ylabel('Neural activation');
+xlabel('Time (Seconds)')
+axis([0 140 0 1])
 
-%% -- FIR --
-
-% Let us see which where activation follow the canonical HRF
-
-xBF.dt = 1;
-xBF.name = 'hrf (with time and dispersion derivatives)';
-xBF.length = 32;
-xBF.order = 1;
-xBF = spm_get_bf(xBF)
-
-all = xBF.bf(2:2:24,:)';
-
-can = all(1,:);
-tem = all(2,:);
-dis = all(3,:);
-
-% Do a T contrast with the following weight vectors
-Can_Vector = repmat(can,1,4);
-Can_And_Temp_Vector = repmat(can+tem,1,4);
-Can_Minus_Disp_Vector = repmat(can-dis,1,4);
-
-% Look for the maximal activation and plot the contrast estimate with the F
-% contrast : repmat(eye(12),1,4)
+subplot(322)
+plot(Hz,gX(1:q));
+axis([0 60 0 max(gX)])
+title('Frequency domain');
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
 
 
-% We can model any shape of BOLD response :
-% Do a t comntrast with weight of ones(1,12*4)
-% Look for activation with a 0.05 theshold and look at the shape of the
-% BOLD response in the eyes !!!
-% The trade off : the variance of each beta estimate is much higher so it
-% is much more difficult to get something significant.
+% HRF
+HRF = spm_hrf(1);
+
+gX_HRF = abs(fft(HRF)).^2;
+gX_HRF = gX_HRF./sum(gX_HRF);
+q = length(gX_HRF)/2;
+Hz = linspace(0,q,q);
+
+subplot(323)
+plot(HRF)
+xlabel('Time (Seconds)')
+ylabel('HRF');
+
+subplot(324)
+plot(Hz,gX_HRF(1:q));
+axis([0 60 0 max(gX_HRF)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+
+
+% Regressor
+Regressor = conv(HRF,OnsetVector);
+
+gX_Reg = abs(fft(Regressor)).^2;
+gX_Reg = gX_Reg./sum(gX_Reg);
+q = length(gX_Reg)/2;
+Hz_Reg = linspace(0,q,q);
+
+subplot(325)
+plot(Regressor)
+xlabel('Time (Seconds)')
+ylabel('Regressor');
+axis([0 140 min(Regressor) max(Regressor)])
+
+subplot(326)
+plot(Hz_Reg,gX_Reg(1:q));
+axis([0 60 0 max(gX_Reg)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+
+
+
+%% Efficiency
+clear all; close all; clc;
+
+HRF = spm_hrf(1);
+
+% Block design
+Block = [zeros(8,1); ones(16,1); zeros(8,1)];
+ConvBlock = conv(Block,HRF);
+gX_Block = abs(fft(ConvBlock)).^2;
+gX_Block = gX_Block./sum(gX_Block); 
+q_Block = length(gX_Block)/2;
+Hz_Block = linspace(0,q_Block,q_Block);
+
+% Slow event related design
+SlowEventVector = repmat([ones(1,1) ; zeros(20,1)], 16, 1);
+ConvSlowEventVector = conv(SlowEventVector,HRF);
+gX_Slow = abs(fft(ConvSlowEventVector)).^2;
+gX_Slow = gX_Slow./sum(gX_Slow); 
+q_Slow = length(gX_Slow)/2;
+Hz_Slow = linspace(0,q_Slow,q_Slow);
+
+% Fast event related design
+FastEventVector = repmat([ones(1,1) ; zeros(7,1)], 16, 1);
+ConvFastEventVector = conv(FastEventVector,HRF);
+gX_Fast = abs(fft(ConvFastEventVector)).^2;
+gX_Fast = gX_Fast./sum(gX_Fast); 
+q_Fast = length(gX_Fast)/2;
+Hz_Fast = linspace(0,q_Fast,q_Fast);
+
+% Jittered fast event related design
+RandOnsetVector = FastEventVector(randperm(length(FastEventVector)));
+ConvRandOnsetVector = conv(RandOnsetVector,HRF);
+gX_Rand = abs(fft(ConvRandOnsetVector)).^2;
+gX_Rand = gX_Rand./sum(gX_Rand); 
+q_Rand = length(gX_Rand)/2;
+Hz_Rand = linspace(0,q_Rand,q_Rand);
+
+
+% Let us look at the efficiency of the different types of regressor
+Constrast = [1;0];
+
+X = [ConvBlock ones(length(ConvBlock),1)];
+EfficiencyBlock = (Constrast'*inv(X'*X)*Constrast )^-1;
+
+X = [ConvSlowEventVector ones(length(ConvSlowEventVector),1)];
+EfficiencySlow = (Constrast'*inv(X'*X)*Constrast )^-1;
+
+X = [ConvFastEventVector ones(length(ConvFastEventVector),1)];
+EfficiencyFast = (Constrast'*inv(X'*X)*Constrast )^-1;
+
+X = [ConvRandOnsetVector ones(length(ConvRandOnsetVector),1)];
+EfficiencyRandom = (Constrast'*inv(X'*X)*Constrast )^-1;
+
+% Plot the different results with their efficiency
+figure('name', 'Different design', 'Position', [100, 100, 1500, 1000])
+
+subplot(421)
+plot(ConvBlock)
+title('Time domain');
+xlabel('Time (Seconds)')
+ylabel('Block')
+
+subplot(422)
+plot(Hz_Block,gX_Block(1:q_Block));
+axis([0 q_Block 0 max(gX_Block)])
+title('Frequency domain');
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+text(q_Block/2,max(gX_Block)/2, sprintf('Efficiency= %2.2f', EfficiencyBlock))
+
+subplot(423)
+plot(ConvSlowEventVector)
+xlabel('Time (Seconds)')
+ylabel('Slow')
+
+subplot(424)
+plot(Hz_Slow,gX_Slow(1:q_Slow));
+axis([0 q_Slow 0 max(gX_Slow)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+text(q_Slow/2,max(gX_Slow)/2, sprintf('Efficiency= %2.2f', EfficiencySlow))
+
+subplot(425)
+plot(ConvFastEventVector)
+xlabel('Time (Seconds)')
+ylabel('Fast')
+
+subplot(426)
+plot(Hz_Fast,gX_Fast(1:q_Fast));
+axis([0 q_Fast 0 max(gX_Fast)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+text(q_Fast/2,max(gX_Fast)/2, sprintf('Efficiency= %2.2f', EfficiencyFast))
+
+subplot(427)
+plot(ConvRandOnsetVector)
+xlabel('Time (Seconds)')
+ylabel('Fast Jittered')
+
+subplot(428)
+plot(Hz_Rand,gX_Rand(1:q_Rand));
+axis([0 q_Rand 0 max(gX_Rand)])
+xlabel('Frequency (Hz)')
+ylabel('Relative spectral density')
+text(q_Rand/2,max(gX_Rand)/2, sprintf('Efficiency= %2.2f', EfficiencyRandom))
+
+
+
+%% Permutation test
+clear all; close all; clc;
+
+Mean1_Grp1 = 30;
+Std1_Grp1 = 25;
+Mean2_Grp1 = 80;
+Std2_Grp1 = 20;
+
+Mean1_Grp2 = 20;
+Std1_Grp2 = 40;
+Mean2_Grp2 = 80;
+Std2_Grp2 = 80;
+
+NbPerm = 10000;
+
+% Creates a set of data for group 1 made of a mixture of 2 gaussians
+Grp1_A = randn(1000,1)*Std1_Grp1 + Mean1_Grp1;
+Grp1_B = randn(1000,1)*Std2_Grp1 + Mean2_Grp1;
+Grp1 = [Grp1_A ; Grp1_B];
+
+% Creates a set of data for group 2 made of a mixture of 2 gaussians
+Grp2_A = randn(1000,1)*Std1_Grp2 + Mean1_Grp2;
+Grp2_B = randn(1000,1)*Std2_Grp2 + Mean2_Grp2;
+Grp2 = [Grp2_A ; Grp2_B];
+
+% Plot the 2 original groups
+figure('name', 'Permutation tests', 'Position', [100, 100, 1500, 1000])
+subplot(221)
+hist(Grp1,100)
+subplot(223)
+hist(Grp2,100)
+
+% Compute the t-value associated to the difference between those 2 groups
+T_Data = (mean(Grp1) - mean(Grp2)) / sqrt( var(Grp1)/(numel(Grp1)-1) + var(Grp2)/(numel(Grp2)-1) )
+
+% for te set number of permutation
+for i=1:NbPerm
+    
+    % Pool the data of the 2 groups
+    Temp = [Grp1 ; Grp2];
+    
+    % Shuffle the data
+    Temp = Temp(randperm(length(Temp)));
+    
+    % Assign half of the data to 2 temporary groups
+    Temp_Grp_1 = Temp(1:length(Grp1));
+    Temp_Grp_2 = Temp(length(Grp1)+1:end);
+
+    % Compute and store the t-value associated to the difference between those 2 temporary groups
+    T_Data_Dist(i) = (mean(Temp_Grp_1) - mean(Temp_Grp_2)) / sqrt( var(Temp_Grp_1)/(numel(Temp_Grp_1)-1) + var(Temp_Grp_2)/(numel(Temp_Grp_2)-1) );
+
+end
+
+% Compute the empirical p value associated
+PValue_Data = sum(T_Data_Dist>T_Data)/NbPerm
+
+
+% Plot the distribution of t values obtained over the permutation
+subplot(2,2,[2 4])
+hold on
+hist(T_Data_Dist, NbPerm/20)
+% Plot the actual t-value we had with the inital groups
+plot( [T_Data T_Data], [0 max(hist(T_Data_Dist, NbPerm/20))], 'r' )

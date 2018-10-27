@@ -12,12 +12,12 @@ hyperindex=true,
 colorlinks=true,pdfstartview={Fit}]{hyperref}
 \hypersetup{urlcolor=blue}
 
-\title{Advanced brain imaging methods: Tutorial 1}
+\title{Advanced brain imaging methods: Practical 2}
 \author{Remi Gau}
-\date{24\textsuperscript{th} February 2014}
+\date{24\textsuperscript{th} February 2015}
 
 \pdfinfo{%
-/Title (Advanced brain imaging methods: Tutorial 2)
+/Title (Advanced brain imaging methods: Practical 2)
 /Author (Remi Gau)
 /Creator (Remi Gau)
 /Producer ()
@@ -28,6 +28,37 @@ colorlinks=true,pdfstartview={Fit}]{hyperref}
 \begin{document}
 \maketitle
 
+\bigskip
+%---------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------
+\section{Running a GLM with SPM}
+
+
+\subsection{Fixed effect analysis: First level with an block design}
+
+First follow the instruction in SPM\_GLM\_Block.pdf (on canvas) extracted from the SPM manual on how to model the GLM of a block design experiment, how to estimate the model and view the results in SPM. For the data to input either use the one you have pre-processed in the practical 1 or unzip the file in BlockDesignData.zip (on canvas).
+I have created the render file mentionned at the end of this pdf, so you will not need to have to do it.
+
+Once you have viewed the results ot the 2 t-contrasts (listening$>$rest and rest$>$listening), create a new F-contrast by just specifying '1' as input in the contrast manager. Compare the results of that F-contrast to the the 2 t-contrasts you have previously created: how do they differ in terms of patterns and intensity (i.e p values).
+
+If you want to know in which structure a specific peak or cluster is located you can use the \verb* spm_atlas  function with the X/Y/Z MNI coordinates of a voxel of interest as follows:
+\begin{verbatim}
+spm_atlas('query','neuromorphometrics',[X Y Z]')
+\end{verbatim}
+You can also use the anatomy toolbox (downloadable from the SPM website) that will give you more information about the proability of an activation to be in a given brain structure.
+
+
+\subsection{Fixed effect analysis: First level with an event-related design}
+
+Now we are going to model an event-related experiment. The instructions are in the file SPM\_GLM\_Event.pdf (on canvas). This is a repetition priming experiment performed using event-related fMRI. Briefly, this is a 2 by 2 factorial study with factors “fame” and “repetition” where famous and non-famous faces were presented twice against a checkerboard baseline. The subject was asked to make fame judgements by making
+key presses. There are thus four event-types of interest; first and second presentations of famous and non-famous faces, which we denote N1, N2, F1 and F2. 
+
+For the data to input unzip the file in EventDesignData.zip (on canvas), though I would recommend you to do the pre-processing of those data yourself at least once: event-related designs necessitate a pre-processing extra-step (i.e slice timing) that we have not seen in the last practical.
+
+
+\subsection{Random effect analysis: second level}
+
+To finish this part on how to use SPM to model GLM and estimate them, we are going to perform a second level analysis (at the groupe level). The instructions are in the file SPM\_RFX.pdf (on canvas).
 
 
 
@@ -36,7 +67,7 @@ colorlinks=true,pdfstartview={Fit}]{hyperref}
 
 
 \subsection{Having a look at the data}
-The file 'T-Test.mat' contains simulated data from 2 different groups A and B presented with two different condition from an experiment. You can load the content of this file into matlab by double cliking on it or by typing:
+Unzip the file DataPractical2.zip. The file 'T-Test.mat' contains simulated data from 2 different groups A and B presented with two different condition from an experiment. You can load the content of this file into matlab by double cliking on it or by typing:
 \begin{verbatim}
   load T-Test.mat
 \end{verbatim}
@@ -114,70 +145,69 @@ Once you have the t-value the following code should give you the p-value associa
 
 
 
-\section{GLM: compare 2 regression models}
+% \section{GLM: compare 2 regression models}
+% 
+% 
+% \subsection{Having a look at the data}
+% The file 'Regression.mat' contains simulated data of a subject's reaction times ($Y$) when exposed to a 100 different levels of our experimental VI ($x$)  was. You can load the content of this file into matlab by double cliking on it or by typing:
+% \begin{verbatim}
+%   load Regression.mat
+% \end{verbatim}
+% 
+% You can plot the distribution of the data by typing \verb* scatter(x,Y)  .
+% 
+% 
+% \subsection{Design Matrix}
+% We want to fit two linear regression lines through this data, to compare two different GLM to explain those data:
+% The first one has no constant term and can be written:
+% \begin{displaymath}
+% Y = \beta_{1}x
+% \end{displaymath}
+% And the second is:
+% \begin{displaymath}
+% Y = \beta_{1}x+\beta_{0}
+% \end{displaymath}
+% 
+% What are the design matrices $X$ and $X_{NoCst}$ of these two GLM ? Create and display the 2 design matrices with matlab.
+% 
+% 
+% \subsection{Betas, residuals and RSS}
+% Once you have the 2 matrices, compute for each model, just like for the exercice on the 2 samples t-test:
+% \begin{itemize}
+%   \item the $beta$ ($\beta$ and $\beta_{NoCst}$), 
+%   \item the predicted values ($\hat{Y}$ and $\hat{Y}_{NoCst}$),
+%   \item the residuals ($\varepsilon$ and $\varepsilon_{NoCst}$).
+% \end{itemize}
+% 
+% Comparing the normplot of the residuals of each model should already give you an idea which model is better. It can be even more obvious if you plot the data and the predicted value of each model on the same figure, like this:
+% \begin{verbatim}
+%   figure('name', 'Model with no constant: data and predicted')
+%   hold on
+%   scatter(x,Y,'b')
+%   scatter(x,Y_hat_NoCst,'r')
+% \end{verbatim}
+% 
+% You can compare the two models by performing an F-test using the extra-sum-of-squares principle. First, compute for each model the residual sum of squares:
+% \begin{displaymath}
+%  RSS=\sum_{i}^{N}(\varepsilon_{i}^{2}
+% \end{displaymath}
+% where $\overline{\varepsilon}$ is the mean of the residuals.
+% 
+% Remember that \verb* mean(A) will compute the mean of the elements of the vector A, similarly \verb* sum(A) will give the sum of the elements of A and finally you can get the a vector B where each element is the square of the corresponding elemenet in A by doing \verb* B=A.^2  .
+% 
+% The statistics used to compare the two models (to know if adding a constant to the model makes a difference) is the following:
+% \begin{displaymath}
+% F = \frac{RSS_{NoCst}-RSS}{RSS};
+% \end{displaymath}
+% 
+% You can calculate the p-value associated to this F value with the following code:
+% \begin{verbatim}
+%   p  = 1 - fcdf(F, rank(X)-rank(X_NoCst), length(Y)-rank(X))
+% \end{verbatim}
 
 
-\subsection{Having a look at the data}
-The file 'Regression.mat' contains simulated data of a subject's reaction times ($Y$) when exposed to a 100 different levels of our experimental VI ($x$)  was. You can load the content of this file into matlab by double cliking on it or by typing:
-\begin{verbatim}
-  load Regression.mat
-\end{verbatim}
 
-You can plot the distribution of the data by typing \verb* scatter(x,Y)  .
-
-
-\subsection{Design Matrix}
-We want to fit two linear regression lines through this data, to compare two different GLM to explain those data:
-The first one has no constant term and can be written:
-\begin{displaymath}
-Y = \beta_{1}x
-\end{displaymath}
-And the second is:
-\begin{displaymath}
-Y = \beta_{1}x+\beta_{0}
-\end{displaymath}
-
-What are the design matrices $X$ and $X_{NoCst}$ of these two GLM ? Create and display the 2 design matrices with matlab.
-
-
-\subsection{Betas, residuals and RSS}
-Once you have the 2 matrices, compute for each model, just like for the exercice on the 2 samples t-test:
-\begin{itemize}
-  \item the $beta$ ($\beta$ and $\beta_{NoCst}$), 
-  \item the predicted values ($\hat{Y}$ and $\hat{Y}_{NoCst}$),
-  \item the residuals ($\varepsilon$ and $\varepsilon_{NoCst}$).
-\end{itemize}
-
-Comparing the normplot of the residuals of each model should already give you an idea which model is better. It can be even more obvious if you plot the data and the predicted value of each model on the same figure, like this:
-\begin{verbatim}
-  figure('name', 'Model with no constant: data and predicted')
-  hold on
-  scatter(x,Y,'b')
-  scatter(x,Y_hat_NoCst,'r')
-\end{verbatim}
-
-You can compare the two models by performing an F-test using the extra-sum-of-squares principle. First, compute for each model the residual sum of squares:
-\begin{displaymath}
- RSS=\sum_{i}^{N}(\varepsilon_{i}^{2}
-\end{displaymath}
-where $\overline{\varepsilon}$ is the mean of the residuals.
-
-Remember that \verb* mean(A) will compute the mean of the elements of the vector A, similarly \verb* sum(A) will give the sum of the elements of A and finally you can get the a vector B where each element is the square of the corresponding elemenet in A by doing \verb* B=A.^2  .
-
-The statistics used to compare the two models (to know if adding a constant to the model makes a difference) is the following:
-\begin{displaymath}
-F = \frac{RSS_{NoCst}-RSS}{RSS};
-\end{displaymath}
-
-You can calculate the p-value associated to this F value with the following code:
-\begin{verbatim}
-  p  = 1 - fcdf(F, rank(X)-rank(X_NoCst), length(Y)-rank(X))
-\end{verbatim}
-
-
-
-
-\section{HRF: creating it}
+\section{Modelling the hemodynamic response (HRF)}
 
 SPM uses the function \verb* spm_hrf(dt)  to create an HRF, with $dt$ being the temporal resolution. Uses this function to create an HRF with a 0.01 second temporal resolution.
 
@@ -199,7 +229,6 @@ HRF = c_1 h_1 + c_2 h_2 + c_3 h_3;
 \bigskip
 
 Try different values of $c_1$, $c_2$ and $c_3$ and plot the results to try to find some of the values that SPM uses to create a typical HRF (hint: start with $c_1=1$ and a negative $c_2$).
-
 
 
 
@@ -228,7 +257,6 @@ Then you can try different weighted sum or difference of those functions to see 
 
 
 
-
 \section{Concolving with the HRF}
 Create a basis function set with a temporal resolution of 1 second.
 
@@ -243,9 +271,8 @@ Plot the results of both convolution.
 
 
 
-
 \section{Doing a GLM on real fMRI data}
-Load the file TimeCourseA1.mat which contains the time course of the BOLD signal acquired from the left and right primary auditory cortices during an experiment where subjects where passively listening to words. The TR for this experiment was 7 seconds. 96 acquisitions were made in blocks of 6. Successive blocks alternated between rest and auditory stimulation, starting with rest. Auditory stimulation was bi-syllabic words presented binaurally at a rate of 60 per minute.
+Load the file TimeCourseA1.mat which contains the time course of the BOLD signal acquired from the left and right primary auditory cortices during an experiment where subjects where passively listening to words (These are actually the time courses you could get at the end of the practical 1). The TR for this experiment was 7 seconds. 84 acquisitions were made in blocks of 6. Successive blocks alternated between rest and auditory stimulation, starting with rest. Auditory stimulation was bi-syllabic words presented binaurally at a rate of 60 per minute.
 
 Do a GLM analysis for each of those time courses:
 
@@ -260,11 +287,11 @@ The following code will give you the onset vector for this experiment:
   end
 \end{verbatim}
 
-Convolve this onset vector with the canonical HRF from the basis set.
+Convolve this onset vector with the canonical HRF from the basis set (use a temporal resolution equal to the TR).
 
 Create a design matrix with this convolved regressor. Should you add a column to that matrix to model a constant?
 
-Compute the $\beta$, the predicted values and the residuals for this model.
+Just like the T-test at the beginning of this practical, compute the $\beta$, the predicted values and the residuals for this model.
 
 Plot the predicted and the raw data on the same figure.
 
@@ -277,7 +304,7 @@ You can also check if there is any autocorrelation in the residual with the foll
   ylabel('Autocorrelation')
 \end{verbatim}
 
-Given those different graphs, can you think of simple ways to improve your model? You can then do an F test to see if those changes improved the model.
+Given those different graphs, can you think of simple ways to improve your model? %You can then do an F test to see if those changes improved the model.
 
 
 \end{document}
