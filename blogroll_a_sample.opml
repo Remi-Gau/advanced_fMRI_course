@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+    <head>
+        <title>Neuroscience blogs</title>
+    </head>
+    <body>
+        <outline text="Neurosciences" title="Neurosciences">
+            <outline type="rss" text="PractiCal fMRI" title="PractiCal fMRI" xmlUrl="http://practicalfmri.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="https://practicalfmri.blogspot.com/"/>
+            <outline type="rss" text="On Psychology and Neuroscience" title="On Psychology and Neuroscience" xmlUrl="http://psychneuro.wordpress.com/feed/" htmlUrl="https://psychneuro.wordpress.com"/>
+            <outline type="rss" text="Neurophilosophy" title="Neurophilosophy" xmlUrl="http://www.guardian.co.uk/science/neurophilosophy/rss" htmlUrl="https://www.theguardian.com/science/neurophilosophy"/>
+            <outline type="rss" text="MRI Pulse Sequence - Atom" title="MRI Pulse Sequence - Atom" xmlUrl="http://mri-pulse.blogspot.com/feeds/posts/default" htmlUrl="http://mri-pulse.blogspot.com/"/>
+            <outline type="rss" text="Frithmind" title="Frithmind" xmlUrl="http://frithmind.org/socialminds/feed/" htmlUrl="http://frithmind.org"/>
+            <outline type="rss" text="The Brains Blog" title="The Brains Blog" xmlUrl="http://philosophyofbrains.com/feed" htmlUrl="http://philosophyofbrains.com"/>
+            <outline type="rss" text="neuroplausible" title="neuroplausible" xmlUrl="http://neuroplausible.com/feed.xml" htmlUrl="http://neuroplausible.com"/>
+            <outline type="rss" text="Dan Lurie » Feed" title="Dan Lurie » Feed" xmlUrl="http://danlurie.org/feed/" htmlUrl="http://danlurie.org"/>
+            <outline type="rss" text="BRAIN'S IDEA" title="BRAIN'S IDEA" xmlUrl="http://brainsidea.wordpress.com/feed/" htmlUrl="https://brainsidea.wordpress.com"/>
+            <outline type="rss" text="Jan Vanhove: latest blog posts" title="Jan Vanhove: latest blog posts" xmlUrl="http://janhove.github.io/blogfeed.xml" htmlUrl="http://janhove.github.io"/>
+            <outline type="rss" text="Neuroskeptic" title="Neuroskeptic" xmlUrl="http://neuroskeptic.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://neuroskeptic.blogspot.com/"/>
+            <outline type="rss" text="Brain Blogger" title="Brain Blogger" xmlUrl="http://brainblogger.com/feed/" htmlUrl="http://brainblogger.com"/>
+            <outline type="rss" text="Brad Buchsbaum's Blog" title="Brad Buchsbaum's Blog" xmlUrl="http://flowbrain.blogspot.com/feeds/posts/default" htmlUrl="http://flowbrain.blogspot.com/"/>
+            <outline type="rss" text="TechniCAL fMRI" title="TechniCAL fMRI" xmlUrl="http://technicalfmri.blogspot.com/feeds/posts/default" htmlUrl="http://technicalfmri.blogspot.com/"/>
+            <outline type="rss" text="Bits, Brains, and Behavior" title="Bits, Brains, and Behavior" xmlUrl="https://markusmeister.com/feed/" htmlUrl="https://markusmeister.com"/>
+            <outline type="rss" text="Neuroimaging Statistics Tips &amp; Tools" title="Neuroimaging Statistics Tips &amp; Tools" xmlUrl="http://blogs.warwick.ac.uk/nichols?rss=rss_2_0" htmlUrl="https://blogs.warwick.ac.uk/nichols"/>
+            <outline type="rss" text="Oscillatory Thoughts" title="Oscillatory Thoughts" xmlUrl="http://blog.ketyov.com/feeds/posts/default?alt=rss" htmlUrl="http://blog.ketyov.com/"/>
+            <outline type="rss" text="…not that kind of psychologist" title="…not that kind of psychologist" xmlUrl="http://asehelene.wordpress.com/feed/" htmlUrl="https://asehelene.wordpress.com"/>
+            <outline type="rss" text="The Thinking Meat Project" title="The Thinking Meat Project" xmlUrl="http://thinkingmeat.com/newsblog/?feed=rss2" htmlUrl="http://thinkingmeat.com"/>
+            <outline type="rss" text="The Brain Blog" title="The Brain Blog" xmlUrl="http://www.thebrainblog.org/feed/" htmlUrl="http://www.thebrainblog.org"/>
+            <outline type="rss" text="NeuroDojo" title="NeuroDojo" xmlUrl="http://feeds.feedburner.com/Neurodojo" htmlUrl="http://neurodojo.blogspot.com/"/>
+            <outline type="rss" text="Mumford Brain Stats" title="Mumford Brain Stats" xmlUrl="http://mumfordbrainstats.tumblr.com/rss" htmlUrl="http://mumfordbrainstats.tumblr.com/"/>
+            <outline type="rss" text="Laplace's Study" title="Laplace's Study" xmlUrl="https://laplacesstudy.wordpress.com/feed/" htmlUrl="https://laplacesstudy.wordpress.com"/>
+            <outline type="rss" text="pigee" title="pigee" xmlUrl="http://pigee.wordpress.com/feed/" htmlUrl="https://pigee.wordpress.com"/>
+            <outline type="rss" text="Predictably Noisy" title="Predictably Noisy" xmlUrl="https://predictablynoisy.com/feed.xml" htmlUrl="https://predictablynoisy.com/"/>
+             <outline type="rss" text="Choice &amp; Inference" title="Choice &amp; Inference" xmlUrl="http://choiceandinference.com/feed/" htmlUrl="http://choiceandinference.com"/>
+            <outline type="rss" text="Neurodynamics" title="Neurodynamics" xmlUrl="http://scientopia.org/blogs/neurodynamics/feed/" htmlUrl="http://scientopia.org"/>
+            <outline type="rss" text="Less Likely" title="Less Likely" xmlUrl="https://www.lesslikely.com/feed/" htmlUrl="https://www.lesslikely.com"/>
+            <outline type="rss" text="MathematiCal Neuroimaging" title="MathematiCal Neuroimaging" xmlUrl="http://mathematicalneuroimaging.wordpress.com/feed/" htmlUrl="https://mathematicalneuroimaging.wordpress.com"/>
+            <outline type="rss" text="Jonathan D. Rosenblatt" title="Jonathan D. Rosenblatt" xmlUrl="http://www.john-ros.com/feed.xml" htmlUrl="http://johnros.github.io/"/>
+            <outline type="rss" text="Prefrontal.org" title="Prefrontal.org" xmlUrl="http://feeds.feedburner.com/prefrontal" htmlUrl="http://prefrontal.org/blog"/>
+            <outline type="rss" text="Neuro Images" title="Neuro Images" xmlUrl="http://neuroimages.tumblr.com/rss" htmlUrl="http://neuroimages.tumblr.com/"/>
+            <outline type="rss" text="Brain Myths" title="Brain Myths" xmlUrl="http://www.psychologytoday.com/blog/brain-myths/feed" htmlUrl="https://www.psychologytoday.com/us"/>
+            <outline type="rss" text="Positiveneuro.com" title="Positiveneuro.com" xmlUrl="http://loverev.wordpress.com/feed/" htmlUrl="https://loverev.wordpress.com"/>
+            <outline type="rss" text="Minds Online" title="Minds Online" xmlUrl="http://mindsonline.philosophyofbrains.com/feed/" htmlUrl="http://mindsonline.philosophyofbrains.com"/>
+            <outline type="rss" text="Neuroconscience" title="Neuroconscience" xmlUrl="http://neuroconscience.com/feed/" htmlUrl="https://micahallen.org"/>
+            <outline type="rss" text="The Neurocritic" title="The Neurocritic" xmlUrl="http://neurocritic.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="https://neurocritic.blogspot.com/"/>
+            <outline type="rss" text="Matti Vuorre on Matti Vuorre" title="Matti Vuorre on Matti Vuorre" xmlUrl="https://vuorre.netlify.com/index.xml" htmlUrl="https://vuorre.netlify.com/"/>
+            <outline type="rss" text="Brain Box" title="Brain Box" xmlUrl="http://the-brain-box.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://the-brain-box.blogspot.com/"/>
+            <outline type="rss" text="The Bounds of Cognition" title="The Bounds of Cognition" xmlUrl="http://theboundsofcognition.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://theboundsofcognition.blogspot.com/"/>
+            <outline type="rss" text="Neuroeconomics" title="Neuroeconomics" xmlUrl="http://feeds.feedburner.com/typepad/neuroeconomics" htmlUrl="https://www.neuroeconomics.com/neuroeconomics/"/>
+            <outline type="rss" text="Dormivigilia" title="Dormivigilia" xmlUrl="http://www.dormivigilia.com/?feed=rss2" htmlUrl="http://www.dormivigilia.com"/>
+            <outline type="rss" text="neuroecology" title="neuroecology" xmlUrl="http://neuroecology.wordpress.com/feed/" htmlUrl="https://neuroecology.wordpress.com"/>
+            <outline type="rss" text="The Spike" title="The Spike" xmlUrl="https://medium.com/feed/the-spike" htmlUrl="https://medium.com/the-spike?source=rss----c92c31591e3a---4"/>
+            <outline type="rss" text="Developing Intelligence" title="Developing Intelligence" xmlUrl="http://feeds.feedburner.com/DevelopingIntelligence"/>
+            <outline type="rss" text="NeuroLogica Blog" title="NeuroLogica Blog" xmlUrl="http://theness.com/neurologicablog/index.php/feed/" htmlUrl="http://theness.com/neurologicablog"/>
+            <outline type="rss" text="Brain Study" title="Brain Study" xmlUrl="http://brainstudy.wordpress.com/feed/" htmlUrl="https://brainstudy.wordpress.com"/>
+            <outline type="rss" text="Blog - Luck Lab" title="Blog - Luck Lab" xmlUrl="https://lucklab.ucdavis.edu/blog?format=RSS" htmlUrl="https://lucklab.ucdavis.edu/blog/"/>
+            <outline type="rss" text="Xenia Schmalz's blog" title="Xenia Schmalz's blog" xmlUrl="http://xeniaschmalz.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://xeniaschmalz.blogspot.com/"/>
+            <outline type="rss" text="Neurobonkers.com" title="Neurobonkers.com" xmlUrl="http://neurobonkers.com/feed/" htmlUrl="http://neurobonkers.com"/>
+            <outline type="rss" text="Andy's Brain Blog" title="Andy's Brain Blog" xmlUrl="http://andysbrainblog.blogspot.com/feeds/posts/default" htmlUrl="http://andysbrainblog.blogspot.com/"/>
+            <outline type="rss" text="Paula's Piece of Mind" title="Paula's Piece of Mind" xmlUrl="http://paulaspieceofmind.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://paulaspieceofmind.blogspot.com/"/>
+            <outline type="rss" text="Discovering Statistics: The Blog" title="Discovering Statistics: The Blog" xmlUrl="http://discoveringstatistics.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://discoveringstatistics.blogspot.com/"/>
+            <outline type="rss" text="Rolf Zwaan" title="Rolf Zwaan" xmlUrl="http://rolfzwaan.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="https://rolfzwaan.blogspot.com/"/>
+            <outline type="rss" text="For Better Science" title="For Better Science" xmlUrl="https://forbetterscience.wordpress.com/feed/" htmlUrl="https://forbetterscience.com"/>
+            <outline type="rss" text="Camille Maumet - Blog" title="Camille Maumet - Blog" xmlUrl="http://blog.camillemaumet.com/feed" htmlUrl="http://blog.camillemaumet.com/"/>
+            <outline type="rss" text="Alex Holcombe's blog" title="Alex Holcombe's blog" xmlUrl="https://alexholcombe.wordpress.com/feed/" htmlUrl="https://alexholcombe.wordpress.com"/>
+            <outline type="rss" text="Wiring the Brain" title="Wiring the Brain" xmlUrl="http://wiringthebrain.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://www.wiringthebrain.com/"/>
+            <outline type="rss" text="BLOG - Will Gervais" title="BLOG - Will Gervais" xmlUrl="http://willgervais.com/blog?format=RSS" htmlUrl="http://willgervais.com/blog/"/>
+            <outline type="rss" text="Rethinking the Senses" title="Rethinking the Senses" xmlUrl="http://www.thesenses.ac.uk/feed/" htmlUrl="https://www.thesenses.ac.uk"/>
+            <outline type="rss" text="russpoldrack.org" title="russpoldrack.org" xmlUrl="http://www.russpoldrack.org/feeds/posts/default?alt=rss" htmlUrl="http://www.russpoldrack.org/"/>
+            <outline type="rss" text="Jeromy Anglim's Blog: Psychology and Statistics" title="Jeromy Anglim's Blog: Psychology and Statistics" xmlUrl="http://jeromyanglim.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://jeromyanglim.blogspot.com/"/>
+            <outline type="rss" text="neurocopiae" title="neurocopiae" xmlUrl="https://neurocopiae.wordpress.com/feed/" htmlUrl="https://neurocopiae.wordpress.com"/>
+            <outline type="rss" text="nikokriegeskorte" title="nikokriegeskorte" xmlUrl="https://nikokriegeskorte.org/feed/" htmlUrl="https://nikokriegeskorte.org"/>
+            <outline type="rss" text="Filling the pail" title="Filling the pail" xmlUrl="http://gregashman.wordpress.com/feed/" htmlUrl="https://gregashman.wordpress.com"/>
+            <outline type="rss" text="Talking Brains" title="Talking Brains" xmlUrl="http://talkingbrains.blogspot.com/feeds/posts/default" htmlUrl="http://www.talkingbrains.org/"/>
+            <outline type="rss" text="xcorr: comp neuro" title="xcorr: comp neuro" xmlUrl="http://xcorr.net/feed/" htmlUrl="https://xcorr.net"/>
+            <outline type="rss" text="Musings on Using and Misusing Statistics" title="Musings on Using and Misusing Statistics" xmlUrl="http://www.ma.utexas.edu/blogs/mks/feed/" htmlUrl="http://www.ma.utexas.edu/blogs/mks"/>
+            <outline type="rss" text="The Neuro Times" title="The Neuro Times" xmlUrl="http://feeds.feedburner.com/TheNeuroTimes" htmlUrl="http://www.dictionaryofneurology.com/"/>
+            <outline type="rss" text="Count Bayesie - A Probability Blog" title="Count Bayesie - A Probability Blog" xmlUrl="http://www.countbayesie.com/blog?format=RSS" htmlUrl="http://www.countbayesie.com/"/>
+            <outline type="rss" text="Peder M. Isager" title="Peder M. Isager" xmlUrl="https://pedermisager.netlify.com/index.xml" htmlUrl="https://pedermisager.netlify.com/"/>
+            <outline type="rss" text="Science with style - Blog" title="Science with style - Blog" xmlUrl="http://www.sciencewithstyle.org/sws-blog/feed" htmlUrl="http://www.sciencewithstyle.org/blog"/>
+            <outline type="rss" text="The Etz-Files" title="The Etz-Files" xmlUrl="http://nicebrain.wordpress.com/feed/" htmlUrl="https://alexanderetz.com"/>
+            <outline type="rss" text="PsyBites" title="PsyBites" xmlUrl="http://psybites.wordpress.com/feed/" htmlUrl="https://psybites.wordpress.com"/>
+            <outline type="rss" text="NeuroChambers" title="NeuroChambers" xmlUrl="http://neurochambers.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://neurochambers.blogspot.com/"/>
+            <outline type="rss" text="NeuroImaging and Statistics" title="NeuroImaging and Statistics" xmlUrl="http://neurostatscyrilpernet.blogspot.com/feeds/posts/default" htmlUrl="http://neurostatscyrilpernet.blogspot.com/"/>
+            <outline type="rss" text="Science Writing &amp; Editing - Blog" title="Science Writing &amp; Editing - Blog" xmlUrl="https://www.annaclemens.com/blog?format=RSS" htmlUrl="https://www.annaclemens.com/blog/"/>
+            <outline type="rss" text="NeuroAnaTody" title="NeuroAnaTody" xmlUrl="http://neuroanatody.com/feed/" htmlUrl="http://neuroanatody.com"/>
+            <outline type="rss" text="Julia Galef" title="Julia Galef" xmlUrl="https://juliagalef.com/feed/" htmlUrl="https://juliagalef.com"/>
+            <outline type="rss" text="The ReproNim Blog" title="The ReproNim Blog" xmlUrl="https://repronim.wordpress.com/feed/" htmlUrl="https://repronim.wordpress.com"/>
+            <outline type="rss" text="Cross Invalidation" title="Cross Invalidation" xmlUrl="https://crossinvalidation.com/feed/" htmlUrl="https://crossinvalidation.com"/>
+            <outline type="rss" text="Kirstie Whitaker" title="Kirstie Whitaker" xmlUrl="https://kirstiewhitaker.com/feed/" htmlUrl="https://kirstiewhitaker.com"/>
+            <outline type="rss" text="Scientific American Mind" title="Scientific American Mind" xmlUrl="http://www.nature.com/scientificamericanmind/current_issue/rss" htmlUrl="http://www.nature.com/scientificamericanmind/current_issue/"/>
+            <outline type="rss" text="Babies Learning Language" title="Babies Learning Language" xmlUrl="http://babieslearninglanguage.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://babieslearninglanguage.blogspot.com/"/>
+            <outline type="rss" text="CogTales" title="CogTales" xmlUrl="https://cogtales.wordpress.com/feed/" htmlUrl="https://cogtales.wordpress.com"/>
+            <outline type="rss" text="Psychologically Flawed" title="Psychologically Flawed" xmlUrl="http://mchankins.wordpress.com/feed/" htmlUrl="https://mchankins.wordpress.com"/>
+            <outline type="rss" text="basic statistics" title="basic statistics" xmlUrl="https://garstats.wordpress.com/feed/" htmlUrl="https://garstats.wordpress.com"/>
+            <outline type="rss" text="Get a Life, PhD" title="Get a Life, PhD" xmlUrl="http://getalifephd.blogspot.com/feeds/posts/default" htmlUrl="http://getalifephd.blogspot.com/"/>
+            <outline type="rss" text="inference Lab" title="inference Lab" xmlUrl="http://www.inferencelab.com/feed/" htmlUrl="http://www.inferencelab.com"/>
+            <outline type="rss" text="Slate Star Codex" title="Slate Star Codex" xmlUrl="http://slatestarcodex.com/feed/" htmlUrl="http://slatestarcodex.com"/>
+            <outline type="rss" text="Approaching Significance" title="Approaching Significance" xmlUrl="https://approachingblog.wordpress.com/feed/" htmlUrl="https://approachingblog.wordpress.com"/>
+            <outline type="rss" text="Curious Neuroscientist" title="Curious Neuroscientist" xmlUrl="http://rezashadmehr.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://rezashadmehr.blogspot.com/"/>
+            <outline type="rss" text="Minds and Brains" title="Minds and Brains" xmlUrl="http://feeds.feedburner.com/philosophyandpsychology/onLr" htmlUrl="http://philosophyandpsychology.com"/>
+            <outline type="rss" text="Deeply Trivial" title="Deeply Trivial" xmlUrl="http://www.deeplytrivial.com/feeds/posts/default?alt=rss" htmlUrl="http://www.deeplytrivial.com/"/>
+            <outline type="rss" text="The Scicurious Brain" title="The Scicurious Brain" xmlUrl="http://rss.sciam.com/scicurious-brain/feed" htmlUrl="http://www.scientificamerican.com"/>
+            <outline type="rss" text="fMRwhy" title="fMRwhy" xmlUrl="https://www.fmrwhy.com/feed/" htmlUrl="https://www.fmrwhy.com"/>
+            <outline type="rss" text="Why Haven't They Done That Yet?" title="Why Haven't They Done That Yet?" xmlUrl="http://whyhaventtheydonethatyet.wordpress.com/feed/" htmlUrl="https://whyhaventtheydonethatyet.wordpress.com"/>
+            <outline type="rss" text="jeffrouders" title="jeffrouders" xmlUrl="http://jeffrouder.blogspot.com/feeds/posts/default" htmlUrl="http://jeffrouder.blogspot.com/"/>
+            <outline type="rss" text="the Node" title="the Node" xmlUrl="http://feeds.feedburner.com/the_Node" htmlUrl="http://thenode.biologists.com"/>
+            <outline type="rss" text="Incurably Nuanced" title="Incurably Nuanced" xmlUrl="http://incurablynuanced.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://incurablynuanced.blogspot.com/"/>
+            <outline type="rss" text="[citation needed]" title="[citation needed]" xmlUrl="http://feeds.feedburner.com/citationNeeded" htmlUrl="http://www.talyarkoni.org/blog"/>
+            <outline type="rss" text="THE SKEPTICAL SCIENTIST" title="THE SKEPTICAL SCIENTIST" xmlUrl="http://www.timvanderzee.com/feed/" htmlUrl="http://www.timvanderzee.com"/>
+            <outline type="rss" text="MVPA Meanderings" title="MVPA Meanderings" xmlUrl="http://mvpa.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://mvpa.blogspot.com/"/>
+            <outline type="rss" text="The Thesis Whisperer" title="The Thesis Whisperer" xmlUrl="http://thethesiswhisperer.wordpress.com/feed/" htmlUrl="https://thesiswhisperer.com"/>
+            <outline type="rss" text="Fixing Psychology" title="Fixing Psychology" xmlUrl="http://fixingpsychology.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://fixingpsychology.blogspot.com/"/>
+            <outline type="rss" text="Neuroskeptic" title="Neuroskeptic" xmlUrl="http://feeds.feedburner.com/neuro-skeptic/" htmlUrl="http://discovermagazine.com/rss/blog-feeds/neuroskeptic"/>
+            <outline type="rss" text="statistical significance" title="statistical significance" xmlUrl="http://statisticalsignificance.net/feed/" htmlUrl="https://statisticalsignificance.net"/>
+            <outline type="rss" text="Neuropoly" title="Neuropoly" xmlUrl="http://neuropoly.com/feed/" htmlUrl="https://neuropoly.com"/>
+            <outline type="rss" text="Statistical Thinking on Statistical Thinking" title="Statistical Thinking on Statistical Thinking" xmlUrl="http://fharrell.com/index.xml" htmlUrl="http://fharrell.com/"/>
+            <outline type="rss" text="Jim Grange" title="Jim Grange" xmlUrl="http://jimgrange.wordpress.com/feed/" htmlUrl="https://jimgrange.wordpress.com"/>
+            <outline type="rss" text="science of psych" title="science of psych" xmlUrl="https://scienceofpsych.wordpress.com/feed/" htmlUrl="https://scienceofpsych.wordpress.com"/>
+            <outline type="rss" text="Statistics How To" title="Statistics How To" xmlUrl="http://www.statisticshowto.com/feed/" htmlUrl="https://www.statisticshowto.datasciencecentral.com"/>
+            <outline type="rss" text="layer fMRI blog » Feed" title="layer fMRI blog » Feed" xmlUrl="https://layerfmri.com/feed/" htmlUrl="https://layerfmri.com"/>
+            <outline type="rss" text="sevendeadlysynapses.com" title="sevendeadlysynapses.com" xmlUrl="http://sevendeadlysynapses.com/feed/" htmlUrl="http://sevendeadlysynapses.com"/>
+            <outline type="rss" text="Coolmristuff" title="Coolmristuff" xmlUrl="http://coolmristuff.wordpress.com/feed/" htmlUrl="https://coolmristuff.wordpress.com"/>
+            <outline type="rss" text="Simply Statistics" title="Simply Statistics" xmlUrl="http://simplystatistics.org/feed/" htmlUrl="https://simplystatistics.org/index.xml"/>
+            <outline type="rss" text="REDUCING UNCERTAINTY" title="REDUCING UNCERTAINTY" xmlUrl="https://simongates.com/feed/" htmlUrl="https://simongates.com"/>
+            <outline type="rss" text="Åse Fixes Science" title="Åse Fixes Science" xmlUrl="http://asefixesscience.wordpress.com/feed/" htmlUrl="https://asefixesscience.wordpress.com"/>
+            <outline type="rss" text="Psychological Statistics" title="Psychological Statistics" xmlUrl="http://psychologicalstatistics.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://psychologicalstatistics.blogspot.com/"/>
+            <outline type="rss" text="Data punk | Käyttäytymisarkkitehtuuri" title="Data punk | Käyttäytymisarkkitehtuuri" xmlUrl="https://mattiheino.com/feed/" htmlUrl="https://mattiheino.com"/>
+            <outline type="rss" text="Voytek Lab" title="Voytek Lab" xmlUrl="http://voyteklab.com/feed/" htmlUrl="http://voyteklab.com"/>
+            <outline type="rss" text="Matti Vuorre on Matti Vuorre" title="Matti Vuorre on Matti Vuorre" xmlUrl="https://mvuorre.github.io/index.xml" htmlUrl="https://vuorre.netlify.com/"/>
+            <outline type="rss" text="The 20% Statistician" title="The 20% Statistician" xmlUrl="http://daniellakens.blogspot.com/feeds/posts/default" htmlUrl="http://daniellakens.blogspot.com/"/>
+            <outline type="rss" text="neurotroph" title="neurotroph" xmlUrl="https://www.neurotroph.de/feed/" htmlUrl="https://www.neurotroph.de"/>
+            <outline type="rss" text="BishopBlog" title="BishopBlog" xmlUrl="http://deevybee.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://deevybee.blogspot.com/"/>
+            <outline type="rss" text="The Devil's Neuroscientist" title="The Devil's Neuroscientist" xmlUrl="http://devilsneuroscientist.wordpress.com/feed/" htmlUrl="https://devilsneuroscientist.wordpress.com"/>
+            <outline type="rss" text="DC's Improbable Science" title="DC's Improbable Science" xmlUrl="http://www.dcscience.net/?feed=rss2" htmlUrl="http://www.dcscience.net"/>
+            <outline type="rss" text="Eelke Spaak » Feed" title="Eelke Spaak » Feed" xmlUrl="http://eelkespaak.nl/feed/" htmlUrl="http://eelkespaak.nl"/>
+            <outline type="rss" text="lornecampbell" title="lornecampbell" xmlUrl="http://www.lornecampbell.org/?feed=rss2" htmlUrl="http://www.lornecampbell.org"/>
+            <outline type="rss" text="NITRC Community News" title="NITRC Community News" xmlUrl="http://www.nitrc.org/export/rss_sfnews.php" htmlUrl="http://www.nitrc.org"/>
+            <outline type="rss" text="The Clever Machine" title="The Clever Machine" xmlUrl="https://theclevermachine.wordpress.com/feed/" htmlUrl="https://theclevermachine.wordpress.com"/>
+            <outline type="rss" text="Inattentional Coffee" title="Inattentional Coffee" xmlUrl="https://inattentionalcoffee.wordpress.com/feed/" htmlUrl="https://inattentionalcoffee.wordpress.com"/>
+            <outline type="rss" text="House of Mind" title="House of Mind" xmlUrl="http://houseofmind.tumblr.com/rss" htmlUrl="http://houseofmind.tumblr.com/"/>
+            <outline type="rss" text="The SKEPTICAL SCIENTIST" title="The SKEPTICAL SCIENTIST" xmlUrl="https://timvanderzee.wordpress.com/feed/" htmlUrl="https://timvanderzee.wordpress.com"/>
+            <outline type="rss" text="The Frontal Cortex" title="The Frontal Cortex" xmlUrl="http://scienceblogs.com/cortex/feed/" htmlUrl="http://scienceblogs.com/cortex"/>
+            <outline type="rss" text="Yet another Blog » Feed" title="Yet another Blog » Feed" xmlUrl="https://kaiu.me/feed/" htmlUrl="https://kaiu.me"/>
+            <outline type="rss" text="NeuroNeurotic" title="NeuroNeurotic" xmlUrl="https://neuroneurotic.wordpress.com/feed/" htmlUrl="https://neuroneurotic.net"/>
+            <outline type="rss" text="NeuWrite San Diego" title="NeuWrite San Diego" xmlUrl="http://neuwritesd.org/feed/" htmlUrl="https://neuwritesd.org"/>
+            <outline type="rss" text="Mind Hacks" title="Mind Hacks" xmlUrl="http://mindhacks.com/feed/" htmlUrl="https://mindhacks.com"/>
+            <outline type="rss" text="Knowing Neurons" title="Knowing Neurons" xmlUrl="http://knowingneurons.com/feed/" htmlUrl="https://knowingneurons.com"/>
+            <outline type="rss" text="Brains Explained »" title="Brains Explained »" xmlUrl="http://www.brains-explained.com/feed/" htmlUrl="http://www.brains-explained.com"/>
+            <outline type="rss" text="The Dead Salmon" title="The Dead Salmon" xmlUrl="https://thedeadsalmon.wordpress.com/feed/" htmlUrl="https://thedeadsalmon.wordpress.com"/>
+            <outline type="rss" text="Computational Neuroscience" title="Computational Neuroscience" xmlUrl="http://www-etud.iro.umontreal.ca/~rivestfr/wordpress/feed/"/>
+            <outline type="rss" text="Aidan's Aviary" title="Aidan's Aviary" xmlUrl="http://aidanhorner.blogspot.com/feeds/posts/default" htmlUrl="http://aidanhorner.blogspot.com/"/>
+            <outline type="rss" text="Daniel Simons" title="Daniel Simons" xmlUrl="http://blog.dansimons.com/feeds/posts/default?alt=rss" htmlUrl="http://blog.dansimons.com/"/>
+            <outline type="rss" text="Nervous Bunch" title="Nervous Bunch" xmlUrl="http://blog.nervousbunch.com/index.php/feed/" htmlUrl="http://blog.nervousbunch.com"/>
+            <outline type="rss" text="Neurotic Physiology" title="Neurotic Physiology" xmlUrl="http://scientopia.org/blogs/scicurious/feed/" htmlUrl="http://scicurious.scientopia.org"/>
+            <outline type="rss" text="Blog - Jonathan Peelle" title="Blog - Jonathan Peelle" xmlUrl="http://jonathanpeelle.net/blog?format=RSS" htmlUrl="http://jonathanpeelle.net/blog/"/>
+            <outline type="rss" text="Chris Gorgolewski: Multiple Comparisons" title="Chris Gorgolewski: Multiple Comparisons" xmlUrl="http://multiplecomparisons.blogspot.com/feeds/posts/default" htmlUrl="http://blog.chrisgorgolewski.org/"/>
+            <outline type="rss" text="The pathological science: Psychology, skepticism, and statistics" title="The pathological science: Psychology, skepticism, and statistics" xmlUrl="http://thepathologicalscience.blogspot.com/feeds/posts/default" htmlUrl="http://thepathologicalscience.blogspot.com/"/>
+            <outline type="rss" text="The Neuro-Journalism Mill" title="The Neuro-Journalism Mill" xmlUrl="http://www.jsmf.org/neuromill/rss.xml" htmlUrl="http://www.jsmf.org/neuromill"/>
+            <outline type="rss" text="William M. Briggs" title="William M. Briggs" xmlUrl="http://wmbriggs.com/feed" htmlUrl="http://wmbriggs.com"/>
+            <outline type="rss" text="Romain Brette" title="Romain Brette" xmlUrl="http://romainbrette.fr/feed/" htmlUrl="http://romainbrette.fr"/>
+            </outline>
+    </body>
+</opml>
