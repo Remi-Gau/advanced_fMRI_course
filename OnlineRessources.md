@@ -1,19 +1,22 @@
 ﻿# On-line ressources
 
 **Table of Contents**
-- [Online courses](#Online-courses)
-- [Video series](#Video-series)
-- [Blogs](#Blog)
-- [Methods and results reporting](#Methods-and-results-reporting)
-- [Code and data management](#Code-and-data-management)
-- [Where to ask for help](#Where-to-ask-for-help)
+* [Online courses](#Online-courses)
+* [Video series](#Video-series)
+* [Blogs](#Blogs)
+* [Methods and results reporting](#Methods-and-results-reporting)
+* [Code and data management](#Code-and-data-management)
+* [Where to ask for help](#Where-to-ask-for-help)
+
 
 ---
 
+
 There are tons of resources neuroimaging data analysis on-line so the following list is not meant to be exhaustive. There are also similar lists here and there that might partly overlap with this one.
 
+* [Stephan Heunis](https://twitter.com/fmrwhy) has a [list](https://www.fmrwhy.com/2018/06/28/spm12-matlab-scripting-tutorial-4/) to many SPM and matlab related ressources 
 * [Jonathan Peelle](@jpeelle) has a great [list of ressources ](http://jonathanpeelle.net/mri-resources-for-beginners) for beginners
-* [https://github.com/brainhack101](https://github.com/brainhack101)  also has a good [collections or links](https://brainhack101.github.io/neurolinks/) to courses, data...
+* [https://github.com/brainhack101](https://github.com/brainhack101) also has a good [collections or links](https://brainhack101.github.io/neurolinks/) to courses, data...
 * ReproNim has a good [site](http://www.reproducibleimaging.org/index.html) to check for ressources on how to get up to date on doing reproducible research
 
 
@@ -42,11 +45,11 @@ There are quite a few courses out there that I am aware of. Also most of the mai
 ???
 
 ### Neurohackademy
-Neurohackademy is not exactly a beginner's course for fMRI: it is borader than that 
+Neurohackademy is not exactly a beginner's course for fMRI: it is broader than that as it covers reproducibility amd open science issues in neuroimaging. It is also very practical and definitely more python oriented. To know more see this [post](http://www.talyarkoni.org/blog/2018/08/16/neurohackademy-2018-a-wrap-up/) by [Tal Yarkoni](https://twitter.com/talyarkoni) about the 2018 edition of Neurohackademy.
 
-* [edition 2017/2018](https://www.youtube.com/playlist?list=PLA6PlfxWZPLTLJ2qTN9enG0tkizpmwWaq)
-* [edition 2016](https://www.youtube.com/playlist?list=PLEdFhTRBFLObkatJOX9wp3BCueH4wNSl7)
-* [course material](https://github.com/neurohackademy)
+* [videos to the edition 2017/2018](https://www.youtube.com/playlist?list=PLA6PlfxWZPLTLJ2qTN9enG0tkizpmwWaq)
+* [videos to the edition 2016](https://www.youtube.com/playlist?list=PLEdFhTRBFLObkatJOX9wp3BCueH4wNSl7)
+* [2018 course material](https://github.com/neurohackademy)
 
 
 
@@ -95,6 +98,7 @@ The OHBM created Committee on Best Practices in Data Analysis and Sharing (COBID
 If you are going to do some fMRI analysis you will quickly drown in data if you are not a bit organized so I highly recommend you use the brain imaging data structure standard ([BIDS](http://bids.neuroimaging.io/)) to organize your data. This also allows you to more easily share your data and use plenty of [tools](bids-apps.neuroimaging.io/apps/).
 
 As for managing your code, if you don't already I suggest you make version control with [GIT](https://git-scm.com/) part of every day workflow. GIT might seem scary and confusing at first but it is well worth the effort: the good news is that there are plenty of tutorials available to learn.
+
 
 
 ## Where to ask for help

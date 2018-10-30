@@ -5,7 +5,7 @@ As the course is based around SPM, it could be a good idea to have a look at the
 ![](.statics/human_brain_function.jpg)
 
 * [Human brain function](https://www.fil.ion.ucl.ac.uk/spm/doc/books/hbf2/) edited John Ashburner, Karl Friston, Will Penny (the second edition is freely available on-line).
----
+
 But it can get pretty quickly technical and could easily put off people with a math aversion. So I can recommend two other books.
 
 ![](.statics/handbook_fmri_data_analysis.jpg)
