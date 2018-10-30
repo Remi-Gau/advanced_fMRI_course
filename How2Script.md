@@ -20,7 +20,7 @@ Another tip is that usually when you run a given process in SPM, the matlab comm
 
 `SPM12: spm_check_registration (v6245)              13:42:08 - 30/10/2018`
 `========================================================================`
-`Display D:\Dropbox\Code\MATLAB\Neuroimaging\SPM\spm12\canonical\avg305T1.nii,1`
+`Display D:\SPM\spm12\canonical\avg305T1.nii,1`
 
 This tells you that this called the `spm_check_registration.m` matlab function.
 
