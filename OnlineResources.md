@@ -136,7 +136,7 @@ Even though GIT is most powerful when using the command line, there are also som
 
 
 
-## Planning your study:
+## Planning your study
 
 ### Pre-registration
 
