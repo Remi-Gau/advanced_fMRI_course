@@ -8,7 +8,7 @@
 * [Matlab and SPM specific resources](#Matlab-and-SPM-specific-resources)
 * [UNIX command line](#UNIX-command-line)
 * [Code and data management](#Code-and-data-management)
-* [Laminar and high-resolution MRI](#Laminar-and-high-resolution MRI)
+* [Laminar and high-resolution MRI](#Laminar-and-high-resolution-MRI)
 * [Planning your study](Planning-your-study)
 * [Methods and results reporting](#Methods-and-results-reporting)
 * [Sharing your results](#Sharing-your-results)
@@ -22,7 +22,7 @@ There are tons of on-line resources for neuroimaging data analysis so the follow
 
 * [Stephan Heunis](https://twitter.com/fmrwhy) has a [list](https://www.fmrwhy.com/2018/06/28/spm12-matlab-scripting-tutorial-4/) to many SPM and matlab material.
 * [Jonathan Peelle](@jpeelle) has a great [list of resources](http://jonathanpeelle.net/mri-resources-for-beginners) for beginners.
-* Check the [wiki](http://imaging.mrc-cbu.cam.ac.uk/imaging/CbuImaging) from the CBU in Cambridege.
+* Check the [wiki](http://imaging.mrc-cbu.cam.ac.uk/imaging/CbuImaging) from the CBU in Cambridge.
 * [https://github.com/brainhack101](https://github.com/brainhack101) also has a [collections or links](https://brainhack101.github.io/neurolinks/) to courses, data...
 * ReproNim is a good [site](http://www.reproducibleimaging.org/index.html) to get up to date on doing reproducible research.
 
@@ -67,7 +67,7 @@ Neurohackademy is not exactly an fMRI course for beginners: it is broader in sco
 Youtube has some useful channels if you want to learn more about fMRI data analysis. I also list here some other repository of MRI related videos.
 
 ### mumfordbrainstats
-Jeanette Mumford has a fantastic series of videos on neuroimaging analysis on [youtube](https://www.youtube.com/channel/UCZ7gF0zm35FwrFpDND6DWeA). The channel also has [Facebook group](https://www.facebook.com/groups/mumfordbrainstats/) (as well as a [tumblr](http://mumfordbrainstats.tumblr.com/) and [twitter account](https://twitter.com/mumbrainstats) ) if you have questions.
+Jeanette Mumford has a fantastic series of videos on neuroimaging analysis on [youtube](https://www.youtube.com/channel/UCZ7gF0zm35FwrFpDND6DWeA). The channel also has [Facebook group](https://www.facebook.com/groups/mumfordbrainstats/) (as well as a [tumblr](http://mumfordbrainstats.tumblr.com/) and [twitter account](https://twitter.com/mumbrainstats)) if you have questions.
 
 ### Andrew Jahn
 [Here](https://www.youtube.com/user/Shala5ha5ka) for the videos but he also as a [blog](https://www.andysbrainblog.com/) (see the old version [here](http://andysbrainblog.blogspot.com)). He has some very good follow along 'tutorials' for FSL, Freesurfer and AFNI amongst other things.
@@ -88,7 +88,7 @@ The videos of the lectures and workshops from the previous HBM conferences are a
 There are many excellent blogs run by neuroscientists where you can find interesting and more or less technical information on neuroimaging analysis. I list a few below but you can find a subsample of my neuroscience blogroll in the file `blogroll_a_sample.opml` that you can import into your favorite news reader (e.g [feedly](https://feedly.com)).
 
 * [Jo Etzel](https://twitter.com/JosetAEtzel) has a great blog if you want to know more about multivariate analysis: [MVPA meandering](http://mvpa.blogspot.co.uk)
-* [practiCal fMRI](https://twitter.com/practiCalfMRI) has a great [blog](http://practicalfmri.blogspot.co.uk) with posts that cover the basics of fMRI, MRI artefacts, as well as a all the things that can affect the BOLD signal
+* [practiCal fMRI](https://twitter.com/practiCalfMRI) has good [blog](http://practicalfmri.blogspot.co.uk) posts that cover the basics of fMRI, MRI artefacts, as well as a all the things that can affect the BOLD signal
 * [Chris Chambers](https://twitter.com/chrisdc77) blog is [Neurochambers](http://neurochambers.blogspot.co.uk)s
 * [Neuroskeptic](https://twitter.com/Neuro_Skeptic) blogs at [Neuroskeptic](http://blogs.discovermagazine.com/neuroskeptic/)
 * [Dorothy Bishop](https://twitter.com/deevybee) is [there](http://deevybee.blogspot.com/).
@@ -103,13 +103,13 @@ There are many excellent blogs run by neuroscientists where you can find interes
 * [Tom Nichols](https://twitter.com/ten_photos) has tagged SPM related posts on his [website](http://blogs.warwick.ac.uk/nichols/) if you are looking for some good code snippets: see for example some of John Ashburner's [gems](http://blogs.warwick.ac.uk/nichols/tag/johns-gems/).
 * Check out [Cyril Pernet](https://twitter.com/cyrilrpernet) website for SPM/matlab code: [here](http://www.sbirc.ed.ac.uk/cyril/teaching.html) or [there](http://www.sbirc.ed.ac.uk/cyril/Stats.html)
 * Some good tutorials on the CBU if you want to understand [design efficiency](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency), [smoothing](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesSmoothing), [SPM GLM stats](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesStatistics) or [how random field theory works to correct for multiple comparison](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesRandomFields)
-* And also [too many repos on Github to list them all](https://github.com/search?q=matlab+fmri) but here are some you might come across: [Rik Henson's](https://github.com/MRC-CBU/riksneurotools), the [canlab]() https://github.com/canlab)
+* And also [too many repos on Github to list them all](https://github.com/search?q=matlab+fmri) but here are some you might come across: [Rik Henson's](https://github.com/MRC-CBU/riksneurotools), the [canlab](https://github.com/canlab)
 
 
 
 ## UNIX command line
 
-Even if you have only used Windows in your life the odds are that you will at some point have to use a UNIX command line (like the one you can find on a linux computer or a Mac) to do some of your MRI analysis. Best case scenario you might only need it to explore some folder structure on some server, worst case you might have to write some scripts to automate some tasks. Either way, having some basics ideas about how to interact with a UNIX is a good idea.
+Even if you have only used Windows in your life, the odds are that you will at some point have to use a UNIX command line (like the one you can find on a linux computer or a Mac) to do some of your MRI analysis. Best case scenario you might only need it to explore some folder structure on some server, worst case you might have to write some scripts to automate some tasks. Either way, having some basics ideas about how to interact with a UNIX is a good idea.
 
 * from the FSL [website](https://fsl.fmrib.ox.ac.uk/fslcourse/lectures/scripting/all.htm)
 * on the MRC-CBU [wiki](http://imaging.mrc-cbu.cam.ac.uk/methods/unixsurvivalguide)
@@ -122,11 +122,11 @@ Even if you have only used Windows in your life the odds are that you will at so
 
 In general I suggest you have a look at some of the courses and material offered by the Carpentries for [data](https://datacarpentry.org/) and [code](https://software-carpentry.org/).
 
-If you are going to do some fMRI analysis you will quickly drown in data if you are not a bit organized so I highly recommend you use the brain imaging data structure standard ([BIDS](http://bids.neuroimaging.io/)) to organize your data. The current version of BIDS only talks about raw data but it should soon cover derivatives (i.e preprocessed data). In general BIDS also allows you to more easily share your data and use plenty of analytical [tools](bids-apps.neuroimaging.io/apps/).
+If you are going to do some fMRI analysis you will quickly drown in data if you are not a bit organized, so I highly recommend you use the brain imaging data structure standard ([BIDS](http://bids.neuroimaging.io/)) to organize your data. The current version of BIDS only talks about raw data but it should soon cover derivatives (i.e preprocessed data). In general BIDS also allows you to more easily share your data and use plenty of analytical [tools](bids-apps.neuroimaging.io/apps/).
 
-As for managing your code, if you don't already I suggest you make version control with [GIT](https://git-scm.com/) part of every day workflow. GIT might seem scary and confusing at first but it is well worth the effort: the good news is that there are plenty of tutorials available (for example: [here](http://swcarpentry.github.io/git-novice/), [there](https://www.codecademy.com/learn/learn-git) or [there](https://www.youtube.com/playlist?list=PL0lo9MOBetEHhfG9vJzVCTiDYcbhAiEqL))
+As for managing your code, if you don't already, I suggest you make version control with [GIT](https://git-scm.com/) part of every day your every day workflow. GIT might seem scary and confusing at first but it is well worth the effort: the good news is that there are plenty of tutorials available (for example: [here](http://swcarpentry.github.io/git-novice/), [there](https://www.codecademy.com/learn/learn-git) or [there](https://www.youtube.com/playlist?list=PL0lo9MOBetEHhfG9vJzVCTiDYcbhAiEqL))
 
-Even though GIT is most powerful when using a command line interface, there are also some decent graphic interface that might just be enough for what you need. Plus the graphic interface might be enough to get you started to then help you move to use the command line only. There is no shame in using a GUI: just don't tell the GIT purists this is what you do otherwise you will never hear the end of it.
+Even though GIT is most powerful when using the command line, there are also some decent graphic interface that might just be enough for what you need. Plus the graphic interface might be enough to get you started to then help you move to use the command line only. There is no shame in using a GUI: just don't tell the GIT purists this is what you do otherwise you will never hear the end of it.
 
 
 
@@ -154,7 +154,7 @@ Before you run your study there are a few things you can do to optimize your des
 
 For the latter you have few options:
 * from computing the efficiency by hand and tweaking your design [to see what options work best](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency)
-* There are also more systematic ways to optimize your protocol: see here(http://surfer.nmr.mgh.harvard.edu/optseq/), here(http://psych.colorado.edu/~tor/Software/genetic_algorithms.html) or there(http://www.cabiatl.com/CABI/resources/fmrisim/)
+* There are also more systematic ways to optimize your protocol: see [here](http://surfer.nmr.mgh.harvard.edu/optseq/), [here](http://psych.colorado.edu/~tor/Software/genetic_algorithms.html) or [there](http://www.cabiatl.com/CABI/resources/fmrisim/)
 
 The website [neuropowertools](http://www.neuropowertools.org/) actually offers options to run both your design efficiency optimization and your power analysis.
 
