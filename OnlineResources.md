@@ -47,7 +47,7 @@ There are quite a few courses for fMRI analysis out there that I am aware of. Al
 ???
 
 ### AFNI
-???
+Video recordings from the [AFNI bootcamp](https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/educational/bootcamp_recordings.html), with slides, and [example data](https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/unix_tutorial/misc/install.data.html). 
 
 ### Nipype
 Nipype is best viewed a way to create and run software-agnostic analysis-pipeline. It becomes very powerful when you need to use different softwares in your analysis. There is a course/tutorial that can be found [here](https://miykael.github.io/nipype_tutorial/).
@@ -69,7 +69,12 @@ Youtube has some useful channels if you want to learn more about fMRI data analy
 Jeanette Mumford has a fantastic series of videos on neuroimaging analysis on [youtube](https://www.youtube.com/channel/UCZ7gF0zm35FwrFpDND6DWeA). The channel also has [Facebook group](https://www.facebook.com/groups/mumfordbrainstats/) (as well as a [tumblr](http://mumfordbrainstats.tumblr.com/) and [twitter account](https://twitter.com/mumbrainstats)) if you have questions.
 
 ### Andrew Jahn
-[Here](https://www.youtube.com/user/Shala5ha5ka) for the videos but he also as a [blog](https://www.andysbrainblog.com/) (see the old version [here](http://andysbrainblog.blogspot.com)). He has some very good follow along 'tutorials' for FSL, Freesurfer and AFNI amongst other things.
+[Here](https://www.youtube.com/user/Shala5ha5ka) for the videos but he also as a [blog](https://www.andysbrainblog.com/) (see the old version [here](http://andysbrainblog.blogspot.com)). He has some very good follow along 'tutorials' for FSL, Freesurfer and 
+
+
+
+
+amongst other things.
 
 ### Center for Brains, Minds and Machines
 [Here](https://www.youtube.com/channel/UCGoxKRfTs0jQP52cfHCyyRQ)
