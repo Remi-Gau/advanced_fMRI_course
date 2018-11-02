@@ -93,11 +93,13 @@ There are many excellent blogs run by neuroscientists where you can find interes
 
 * [Jo Etzel](https://twitter.com/JosetAEtzel) has a great blog if you want to know more about multivariate analysis: [MVPA meandering](http://mvpa.blogspot.co.uk)
 * [practiCal fMRI](https://twitter.com/practiCalfMRI) has good [blog](http://practicalfmri.blogspot.co.uk) posts that cover the basics of fMRI, MRI artefacts, as well as a all the things that can affect the BOLD signal
+* [techniCal fMRI](http://technicalfmri.blogspot.com/) companion to practiCal fMRI that covers topics related to ancillary equipment for fMRI scanning. 
 * [Chris Chambers](https://twitter.com/chrisdc77) blog is [Neurochambers](http://neurochambers.blogspot.co.uk)s
 * [Neuroskeptic](https://twitter.com/Neuro_Skeptic) blogs at [Neuroskeptic](http://blogs.discovermagazine.com/neuroskeptic/)
 * [Dorothy Bishop](https://twitter.com/deevybee) is [there](http://deevybee.blogspot.com/).
 * [Russel Poldracks](https://twitter.com/russpoldrack) posts can be found [here](http://www.russpoldrack.org)
 * [Peter Bandettini](https://twitter.com/fMRI_today) blogs at [the brain blog](http://www.thebrainblog.org)
+* [Peter Molfese](https://twitter.com/commander_crash) blogs at [Crash Log](http://blog.cogneurostats.com/), somewhat AFNI focused.
 
 
 
