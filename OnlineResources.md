@@ -6,9 +6,13 @@ There is also a companion [reading list] (  ???  ) in development.
 
  ---
  **To add**
+
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
+
 https://emmarobinson01.com/2016/10/07/forget-weak-statistics-fmri-studies-suffer-from-oversimplified-assumptions-made-during-pre-processing/
+
 http://technicalfmri.blogspot.com/2018/02/physiological-monitoring-and-recording.html?m=1
+
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
 
 ---
@@ -117,8 +121,7 @@ There are tons of on-line resources for neuroimaging data analysis so the follow
 ---
 
 
-<<<<<<< aee8d0691ca31a4cc87d5064111338e749595158
-=======
+
 
 ## Metalist
 There are tons of on-line resources for neuroimaging data analysis so the following list is not meant to be exhaustive. There are also similar lists here and there that might partly overlap with this one, so here is a list of lists.
@@ -148,11 +151,11 @@ And here are some neuroimaging oriented lab wikis:
 * [https://github.com/brainhack101](https://github.com/brainhack101) also has a [collections or links](https://brainhack101.github.io/neurolinks/) to courses, data...
 * ReproNim is a good [site](http://www.reproducibleimaging.org/index.html) to get up to date on doing reproducible neuroimaging research.
 * [Open neuroscience](https://openeuroscience.com/) points to a lot of open things related to neuroscience.
-* There [MOOC on open-science](https://opensciencemooc.eu/) is still under construction but already has an insane [list of resources](https://opensciencemooc.eu/resources/)
+* There [MOOC on open-science](https://opensciencemooc.eu/) is still under construction but already has an insane [list of resources](https://opensciencemooc.eu/resources/).
 
 
 
->>>>>>> big changes on online ressources
+
 ## Online courses
 
 
@@ -321,17 +324,12 @@ I learnt matlab with a book and by reading other's scripts and with a lot of cof
 * [The clever machine](https://theclevermachine.wordpress.com/category/fmri/) blog has some very useful matlab codes for fMRI analysis
 * [Tom Nichols](https://twitter.com/ten_photos) has tagged SPM related posts on his [website](http://blogs.warwick.ac.uk/nichols/) if you are looking for some good code snippets: see for example some of John Ashburner's [gems](http://blogs.warwick.ac.uk/nichols/tag/johns-gems/).
 * Check out [Cyril Pernet](https://twitter.com/cyrilrpernet) website for SPM/matlab code: [here](http://www.sbirc.ed.ac.uk/cyril/teaching.html) or [there](http://www.sbirc.ed.ac.uk/cyril/Stats.html)
-<<<<<<< aee8d0691ca31a4cc87d5064111338e749595158
-* Some good tutorials on the CBU if you want to understand [design efficiency](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency), [smoothing](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesSmoothing), [SPM GLM stats](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesStatistics) or [how random field theory is used to correct for multiple comparison](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesRandomFields)
-* And also [too many repos on Github to list them all](https://github.com/search?q=matlab+fmri) but here are some you might come across: [Rik Henson's](https://github.com/MRC-CBU/riksneurotools), the [canlab](https://github.com/canlab)
-=======
 * Some good tutorials on the CBU if you want to understand [design efficiency](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency), [smoothing](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesSmoothing), [SPM GLM stats](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesStatistics) or [how random field theory works to correct for multiple comparison](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesRandomFields)
 * Quite a few others on the web
   - [https://sites.google.com/site/mvlombardo/matlab-tutorials](https://sites.google.com/site/mvlombardo/matlab-tutorials)
   - [http://spm.martinpyka.de/](http://spm.martinpyka.de/)
   - [https://www.mccauslandcenter.sc.edu/crnl/tools/spm8-scripts](https://www.mccauslandcenter.sc.edu/crnl/tools/spm8-scripts)
-* But also [too many repos on Github to list them all](https://github.com/search?q=matlab+fmri) but here are some you might come across: [Rik Henson's](https://github.com/MRC-CBU/riksneurotools), the [canlab](https://github.com/canlab), …
->>>>>>> big changes on online ressources
+* But also [too many repos on Github to list them all](https://github.com/search?q=matlab+fmri) but here are some you might come across: [Rik Henson's](https://github.com/MRC-CBU/riksneurotools), the [canlab](https://github.com/canlab)
 
 
 
@@ -453,9 +451,9 @@ https://www.divio.com/blog/documentation/
 
 
 ### Reusing data
-There are [many](https://brainhack101.github.io/neurolinks/) [possibilities](https://en.wikipedia.org/wiki/List_of_neuroscience_databases) of databases where you can find your raw and/or pre-processed data. There are some tools that help you search through them like the metasearch tool on the [Open Neuroimaging Laboratory](http://openneu.ro) but this is also where [Datalad](#datalad) can become useful to [browse or crawl those databases](https://www.datalad.org/for/data-discovery).
+There are [many](https://brainhack101.github.io/neurolinks/) [possibilities](https://en.wikipedia.org/wiki/List_of_neuroscience_databases) [of](https://www.nitrc.org/search/?type_of_search=group&rows=20&s=relevancy&cat=325%3AData) [databases](https://www.nitrc.org/search/?type_of_search=group&offset=0&removeterm=&cat=313%3ADatabase&compare=&q=&rows=20&s=relevancy&file=%2Ffrs%2Fdownloadlink.php%2F9275&file=%2Ffrs%2Fdownloadlink.php%2F9336&file=%2Ffrs%2Fdownloadlink.php%2F3981&file=%2Ffrs%2Fdownload.php%2F9300%2Fdti_atlas.nrrd&file=%2Ffrs%2Fdownload.php%2F6716%2F3DMetricTools1.4.3-Windows.tar&file=%2Ffrs%2Fdownloadlink.php%2F5884&file=%2Ffrs%2Fdownload.php%2F860%2FLesionSegmentationTutorialData.tgz&file=%2Ffrs%2Fdownloadlink.php%2F10354&file=%2Ffrs%2Fdownload.php%2F7345%2FCONFREP_new_bvecs.zip&file=%2Ffrs%2Fdownload.php%2F5348%2FDemoData.zip&file=%2Ffrs%2Fdownload.php%2F10036%2F7T3T_NITRC.tar.gz&file=%2Ffrs%2Fdownloadlink.php%2F6725&file=%2Ffrs%2Fdownload.php%2F9277%2FLC_prob_atlas_mni05.zip&file=%2Ffrs%2Fdownloadlink.php%2F4074&file=%2Ffrs%2Fdownload.php%2F4969%2FaBEAT.zip&xrowsx=20&s=relevancy) where you can find your raw and/or pre-processed data. There are some tools that help you search through them like the metasearch tool on the [Open Neuroimaging Laboratory](http://openneu.ro) but this is also where [Datalad](#datalad) can become useful to [browse or crawl those databases](https://www.datalad.org/for/data-discovery).
 
-The recent [google extension for databases](https://toolbox.google.com/datasetsearch) can also be useful to locate datasets that might be if interest.
+The recent [google extension for databases](https://toolbox.google.com/datasetsearch) can also be useful to locate datasets that might be of interest.
 
 
 ### Defining your task
