@@ -2,26 +2,53 @@
 
 I try to list here links to softwares, databases, tutorials, blogs and other resources list that I or others have found relevant to learn about neuroimaging or to help us perform neuroimaging analysis. Most of the things listed here are for fMRI but feel free to point towards EEG, MEG, TMS things too.
 
-There is also a companion [reading list] (  ???  ) in development.
+This document is mostly meant for me to be able to quickly find things without having to google them or browse through my bookmarks, pocket, github stars and repos. But if it can help others, that's great.
+
+Feel free to add things: see the **How to contribute** section below.
+
+I am also working on a companion [reading list] (  ???  ).
+
+---
+
+**How to use this document**
+Most people don't use a map by starting in the upper left corner, scanning horizontally till they end up in the bottom right corner (or however it is that people read in the region of the world you are in at the moment). Similarly this document is obviously not meant to be read from top to bottom. The best is to browse the **Table of content** below and jump to section that interests you. For that reason there is some redundancy in the content. This also means that this document is not a cookbook: I just try to list things that could apply a to wide variety of topics and context, but in many cases only a handful of those will be relevant to you.
+
+Note also that some of the sectioning is bit arbitrary: I try to put cross-links where useful.
+
+---
+
+**How to contribute**
+Feel free to add your own resource or any material you have found useful. Send me a pull request to this repository or raise an issue. Or if you don't know how to do that you can reach me on twitter https://twitter.com/RemiGau.
+
+You can check the **looking for** section right below to see what sections of this document need populating. I have also tried to flag with `???` in the table of content and in the main document the areas where I am pretty sure I have missed existing gems.
 
  ---
- **To add**
+
+**Looking for**
+* Material on the BOLD signal: origin and biophysics
+* Material on preprocessing, denoising
+* Material on statistical inference in neuroimaging: peak, voxel, cluster based
+* Material on multiple comparison correction in neuroimaging
+* Material on DTI, ASL
+* Material on connectivity: PPI, DCM, granger causality
+
+---
+
+**To add in the list**
 
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
 
 https://emmarobinson01.com/2016/10/07/forget-weak-statistics-fmri-studies-suffer-from-oversimplified-assumptions-made-during-pre-processing/
 
-http://technicalfmri.blogspot.com/2018/02/physiological-monitoring-and-recording.html?m=1
-
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
 
-
+http://technicalfmri.blogspot.com/2018/02/physiological-monitoring-and-recording.html?m=1
 
 ---
 
 
 
-**Table of Contents**
+**Table of content**
 
 * [Metalist](#metalist)
   + [Neuroimaging Informatics Tools and Resources Clearinghouse](#neuroimaging-informatics-tools-and-resources-clearinghouse)
@@ -29,16 +56,16 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
   + [Others](#others)
 * [Online courses](#online-courses)
   + [Math and linear algebra courses](#math-and-linear-algebra-courses)
-  + [MRI courses (???)](#mri-courses-)
-  + [fMRI courses (???)](#fmri-courses-)
+  + [MRI courses (   ???   )](#mri-courses-)
+  + [fMRI courses (   ???   )](#fmri-courses-)
   + [Neurohackademy](#neurohackademy)
-  + [Software specific (???)](#software-specific-)
+  + [Software specific (   ???   )](#software-specific-)
     - [SPM](#spm)
     - [Freesurfer](#freesurfer)
     - [FSL](#fsl)
     - [AFNI](#afni)
     - [Nipype](#nipype)
-    - [Others (???)](#others-)
+    - [Others (   ???   )](#others-)
   + [Statistics courses](#statistics-courses)
   + [Open-science and reproducibility](#open-science-and-reproducibility)
 * [Video series](#video-series)
@@ -53,41 +80,41 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
 * [Matlab and SPM specific resources](#matlab-and-spm-specific-resources)
   + [Matlab ???](#matlab-)
   + [SPM](#spm-1)
-* [The python ecosystem (???)](#the-python-ecosystem-)
-* [Web apps (???)](#web-apps-)
+* [The python ecosystem (   ???   )](#the-python-ecosystem-)
+* [Web apps (   ???   )](#web-apps-)
   + [Shiny apps](#shiny-apps)
   + [Vizualizaton](#vizualizaton)
-  + [Anatomy atlases (???)](#anatomy-atlases-)
+  + [Anatomy atlases (   ???   )](#anatomy-atlases-)
 * [Reproducibility](#reproducibility)
   + [Selective debugging](#selective-debugging)
 * [Ethics and consent forms](#ethics-and-consent-forms)
-* [Code and data management (???)](#code-and-data-management-)
+* [Code and data management (   ???   )](#code-and-data-management-)
   + [Code: version control](#code-version-control)
   + [Data: BIDS and YODA](#data-bids-and-yoda)
 * [Planning your study](#planning-your-study)
   + [Reusing data](#reusing-data)
     - [Databases](#databases)
   + [Defining your task](#defining-your-task)
-  + [Piloting (???)](#piloting-)
+  + [Piloting (   ???   )](#piloting-)
   + [Pre-registration](#pre-registration)
   + [Optimizing your design](#optimizing-your-design)
-    - [design efficiency (???)](#design-efficiency-)
+    - [design efficiency (   ???   )](#design-efficiency-)
     - [Power](#power)
     - [For MVPA: same analysis approach](#for-mvpa-same-analysis-approach)
-  + [Defining your ROI (???)](#defining-your-roi-)
+  + [Defining your ROI (   ???   )](#defining-your-roi-)
     - [Localizers](#localizers)
     - [Atlases](#atlases)
   + [Non-standard templates ???](#non-standard-templates-)
 * [Quality control](#quality-control)
 * [Preprocessing](#preprocessing)
   + [Pipelines](#pipelines)
-* [Resting state (???)](#resting-state-)
-* [Model optimization (???)](#model-optimization-)
-* [Multiple comparison correction (???)](#multiple-comparison-correction-)
+* [Resting state (   ???   )](#resting-state-)
+* [Model optimization (   ???   )](#model-optimization-)
+* [Multiple comparison correction (   ???   )](#multiple-comparison-correction-)
   + [Permutation tests](#permutation-tests)
     - [SnPM](#snpm)
     - [FSL](#fsl-1)
-* [Multivariate analysis (???)](#multivariate-analysis-)
+* [Multivariate analysis (   ???   )](#multivariate-analysis-)
   + [Matlab based](#matlab-based)
     - [Pronto](#pronto)
     - [RSA toolbox](#rsa-toolbox)
@@ -101,7 +128,7 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
 * [Computational neuroscience](#computational-neuroscience)
 * [Free energy](#free-energy)
 * [Laminar and high-resolution MRI](#laminar-and-high-resolution-mri)
-* [Meta analysis (???)](#meta-analysis-)
+* [Meta analysis (   ???   )](#meta-analysis-)
 * [Resources for Methods/Results reporting: also useful for reviewing papers](#resources-for-methodsresults-reporting-also-useful-for-reviewing-papers)
   + [COBIDAS report](#cobidas-report)
   + [NIDM](#nidm)
@@ -164,7 +191,7 @@ If you feel that your background in mathematics and signal processing is a bit w
 * how to do t-test and ANOVAS within a general linear model
 
 
-### MRI courses (???)
+### MRI courses (   ???   )
 If you need to dust up your knowledge about MRI.
 * the [e-MRI course]([https://www.imaios.com/en/e-Courses/e-MRI)
 * [MRI fundamentals](https://www.coursera.org/learn/mri-fundamentals) on coursera
@@ -178,7 +205,7 @@ There are also blog posts series on [practicalfmri](http://practicalfmri.blogspo
 * [quality control on MRI and fMRI](https://practicalfmri.blogspot.com/2014/08/qa-for-fmri-part-3-facility-qa-what-to.html)
 
 
-### fMRI courses (???)
+### fMRI courses (   ???   )
 There are quite a few courses for fMRI analysis out there that I am aware of.
 * On coursera
 A few courses on [coursera](https://www.coursera.org/courses?query=mri) with notably
@@ -190,6 +217,14 @@ A few courses on [coursera](https://www.coursera.org/courses?query=mri) with not
    - the [functional MRI methods - psych 214](https://bic-berkeley.github.io/psych-214-fall-2016/) from Berkeley
 
 
+## Machine learning (   ???   )
+If you are going to do some multivariate analysis, it is likely you will need to know a ~~bit~~ lot of machine learning. I did find that that [this class](https://www.coursera.org/learn/machine-learning) on coursera covered a lot of ground. It is not specific to neuroimaging but gives you a good overview of the basic concept you need to understand.
+
+
+### Resting state courses (   ???   )
+There is one on the rMRI [website](http://rfmri.org/Course).
+
+
 ### Neurohackademy
 Neurohackademy is more than a neuroimaging course: it is broader in scope as it covers reproducibility and open science issues in neuroimaging. It is also very practical and definitely python oriented. To know more, see this [post](http://www.talyarkoni.org/blog/2018/08/16/neurohackademy-2018-a-wrap-up/) by [Tal Yarkoni](https://twitter.com/talyarkoni) about the 2018 edition of Neurohackademy.
 * [videos to the edition 2017/2018](https://www.youtube.com/playlist?list=PLA6PlfxWZPLTLJ2qTN9enG0tkizpmwWaq)
@@ -197,7 +232,7 @@ Neurohackademy is more than a neuroimaging course: it is broader in scope as it 
 * [2018 course material](https://github.com/neurohackademy)
 
 
-### Software specific (???)
+### Software specific (   ???   )
 Most of the main analysis packages on top of the IRL courses usually have one video series that works as a course +/- tutorial.
 
 #### SPM
@@ -234,7 +269,7 @@ Nipype is best viewed as a way to create and run software-agnostic preprocessing
 * [Porcupine](https://timvanmourik.github.io/Porcupine/) stands for "PORcupine Creates Ur PipelINE" which is probably *the worst recursive acronym with bad capitalisation and annoying use of slang*. This software allows researchers to build pipelines using a GUI and generates the code that is needed to run the pipeline created.
 * [Giraffe](https://giraffe.tools/porcupine) is web-based "Graphical Interface for Reproducible Analysis oF workFlow Experiments" that can take advantage of Porcupine to create pipelines.
 
-#### Others (???)
+#### Others (   ???   )
 
 
 ### Statistics courses
@@ -293,6 +328,16 @@ There are many excellent blogs run by neuroscientists where you can find interes
 
 
 
+## Where to ask for help
+If you have question linked to a specific software, check the documentation/FAQ/manual/wiki/tutorial for that software first. Then you can turn to [the mailing list](https://kirstiewhitaker.com/2014/12/16/how-to-use-the-fsl-and-freesurfer-mailing-lists-for-success-in-your-phd/) related to that software: but always start by looking through the archives of those mailing lists first before sending a question that has already been answered.
+
+But if you have more general questions you can also try :
+* the [neurostars](https://neurostars.org/) forum
+* social medias: there are some specialised Facebook groups or good hashtags on twitter that will succeed when your google fu fails you.
+* the slack channel of [brainhack](https://www.brainhack.org/)
+
+
+
 ## UNIX command line
 Even if you have only used Windows in your life, the odds are that you will at some point have to use a UNIX command line (like the one you can find on a linux computer or a Mac) to do some of your MRI analysis. Best case scenario you might only need it to explore some folder structure on some server, worst case you might have to write some scripts to automate some tasks. Either way, having some basics ideas about how to interact with a UNIX is a good idea.
 
@@ -306,7 +351,7 @@ Even if you have only used Windows in your life, the odds are that you will at s
 
 ## Matlab and SPM specific resources
 
-### Matlab (???)
+### Matlab (   ???   )
 * tutorials
 I learnt matlab with a book and by reading other's scripts and with a lot of coffee, patience, sweat, tears and, trial and errors. I am sure there are better ways to do it than that but I don't really know what the best tutorials are these days.
 
@@ -325,7 +370,7 @@ I learnt matlab with a book and by reading other's scripts and with a lot of cof
 
 
 
-## The python ecosystem (???)
+## The python ecosystem (   ???   )
 Matlab must still be the most used "language" in neuroimaging (citation needed) but there is huge neuroscience-oriented python ecosystem out there taking advantage of the scientific python community. On top of the financial aspect (those matlab licenses can be quite expensive), there are many good reasons why you might wanna switch if only because [matlab breeds](http://neuroplausible.com/matlab) [bad coding habits](http://www.rath.org/matlab-is-a-terrible-programming-language.html).
 
 Here too there are plenty of generic python courses on [datacamp](https://www.datacamp.com/tracks/python-programmer), [code academy](https://www.codecademy.com/learn/learn-python) or [kaggle](https://www.kaggle.com/learn/python). You can also check things that are more scientific python oriented like the [scipy lectures](http://www.scipy-lectures.org/) or Jake Vanderplas's jupyter notebooks [Whirlwind Tour Of Python](https://github.com/jakevdp/WhirlwindTourOfPython) and [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook).
@@ -336,7 +381,7 @@ If you turn to neuroimaging in python I guess you will first want to go to check
 
 
 
-## Web apps (???)
+## Web apps (   ???   )
 
 
 ### R based apps
@@ -353,16 +398,15 @@ Even if they are not specific to neuroimaging many of the R based web based apps
 * the [bioimagesuite](https://bioimagesuiteweb.github.io/webapp/index.html) seems like a convenient way to visualize and do some processing of you images on the fly via a web-browser. (h/t [Renzo](https://twitter.com/layerfmri))
 
 
-### Anatomy atlases (???)
-Some of those might help you learn or revise your neuroamatomy:
+### Anatomy atlases (   ???   )
+Some of those might help you learn or revise your neuroanatomy:
 * http://www.med.harvard.edu/AANLIB/cases/caseNA/pb9.htm
 * http://ghiasi.org/2009/05/10-great-sites-for-reviewing-brain-anatomy/
 * http://atlas.brain-map.org/
 
 
 
-## Reproducibility (???)
-
+## BEFORE YOU START: Reproducibility (   ???   )
 There are a few options you can investigate to make your analysis more replicable and reproducible. On top of [sharing your data and your code](#Sharing-your-code, data-and-your-results) you can use containers like [docker](https://www.docker.com/) or singularity that allows you to run your analysis in contained environment that has an operating system, the software you need and all their dependencies.
 
 In practice this means that by using this container:
@@ -373,19 +417,20 @@ In practice this means that by using this container:
 
 [Code-ocean](https://codeocean.com/) is web based service that relies on docker containers to let you run your analysis online. There is [post](https://www.fmrwhy.com/2018/10/31/reproducible-fmri-codeocean/) by [Stephan Heunis](https://twitter.com/fmrwhy) describing how he did that with an SPM pipeline.
 
-Another thing you can implement is using notebooks like [jupyter](http://jupyter.org/), [jupyter lab](https://jupyterlab.readthedocs.io/en/stable/) or [binder](https://mybinder.org/) (???). Here is fascinating [talk](https://www.youtube.com/watch?v=zC-3sdPtb0w&list=PLO3l0PnUGHYEqA7rFQT2jM6jxsaC2XiHh&t=384s&index=19) by [Fernando Perez](https://twitter.com/fperez_org), one the person behind the jupyter project.
+Another thing you can implement is using notebooks like [jupyter](http://jupyter.org/), [jupyter lab](https://jupyterlab.readthedocs.io/en/stable/) or [binder](https://mybinder.org/) (   ???   ). Here is fascinating [talk](https://www.youtube.com/watch?v=zC-3sdPtb0w&list=PLO3l0PnUGHYEqA7rFQT2jM6jxsaC2XiHh&t=384s&index=19) by [Fernando Perez](https://twitter.com/fperez_org), one the person behind the jupyter project.
 
 
 
-## Ethics and consent forms
+## BEFORE YOU START: Ethics and consent forms
 The [open brain consent form](https://open-brain-consent.readthedocs.io/en/stable/) tries to facilitate neuroimaging data sharing by providing an “out of the box” solution addressing human subjects concerns and consisting of
 * widely acceptable consent form allowing deposition of anonymized data to public data archives
 * collection of tools/pipelines to help anonymization of neuroimaging data making it ready for sharing
 
 
 
-## Code and data management (???)
+## BEFORE YOU START: Code and data management (   ???   )
 In general I suggest you have a look at some of the courses and material offered by the Carpentries for [data](https://datacarpentry.org/) and [code](https://software-carpentry.org/).
+
 
 ### Code management
 
@@ -400,16 +445,16 @@ Another good coding practice to have is a consistent coding style. For python yo
 You can also have a look at the code style used by [google for many languages](https://github.com/google/styleguide) (h/t [Kelly Garner](@garner_theory)). You will notice that matlab is not in the list so you might want to check this [here](https://fr.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0?s_tid=mwa_osa_a).
 
 #### Avoid selective debugging: unit tests, positive and negative control
+Having a bug is annoying. Having your code run but give you an obviously wrong answer is more annoying. Having your code run and give you a plausible but wrong answer is scary (and potentially expensive when it [crashes a spaceship onto a planet](https://en.wikipedia.org/wiki/Mars_Climate_Orbiter#Cause_of_failure)). Having your code run and give you the answer you want but not the true answer is the worst and keeps me up at night.
 
+Selective debugging happens when we don't check the code that gives us the answer we want but we do check it when it gives us an answer that goes against our expectation. In a way it is a quite insidious form of p-hacking.
 
+There are some [recent](http://blogs.discovermagazine.com/neuroskeptic/2016/08/21/software-errors-in-fmri/#.V8B1vZ7TU-i) [examples](http://www.russpoldrack.org/2013/02/anatomy-of-coding-error.html) in [neuroimaging](http://the-brain-box.blogspot.com/2013/02/biased-debugging.html).
 
-
-http://blogs.discovermagazine.com/neuroskeptic/2016/08/21/software-errors-in-fmri/#.V8B1vZ7TU-i
-http://www.russpoldrack.org/2013/02/anatomy-of-coding-error.html
-
-https://mvpa.blogspot.com/2015/11/positive-control-analyses-and-checking.html
-
-
+Some things that can be done about it:
+- organize code reviews in your lab: basically make sure that the code has been checked by another person. Pairing a beginner with a more senior member of the lab can also be a way to improve learning and skill transfer in the lab.
+- [test your code](http://www.reproducibleimaging.org/module-dataprocessing/06-testing/)
+- test your pipeline with positive negative control. A negative control is testing your analysis by running on random noise or on data that should have no signal in it. The latter was the approach used by [Anders Eklund](https://twitter.com/wandedob) and [Tom Nichols](https://twitter.com/ten_photos) in their [cluster failure paper series](http://blogs.discovermagazine.com/neuroskeptic/2018/07/22/cluster-failure-revisited/). A positive control is making sure that your analysis can detect VERY obvious things it should detect (e.g motor cortex activation following button presses, classify responses to auditory versus visual stimuli in V1, …). [Jo Etzel](https://twitter.com/JosetAEtzel) has post about [this](https://mvpa.blogspot.com/2015/11/positive-control-analyses-and-checking.html).
 
 
 ### Data: BIDS, Datalad and YODA
@@ -429,17 +474,25 @@ Other good habits:
 * a simple, transparent and systematic filenaming is a good [start](https://www.google.fr/search?q=good+file+naming+conventions&rlz=1C1CHBD_en-GBGB758GB758&oq=good+filenaming+&aqs=chrome.1.69i57j0l3j69i64.6421j0j7&sourceid=chrome&ie=UTF-8)
 * if you have to deal with data in spreadsheet I think you will enjoy [this paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989) and this [cookbook](https://www.polydesmida.info/cookbook/)
 
-### Documentation
+### Documentation (   ???   )
+It is often said to:
+> Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.
+
+Proper documentation of a project and good commenting of your code will help others to use it or pick it up later. But there are good selfish reasons to document your project and comment your code: it will most likely help future you when you have to respond to reviewers or when you want to check something in that data set or in that function you used 6 months ago.
+
+>- Most likely, you will have to re-run your analysis more than once.
+>- In the future, you or a collaborator may have to re-visit part of the project.
+>- Your most likely collaborator is your future self, and your past self doesn’t answer emails.
+
+See [here](http://bioconnector.github.io/bims8382/r-repres.html) for more.
+
+There are plenty of recommendations out there about writing documentation. I did find [this one](https://www.divio.com/blog/documentation/) useful and this [list](https://github.com/matiassingers/awesome-readme#tools) or this [checklist](https://github.com/Remi-Gau/readme-checklist) that are more specific to README files.
+
+In terms of code I guess the ideal is [self-documenting code](http://wiki.c2.com/?SelfDocumentingCode). Python also apparently has this thing called [Sphinx](http://www.sphinx-doc.org/en/master/) that helps *create intelligent and beautiful documentation* (that alone should make matlab users envious).
 
 
 
-
-https://www.divio.com/blog/documentation/
-
-
-
-
-## Planning your study
+## PLANNING YOUR STUDY
 
 
 ### Reusing data
@@ -448,25 +501,25 @@ There are [many](https://brainhack101.github.io/neurolinks/) [possibilities](htt
 The recent [google extension for databases](https://toolbox.google.com/datasetsearch) can also be useful to locate datasets that might be of interest.
 
 
-### Defining your task
+### Defining your terms and your task
 
 
 
 
- * Ontologies
- * Declare design and Dorothy Bishop on it
+ * Ontologies: X you keep using that word. I don't think it means what you think it means.
+   - [The cognitive atlas](http://www.cognitiveatlas.org/)
+ * [Declare design]() seems to be something to look into. See what [Dorothy Bishop](https://twitter.com/deevybee) had to say about it.
+ * [flexible measures](http://www.flexiblemeasures.com/) by [Malte Elson](https://twitter.com/maltoesermalte)
 
 
 
 
-### Piloting (???)
+### Piloting (   ???   )
+Good piloting is very important but piloting is not meant to be about finding a hypothesis you want to test: because of the small sample size of pilot studies, anything interesting you see there is very likely to be a fluke. Piloting is more about checking the overall feasibility of that experiment and that you can get high [quality data](#ONCE YOU-HAVE-DATA:-quality-control), judged by criteria that are unrelated to your hypothesis.
 
+[Sam Schwarzkopf](https://twitter.com/sampendu) has a few interesting posts on the topic [here](https://neuroneurotic.net/2016/08/29/on-the-worthlessness-of-inappropriate-piloting/) and [there](https://neuroneurotic.net/2016/08/30/on-the-magic-of-independent-piloting/)
 
-
-
-Sam's post on piloting
-
-
+Piloting is usually a phase where it would be good to check with your local MRI physicist and statistician. And you also might already have to make choices about [pre-processing](ONCE-YOU-HAVE-DATA:-preprocessing) and data analysis.
 
 
 ### Pre-registration
@@ -480,7 +533,7 @@ Pre-registering neuroimaging studies can be quite challenging and comes with a w
 ### Optimizing your design
 Before you run your study there are a few things you can do to [optimize your design](http://mumfordbrainstats.tumblr.com/post/149759511091/designing-your-pre-fmri-behavioral-study). Two of them are doing a power analysis and optimizing the efficiency of your fMRI design.
 
-#### design efficiency (???)
+#### Design efficiency (   ???   )
 If you need a reminder about what [design efficiency](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency) is.
 When you want to optimize it you have few options:
 * you can compute the efficiency by hand and tweaking your design [to see what options work best](http://imaging.mrc-cbu.cam.ac.uk/imaging/DesignEfficiency)
@@ -502,16 +555,16 @@ The website [neuropowertools](http://www.neuropowertools.org/) actually offers o
 If you intend to run a MVPA - classification analysis on your data, there are a few things you can do BEFORE you start collecting data to optimize your design. There is no app/toolbox for that so I am afraid you will have to read the [paper](https://arxiv.org/abs/1703.06670)
 
 
-### Defining your ROI (???)
+### Defining your ROI (   ???   )
 If you don't want to run a whole brain analysis, then you will most likely need to define your regions of interest (ROI). This must be done using data that is independent from the data you will use in the end otherwise you will have a [circularity] (   ???   ) problem (also known as double dipping or [voodoo correlation] (   ???   )).
-* around a coordinate identified in a previous study or in a [meta-analysis](#meta-analysis-(???)), or by using Neurosynth.
+* around a coordinate identified in a previous study or in a [meta-analysis](#meta-analysis-(   ???   )), or by using Neurosynth.
 * using a localizer
 * or relying on a functional or anatomical atlas.
 
 #### Using previous results
-[Neurosynth](http://neurosynth.org/) can help with to run a meta-analysis to create mask to define your ROI
+[Neurosynth](http://neurosynth.org/) can help with to run a meta-analysis to create mask to define your ROI.
 
-#### Localizers
+#### Localizers (   ???   )
 A typical example of a localizer are retinotopic mappings. [Sam Schwarzkopf](https://twitter.com/sampendu) has good [tutorial](https://figshare.com/articles/Retinotopic_mapping_tutorial/1513839) for those.
 
 #### Atlases
@@ -550,7 +603,7 @@ In case you want to normalize brains of children it might be better to use a ped
 
 
 
-## Quality control
+## ONCE YOU HAVE DATA: quality control
 
 
 
@@ -579,7 +632,7 @@ http://davidroalf.com/script_download/
 
 
 
-## Preprocessing
+## ONCE YOU HAVE DATA: preprocessing
 
 ### Pipelines
 
@@ -615,59 +668,66 @@ https://github.com/BIDS-Apps/CPAC
 
 
 
-### Artefact/Noise removal (???)
+### Artefact/Noise removal (   ???   )
 
-#### PCA  (???)
+#### PCA  (   ???   )
 
-#### ICA  (???)
+#### ICA  (   ???   )
 
-#### ART (???)
+#### ART (   ???   )
 
-#### ART repair (???)
+#### ART repair (   ???   )
 
-#### Physiological noise  (???)
-
-
-
-## Resting state (???)
+#### Physiological noise  (   ???   )
 
 
 
-
-http://rfmri.org/
-
-
-
-
-## Model optimization (???)
+## Analysis: Resting state (   ???   )
+I know almost nothing about resting state but I have been told [this site](http://rfmri.org/) is worth having a look at.
+* [Course/Tutorials](http://rfmri.org/Course)
+* Tools (   ???   )
 
 
 
-## Statistical inferences and multiple comparison correction (MCP) (???)
+## Analysis: Model selection (   ???   )
+
+http://blogs.discovermagazine.com/neuroskeptic/2012/06/30/false-positive-neuroscience/
+http://blogs.discovermagazine.com/neuroskeptic/2012/10/14/more-on-false-positive-neuroimaging/
+
+https://www.researchgate.net/publication/319208937_The_Overfitting_Toolbox_TOT_Large-Scale_Search_in_Model_Space_for_Expected_Neuroimaging_Effects
+
+https://twitter.com/JoramSoch/status/1014063682882555906
+https://twitter.com/JoramSoch
+https://github.com/JoramSoch/MACS
 
 
-### Cluster based inference (???)
+## Analysis: Statistical inferences and multiple comparison correction (MCP) (   ???   )
 
 
-### Family wise error (FWE) (???)
+### Cluster based inference (   ???   )
+
+
+### Family wise error (FWE) (   ???   )
 In case you do not remember how random field theory works to correct for multiple comparison, [check this](http://imaging.mrc-cbu.cam.ac.uk/imaging/PrinciplesRandomFields).
 
 
-### False discovery rate (FDR) (???)
+### False discovery rate (FDR) (   ???   )
 
 
-### Permutation tests (???)
+### Permutation tests (   ???   )
 
-#### SnPM (???)
+https://github.com/allefeld/prevalence-permutation
+
+#### SnPM (   ???   )
 * [website](https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/nichols/software/snpm)
 
-#### FSL PALM and Randomize(???)
+#### FSL PALM and Randomize(   ???   )
 
-#### Freesurfer PALM (???)
+#### Freesurfer PALM (   ???   )
 
 
 
-## Multivariate analysis (???)
+## Analysis: Multivariate analysis (   ???   )
 Neuroimaging toolboxes for representation similarity analysis (RSA), support vector machine (SVM), population receptive field (pRF), encoding model and others...
 
 
@@ -720,15 +780,15 @@ For pRF analysis.
 * [website]https://popeye.readthedocs.io/en/latest/index.html)
 
 
-### R based (???)
+### R based (   ???   )
 
 
 
-## Robustness checks
+## Analysis: Robustness checks
+Robustness checks
 
 
-
-## Computational neuroscience
+## Analysis: Computational neuroscience
 
 
 
@@ -737,11 +797,13 @@ Kording paper with causal inference
 
 
 
-## Free energy
+### Free energy
+
+### Dynamic causal modelling
 
 
 
-## Laminar and high-resolution MRI
+## Analysis: Laminar and high-resolution MRI
 [Renzo Hubert](https://twitter.com/layerfmri) is keeping track of the most recent development of laminar MRI via twitter but also on his [blog](https://layerfmri.com/). He also curates laminar-fMRI related talks on his [Youtube channel](https://www.youtube.com/channel/UCMjtQ3FD41pAh1VJz-UZGJQ/videos) or papers in this [google spreahsheet](https://docs.google.com/spreadsheets/d/1DFdXA98bYPzK5Gf0M_PbNu3opvO-DIcrv7TMP5ywTMk/edit#gid=0).
 
 * This [blog post](https://layerfmri.com/2018/01/04/layer-fmri-software-in-the-field/) has a list of most of the softwares that are related to laminar fMRI.
@@ -749,7 +811,7 @@ Kording paper with causal inference
 
 
 
-## Meta analysis (???)
+## Analysis: Meta analysis (   ???   )
 
 
 
@@ -762,7 +824,7 @@ A Python library for coordinate- and image-based meta-analysis.
 
 
 
-## Resources for Methods/Results reporting: also useful for reviewing papers
+## Reporting your Methods/Results (also useful for reviewing papers)
 
 
 ### COBIDAS report
@@ -770,7 +832,7 @@ The organization from human brain mapping (OHBM) created the Committee on Best p
 See also Jeanette Mumford's [video](https://www.youtube.com/watch?v=bsM4KowO5Vc) about it.
 
 
-### NIDM
+
 
 ### Making figures
 
@@ -804,21 +866,25 @@ z-curves
 
 
 
-## Sharing your code, data and your results
+## You are not done yet: sharing your code, data and your results
+There should be at least 3 boxes on your to do list once your study is completed.
+* sharing the code
+* sharing the data
+* sharing the statistical map
+* updating meta-analysis databases
+If the 3 first points are done before an article submission it can be useful for reviewers to check what you have done. But all of those points are important also for future researchers that would like to base new research on your results or to run a meta-analysis of similar studies.
+
+### Sharing code
 If your code and/or your jupyter notebooks are on a github repository, you can make snapshot of it to publish on zenodo as explained [here](https://github.com/OpenScienceMOOC/Module-5-Open-Research-Software-and-Open-Source/tree/master/content_development).
 
 There are [many](https://brainhack101.github.io/neurolinks/) [possibilities](https://en.wikipedia.org/wiki/List_of_neuroscience_databases) to share your raw and/or pre-processed data. Maybe your university or your institute has ways to help you share your data (e.g the [Donders institute](https://data.donders.ru.nl/?0). [OopenNeuro](https://openneuro.org/) is also an option that supports the BIDS format and also allows you to analyze your data online. If you have used [Datalad](#datalad) to curate your raw and processed data, it can also be used to facilitate sharing.
 
-Sharing your final results can be useful for reviewers to check them but also for future researchers that would like to base new research on them or to run a meta-analysis of similar studies. If you want to share your results I suggest your export your final results using the NIDM format that is supported natively by [SPM12](https://github.com/incf-nidash/nidmresults-spm). There are also tools for exporting [FSL](https://github.com/incf-nidash/nidmresults-fsl) results and things are under development for [AFNI](https://github.com/incf-nidash/nidmresults-afni). The NIDM format makes your results easily viewable by other softwares (check the [INCF-NIDASH](https://github.com/incf-nidash) repo for more information) and facilitates uploading them to a site like [neurovault](https://neurovault.org/) where you can store them and share them with others.
+
+### NeuroImaging Data Model (NIDM)
+If you want to share your results I suggest you export your final results using the NIDM format that is supported natively by [SPM12](https://github.com/incf-nidash/nidmresults-spm). There are also tools for exporting [FSL](https://github.com/incf-nidash/nidmresults-fsl) results and things are under development for [AFNI](https://github.com/incf-nidash/nidmresults-afni). The NIDM format makes your results easily viewable by other softwares (check the [INCF-NIDASH](https://github.com/incf-nidash) repo for more information). There are extension in development for the NIDM to cover not only non-parametric statistical maps but also to export in very compact way [many of the details of about your experiment and analysis](http://nidm.nidash.org/specs/nidm-experiment_dev.html).
+
+
+### Meta-analysis databases
+A good reason to use the NIDM model is that it facilitates uploading them to a site like [neurovault](https://neurovault.org/) where you can store them and share them with others.
 
 Another thing you can do to share your published results is to add them to meta-analytical databases like [ANIMA](http://anima.modelgui.org), [brainmap](http://www.brainmap.org/) or [neurosynth](http://neurosynth.org/): for this you could use [brainspell](http://brainspell.org/) and [Scribe](http://brainspell.org/).
-
-
-
-## Where to ask for help
-If you have question linked to a specific software, check the documentation/FAQ/manual/wiki/tutorial for that software first. Then you can turn to [the mailing list](https://kirstiewhitaker.com/2014/12/16/how-to-use-the-fsl-and-freesurfer-mailing-lists-for-success-in-your-phd/) related to that software: but always start by looking through the archives of those mailing lists first before sending a question that has already been answered.
-
-But if you have more general questions you can also try :
-* the [neurostars](https://neurostars.org/) forum
-* social medias: there are some specialised Facebook groups or good hashtags on twitter that will succeed when your google fu fails you.
-* the slack channel of [brainhack](https://www.brainhack.org/)
