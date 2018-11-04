@@ -42,6 +42,8 @@ https://emmarobinson01.com/2016/10/07/forget-weak-statistics-fmri-studies-suffer
 
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
 
+specific talks from mumfordbrainstats, OHBM conference and other video series
+
 ---
 
 
@@ -56,7 +58,7 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
   + [Math and linear algebra courses](#math-and-linear-algebra-courses)
   + [MRI courses ( ??? )](#mri-courses-------)
   + [fMRI courses ( ??? )](#fmri-courses-------)
-* [Machine learning ( ??? )](#machine-learning-------)
+  + [Machine learning ( ??? )](#machine-learning-------)
   + [Resting state courses ( ??? )](#resting-state-courses-------)
   + [Neurohackademy](#neurohackademy)
   + [Software specific ( ??? )](#software-specific-------)
@@ -101,29 +103,31 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
 * [PLANNING YOUR STUDY](#planning-your-study)
   + [Reusing data](#reusing-data)
   + [Defining your terms and your task](#defining-your-terms-and-your-task)
+    - [Ontologies](#ontologies)
   + [Piloting ( ??? )](#piloting-------)
   + [Pre-registration](#pre-registration)
   + [Optimizing your design](#optimizing-your-design)
     - [Design efficiency ( ??? )](#design-efficiency-------)
     - [Power](#power)
     - [For MVPA: same analysis approach](#for-mvpa-same-analysis-approach)
-  + [Defining your ROI ( ??? )](#defining-your-roi-------)
-    - [Using previous results](#using-previous-results)
+  + [Defining your region of interest ( ??? )](#defining-your-region-of-interest-------)
+    - [Using previous results ( ??? )](#using-previous-results-------)
     - [Localizers ( ??? )](#localizers-------)
     - [Atlases](#atlases)
-  + [Non-standard templates ???](#non-standard-templates-)
+  + [Non-standard templates ( ??? )](#non-standard-templates-------)
 * [ONCE YOU HAVE DATA: quality control](#once-you-have-data-quality-control)
 * [ONCE YOU HAVE DATA: preprocessing](#once-you-have-data-preprocessing)
-  + [Pipelines](#pipelines)
+  + [Pipelines ( ??? )](#pipelines--------)
   + [Artefact/Noise removal ( ??? )](#artefactnoise-removal-------)
     - [PCA ( ??? )](#pca--------)
     - [ICA ( ??? )](#ica--------)
     - [ART ( ??? )](#art-------)
     - [ART repair ( ??? )](#art-repair-------)
     - [Physiological noise ( ??? )](#physiological-noise--------)
-* [Analysis: Resting state ( ??? )](#analysis-resting-state-------)
-* [Analysis: Model selection ( ??? )](#analysis-model-selection-------)
-* [Analysis: Statistical inferences and multiple comparison correction (MCP) ( ??? )](#analysis-statistical-inferences-and-multiple-comparison-correction-mcp-------)
+* [ANALYSIS: general linear model](#analysis-general-linear-model)
+* [ANALYSIS: Resting state ( ??? )](#analysis-resting-state-------)
+* [ANALYSIS: Model selection ( ??? )](#analysis-model-selection-------)
+* [ANALYSIS: Statistical inferences and multiple comparison correction (MCP) ( ??? )](#analysis-statistical-inferences-and-multiple-comparison-correction-mcp-------)
   + [Cluster based inference ( ??? )](#cluster-based-inference-------)
   + [Family wise error (FWE) ( ??? )](#family-wise-error-fwe-------)
   + [False discovery rate (FDR) ( ??? )](#false-discovery-rate-fdr-------)
@@ -131,7 +135,7 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
     - [SnPM ( ??? )](#snpm-------)
     - [FSL PALM and Randomize( ??? )](#fsl-palm-and-randomize------)
     - [Freesurfer PALM ( ??? )](#freesurfer-palm-------)
-* [Analysis: Multivariate analysis ( ??? )](#analysis-multivariate-analysis-------)
+* [ANALYSIS: Multivariate analysis ( ??? )](#analysis-multivariate-analysis-------)
   + [Matlab based](#matlab-based)
     - [TDT](#tdt)
     - [ProNTo](#pronto)
@@ -144,18 +148,22 @@ http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-inve
     - [nilearn](#nilearn)
     - [Popeye](#popeye)
   + [R based ( ??? )](#r-based-------)
-* [Analysis: Robustness checks](#analysis-robustness-checks)
-* [Analysis: Computational neuroscience](#analysis-computational-neuroscience)
+* [ANALYSIS: Robustness checks](#analysis-robustness-checks)
+* [ANALYSIS: Computational neuroscience](#analysis-computational-neuroscience)
   + [Free energy](#free-energy)
   + [Dynamic causal modelling](#dynamic-causal-modelling)
-* [Analysis: Laminar and high-resolution MRI](#analysis-laminar-and-high-resolution-mri)
-* [Analysis: Meta analysis ( ??? )](#analysis-meta-analysis-------)
-* [Reporting your Methods/Results (also useful for reviewing papers)](#reporting-your-methodsresults-also-useful-for-reviewing-papers)
-  + [COBIDAS report](#cobidas-report)
-  + [Making figures](#making-figures)
-* [You are not done yet: sharing your code, data and your results](#you-are-not-done-yet-sharing-your-code-data-and-your-results)
+* [ANALYSIS: Laminar and high-resolution MRI](#analysis-laminar-and-high-resolution-mri)
+* [ANALYSIS: Meta analysis ( ??? )](#analysis-meta-analysis-------)
+* [REPORTING METHODS AND RESULTS (also useful for reviewing papers)](#reporting-methods-and-results-also-useful-for-reviewing-papers)
+  + [A checklist: COBIDAS report](#a-checklist-cobidas-report)
+  + [Percent signal change ( ??? )](#percent-signal-change-------)
+  + [Making figures ( ??? )](#making-figures-------)
+  + [Tools to check results/statistics ( ??? )](#tools-to-check-resultsstatistics-------)
+  + [Peer review ( ??? )](#peer-review-------)
+* [YOU ARE NOT DONE YET: sharing your code, data and your results](#you-are-not-done-yet-sharing-your-code-data-and-your-results)
   + [Sharing code](#sharing-code)
   + [NeuroImaging Data Model (NIDM)](#neuroimaging-data-model-nidm)
+  + [Sharing your data](#sharing-your-data)
   + [Meta-analysis databases](#meta-analysis-databases)
 
 
@@ -385,6 +393,8 @@ I learnt matlab with a book and by reading other's scripts and with a lot of cof
 ### SPM
 * The first place to look is the [SPM wiki book](https://en.wikibooks.org/wiki/SPM) that could become a even better resource if users contributed even more to it.
 * Then you can check the [add-ons for SPM](https://www.fil.ion.ucl.ac.uk/spm/ext/).
+* The spm.mat is the file where SPM stores all the information about your analysis. This [page](http://people.duke.edu/~njs28/spmdatastructure.htm) explains its organization.
+* If you want to write scripts and use batches efficiently using SPM see what I wrote [here](./How2Script.md)
 * [The clever machine](https://theclevermachine.wordpress.com/category/fmri/) blog has some very useful matlab codes for fMRI analysis
 * [Tom Nichols](https://twitter.com/ten_photos) has tagged SPM related posts on his [website](http://blogs.warwick.ac.uk/nichols/) if you are looking for some good code snippets: see for example some of John Ashburner's [gems](http://blogs.warwick.ac.uk/nichols/tag/johns-gems/).
 * Check out [Cyril Pernet](https://twitter.com/cyrilrpernet) website for SPM/matlab code: [here](http://www.sbirc.ed.ac.uk/cyril/teaching.html) or [there](http://www.sbirc.ed.ac.uk/cyril/Stats.html)
@@ -695,7 +705,7 @@ There is also an [OPPNI](https://github.com/BIDS-Apps/oppni) for Optimization of
 
 
 
-## Analysis: general linear model
+## ANALYSIS: general linear model
 
 
 
@@ -756,7 +766,7 @@ In case you do not remember how random field theory works to correct for multipl
 
 ### Permutation tests (   ???   )
 
-
+A talk by Carsten Allefeld on permutation test at OHBM 2018: https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/116074
 
 
 The [prevalence test](https://github.com/allefeld/prevalence-permutation)
@@ -774,6 +784,9 @@ The [prevalence test](https://github.com/allefeld/prevalence-permutation)
 
 
 ## ANALYSIS: Multivariate analysis (   ???   )
+
+A talk by [Pradeep Reedy Raamana]() at OHBM 2018 on cross-validation: https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/116075
+
 Neuroimaging toolboxes for representation similarity analysis (RSA), support vector machine (SVM), population receptive field (pRF), encoding model and others...
 
 
@@ -830,7 +843,7 @@ For pRF analysis.
 
 
 
-## Analysis: Robustness checks
+## ANALYSIS: Robustness checks
 
 Non neuroimaging cases
 * [multiverse analysis]()
@@ -874,7 +887,11 @@ And a [tutorial](https://medium.com/@solopchuk/tutorial-on-active-inference-30ed
 
 
 
-Talks at OHBM 2018 by [Tom Nichols]() and [Camille Maumet]() for an [overview](https://figshare.com/articles/Overview_of_Meta-Analysis_Approaches/6723839) and a [practical]() on meta-analysis:
+a [talk](https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/116072) by [Tom Nichols]() at OHBM 2018 for an [overview](https://figshare.com/articles/Overview_of_Meta-Analysis_Approaches/6723839)
+a [practical](https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/116073) by [Camille Maumet]() at OHBM 2018 on meta-analysis: [slides] (   ???   )
+
+a talk on ALE and brainmap
+https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/116066
 
 
 [NiMARE](https://github.com/neurostuff/NiMARE) is a Python library for coordinate- and image-based meta-analysis. [Chris Gorgolewski](https://twitter.com/ChrisFiloG) wrote a [tutorial](https://www.kaggle.com/chrisfilo/coordinate-and-image-metaanalysis-with-nimare) on how to use it.
@@ -1002,6 +1019,11 @@ Some of the main databases where you can put your data are:
 * [Pain repository](https://www.painrepository.org/])
 
 But there are [many](https://brainhack101.github.io/neurolinks/) other [possibilities](https://en.wikipedia.org/wiki/List_of_neuroscience_databases) to share your raw and/or pre-processed data. Maybe your university or your institute has ways to help you share your data (e.g the [Donders institute](https://data.donders.ru.nl/?0).
+
+
+FAIR data
+
+https://www.pathlms.com/ohbm/courses/8246/sections/12542/video_presentations/115883
 
 
 ### Meta-analysis databases
