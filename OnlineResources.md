@@ -15,17 +15,10 @@ http://technicalfmri.blogspot.com/2018/02/physiological-monitoring-and-recording
 
 http://cbs.fas.harvard.edu/science/core-facilities/neuroimaging/information-investigators/MRphysicsfaq
 
+
+
 ---
 
-
-
-There are tons of on-line resources for neuroimaging data analysis so the following list is not meant to be exhaustive. There are also similar lists here and there that might partly overlap with this one.
-
-* [Stephan Heunis](https://twitter.com/fmrwhy) has a [list](https://www.fmrwhy.com/2018/06/28/spm12-matlab-scripting-tutorial-4/) to many SPM and matlab material.
-* [Jonathan Peelle](https://twitter.com/jpeelle) has a great [list of resources](http://jonathanpeelle.net/mri-resources-for-beginners) for beginners.
-* Check the [wiki](http://imaging.mrc-cbu.cam.ac.uk/imaging/CbuImaging) from the CBU in Cambridge.
-* [https://github.com/brainhack101](https://github.com/brainhack101) also has a [collections or links](https://brainhack101.github.io/neurolinks/) to courses, data...
-* ReproNim is a good [site](http://www.reproducibleimaging.org/index.html) to get up to date on doing reproducible research.
 
 
 **Table of Contents**
@@ -119,7 +112,6 @@ There are tons of on-line resources for neuroimaging data analysis so the follow
 
 
 ---
-
 
 
 
@@ -351,7 +343,7 @@ If you turn to neuroimaging in python I guess you will first want to go to check
 Even if they are not specific to neuroimaging many of the R based web based apps from [shiny apps](http://shinyapps.org/) and [R psychologist](http://rpsychologist.com/) can be very useful to help better understand:
 * [p-values](https://www.shinyapps.org/apps/vs-mpr/)
 * [confidene intervals](http://rpsychologist.com/d3/CI/)
-* [p curves](https://shinyapps.org/apps/p-checker/) and [why with a decent power and a large effect size, it is realtively unlikely to find a value between p<.01 and p<.05](http://rpsychologist.com/d3/pdist/)
+* [p curves](https://shinyapps.org/apps/p-checker/) and [why with a decent power and a large effect size, it is relatively unlikely to find a value between p<.01 and p<.05](http://rpsychologist.com/d3/pdist/)
 * [null hypothesis significance testing](http://rpsychologist.com/d3/NHST/)
 * [p hacking](https://www.shinyapps.org/apps/p-hacker/)
 * [positive predictive values](http://shinyapps.org/showapp.php?app=https://tellmi.psy.lmu.de/felix/PPV&by=Michael%20Zehetleitner%20and%20Felix%20Sch%C3%B6nbrodt&title=When%20does%20a%20significant%20p-value%20indicate%20a%20true%20effect?&shorttitle=When%20does%20a%20significant%20p-value%20indicate%20a%20true%20effect?)
@@ -405,7 +397,7 @@ Even though GIT is most powerful when using the command line, there are also man
 #### Coding style
 Another good coding practice to have is a consistent coding style. For python you have the [PEP8 standard](https://www.python.org/dev/peps/pep-0008/) and some tools like [pylint](https://www.pylint.org/), [pycodestyle](https://pypi.org/project/pycodestyle/2.2.0/), or [pep8online](http://pep8online.com/) that help you make sure that your code complies with this standard.
 
-You can also have a look at the code style used by [google for many languages](https://github.com/google/styleguide) (h/t [Kelly Garner](@garner_theory)). You will notice that matlab is not in the list so you might want to check those [here](https://fr.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0?s_tid=mwa_osa_a).
+You can also have a look at the code style used by [google for many languages](https://github.com/google/styleguide) (h/t [Kelly Garner](@garner_theory)). You will notice that matlab is not in the list so you might want to check this [here](https://fr.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0?s_tid=mwa_osa_a).
 
 #### Avoid selective debugging: unit tests, positive and negative control
 
@@ -428,7 +420,7 @@ If you are going to do some fMRI analysis you will quickly drown in data if you 
 If you would like to use BIDS but you have no idea what a JSON file or the length of the specification document scares you, head over to the [BIDS starter kit](https://github.com/bids-standard/bids-starter-kit) to find tutorials and scripts to help you rearrange your data.
 
 #### Datalad
-[Datalad](https://www.datalad.org/for/data-consumers) is to data what git is to code. It allows curation of data and version controlling of but also lets you crawl databases to explore and download data from them and it facilitates data sharing. Several of these features are described [here](https://www.datalad.org/features.html) with scripts that act as tutorial. There are videos presentation of it [here](https://www.youtube.com/watch?v=sDP1jhRkKRo) and [there](https://www.youtube.com/watch?v=59CE6iOr45k).
+[Datalad](https://www.datalad.org/for/data-consumers) is to data what git is to code. It allows curation of data and version controlling of but also lets you crawl databases to explore and download data from them and it facilitates data sharing. Several of these features are described [here](https://www.datalad.org/features.html) with scripts that act as tutorial. There are videos presentation of it [there](https://www.youtube.com/watch?v=59CE6iOr45k).
 
 #### YODA
 Having a standard way to organize not only your data but also your code, the results, the documentation... from the beginning of a project can go a long way to save you a lot of time down the line (when communicating within or outside your lab, or when you have to wrap things up when moving to a new project/job). The [YODA template](https://github.com/myyoda/template) is folder structure recommended by [ReproNim](http://www.reproducibleimaging.org/index.html) that you can use.
@@ -462,7 +454,7 @@ The recent [google extension for databases](https://toolbox.google.com/datasetse
 
 
  * Ontologies
- * Declare design
+ * Declare design and Dorothy Bishop on it
 
 
 
@@ -500,7 +492,7 @@ When you want to optimize it you have few options:
 
 Gerd Gigerenzer in *Statistical Rituals: The Replication Delusion and How We Got There*, [DOI: 10.1177/2515245918771329](http://journals.sagepub.com/doi/10.1177/2515245918771329)
 
-There is good evidence that the average statistical power has remained low for several decades in psychology which increases the false negative rate and reduces the positive predictive value of findings (i.e the chance that a significant finding is actually true). Maybe neuroimaging could learn from that mistake.
+There is good evidence that the average statistical power has remained low for several decades in psychology which increases the false negative rate and reduces the positive predictive value of findings (i.e the chance that a significant finding is actually true). Maybe neuroimaging could learn from that mistake, especially that a large majority of neuroimaging studies seem to have even lower statistical power.
 
 [fMRI power](http://fmripower.org/) is a matlab based toolbox to help you run your power analysis.
 
@@ -666,14 +658,12 @@ In case you do not remember how random field theory works to correct for multipl
 
 ### Permutation tests (???)
 
-#### SnPM
+#### SnPM (???)
 * [website](https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/nichols/software/snpm)
 
-#### FSL (???)
+#### FSL PALM and Randomize(???)
 
-#### AFNI (???)
-
-#### Freesurfer (???)
+#### Freesurfer PALM (???)
 
 
 
@@ -726,7 +716,7 @@ Nilearn is a Python module for fast and easy statistical learning on NeuroImagin
 * [course/tutorial](http://nilearn.github.io/introduction.html#python-for-neuroimaging-a-quick-start)
 
 #### Popeye
-For pRF analysis
+For pRF analysis.
 * [website]https://popeye.readthedocs.io/en/latest/index.html)
 
 
