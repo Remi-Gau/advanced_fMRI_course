@@ -1,7 +1,5 @@
 ﻿# How to script with SPM
 
-
-
 ## Why use scripts?
 
 Scripting your preprocessing and your analyis is a good way to [save time](https://external-preview.redd.it/xGS3CBRs2u3ujufXLZS6oCbB-9cCAFy_xuWxOFSjD4c.png?auto=webp&s=9a14526bbd5503dee65554baca74faa0b5681a64), improve reproducibility and avoid human errors.
@@ -11,41 +9,6 @@ Scripting your preprocessing and your analyis is a good way to [save time](https
 But remember that it can also be a pretty efficient way to get some systematic errors that are [hard to track down](http://xkcd.com/1319/).
 
 ![](.statics/automation.png)
-
-
-
-## How do I know which matlab function performs a given SPM process?
-
-That is in my opinion one of the biggest problem of SPM: the light documentation makes it really difficult to understand how SPM works and most attempts to do it feel like reverse engineering by parsing a jungle of code... That being said...
-
-Check [here](http://en.wikibooks.org/wiki/SPM/Programming_intro) to start but in general, if you are looking for which SPM function does task X, click on the `help` button in the main SPM menu window, then on the task X (e.g Results): the new window will tell you the name of the function that performs the task you are interested in (`spm_results_ui.m` in this case).
-
-Another tip is that usually when you run a given process in SPM, the matlab command line will display the main function called. For example clicking on the `Check Reg` button and selecting an image to view display:
-
-``` matlab
-SPM12: spm_check_registration (v6245)              13:42:08 - 30/10/2018
-========================================================================
-Display D:\SPM\spm12\canonical\avg305T1.nii,1
-```
-
-This tells you that this called the `spm_check_registration.m` matlab function.
-
-You can also find other interesting suggestions in this discussion of the SPM mailing list: [SPM: Peeking under the hood -- how?](https://www.jiscmail.ac.uk/cgi-bin/webadmin?A2=ind1803&L=spm&P=R58295&1=spm&9=A&J=on&d=No+Match%3BMatch%3BMatches&z=4).
-
-Once you have identified the you can then type either type `help function_name` if you want some more information about this function or `edit function_name` if you want to see the code and figure out how the function works. In either case, do not save any of the changes you are doing to the function and make sure you have enough coffee and patience to understand a lot of lines of code !
-
-If you want to start tweaking SPM functions I recommend that:
-1. you version control what you are doing using [GIT](https://git-scm.com/)
-2. you save a copy of that file in a completely different folder from its original SPM folder
-3. you add that folder to the matlab path above the spm folder and subfolders
-4. you start playing around on that copy of the file.
-
-
-
-## What is this SPM.mat everyone keeps talking about?
-
-The spm.mat is the file where SPM stores all the information about your analysis. This [page](http://people.duke.edu/~njs28/spmdatastructure.htm) explains its organization.
-
 
 
 ## How to actually write SPM scripts?
